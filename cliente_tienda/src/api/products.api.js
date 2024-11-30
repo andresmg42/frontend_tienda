@@ -8,6 +8,8 @@ export const getAllProducts = () =>{
 }
 
 export const createProduct=(product)=>{
-    return productoApi.post("/",product)
+    return productoApi.post("/",product,{
+        headers: { 'Content-Type': 'multipart/form-data' },
+      })
 }
 
