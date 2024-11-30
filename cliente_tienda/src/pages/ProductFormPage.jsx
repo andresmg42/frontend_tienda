@@ -11,33 +11,44 @@ export function ProductFormPage() {
     try {
       const response = await getAllCategories(); // Asegúrate de que esta función funcione correctamente
       const categorias = response.data;
-      console.log(categorias)
-      const categoriaExiste = categorias.some(
-        (categoria) => categoria.nombre_categoria === data.categoria
-      );
+    
+     const cat=categorias.find(categoria=>categoria.nombre_categoria === data.categoria);
 
-      if (categoriaExiste) {
-        const newData = {
-          nombre: data.nombre,
-          precio: parseFloat(data.precio),
-          estado_producto: data.estado_producto === 'true',
-          cantidad_producto: parseInt(data.cantidad_producto, 10),
-          descripcion: data.descripcion,
-          categoria: data.categoria
+  
+        if (cat!=undefined){
+          const newData = {
+            "nombre": data.nombre,
+            "precio": data.precio,
+            "estado_producto": data.estado_producto === 'true',
+            "cantidad_producto": parseInt(data.cantidad_producto, 10),
+            "descripcion": data.descripcion,
+            "categoria": cat.id
+  
+          }
+
+          console.log(newData)
+
+          await createProduct(newData)
+          toast.success('Producto Creado Exitosamente', {
+            position: "bottom-right",
+            style: {
+              background: "#101010",
+              color: "#fff",
+            },
+          });
+
+        } else{
+          toast.error('Categoría no encontrada', {
+            position: "bottom-right",
+            style: {
+              background: "#101010",
+              color: "#fff",
+            },
+          });
 
         }
-        //Aqui hay que crear un producto.
-        console.log(newData);
-      } else {
-        console.log("error despues del else")
-        toast.error('Categoría no encontrada', {
-          position: "bottom-right",
-          style: {
-            background: "#101010",
-            color: "#fff",
-          },
-        });
-      }
+    
+
     } catch (error) {
       console.error("Error al validar la categoría:", error);
       toast.error('Ocurrió un error. Intenta nuevamente.', {
@@ -58,8 +69,7 @@ export function ProductFormPage() {
 
   });
 
-  //const res = await createProduct(data)
-  //console.log(res)
+
 
   return (
     <div>
@@ -107,6 +117,8 @@ export function ProductFormPage() {
         ></textarea>
 
         {errors.descripcion && <span>this field is required</span>}
+
+        <input type='file' name='imagen' onChange={handleFileChange}/>
 
         <button>save</button>
 
