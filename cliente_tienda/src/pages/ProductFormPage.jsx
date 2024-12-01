@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form'
-import { createProduct, getProduct } from '../api/products.api'
+import { createProduct, getProduct, updateProduct, deleteProduct} from '../api/products.api'
 import { getAllCategories } from '../api/categories.api'
 import toast from 'react-hot-toast'
 import { useEffect, useState } from 'react'
@@ -10,28 +10,12 @@ export function ProductFormPage() {
 
   const params = useParams();
 
-  const [formData, setFormData] = useState({
-    nombre: '',
-    precio: '',
-    descripcion: '',
-    cantidad_producto: '',
-    estado_producto: true,
-    categoria: '',
-    foto_producto: null, // Para la imagen
-  });
+  const { register, handleSubmit, formState: { errors }, setValue } = useForm();
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
 
-  const handleFileChange = (e) => {
-    setFormData({ ...formData, foto_producto: e.target.files[0] });
-  };
+  const onSubmit = handleSubmit(async data => {
 
-  const onSubmit = async (e) => {
 
-    e.preventDefault();
 
 
 
@@ -39,23 +23,24 @@ export function ProductFormPage() {
       const response = await getAllCategories();
       const categorias = response.data;
 
-      const cat = categorias.find(categoria => categoria.nombre_categoria === formData.categoria);
+      const cat = categorias.find(categoria => categoria.nombre_categoria === data.categoria);
 
 
       if (cat != undefined) {
 
         const newdata = {
-          nombre: formData.nombre,
-          precio: formData.precio,
-          descripcion: formData.descripcion,
-          cantidad_producto: parseInt(formData.cantidad_producto),
-          estado_producto: formData.estado_producto === "true",
+          nombre: data.nombre,
+          precio: data.precio,
+          descripcion: data.descripcion,
+          cantidad_producto: parseInt(data.cantidad_producto),
+          estado_producto: data.estado_producto === "true",
           categoria: cat.id,
-          foto_producto: formData.foto_producto,
+          foto_producto: data.foto_producto[0],
         }
 
         if (params.id) {
-          await updateTask(params.id, newdata);
+          console.log(newdata)
+          await updateProduct(params.id, newdata);
           toast.success('Tarea Actualizada correctamente', {
 
             position: "bottom-right",
@@ -66,7 +51,7 @@ export function ProductFormPage() {
           })
 
         } else {
-
+          console.log(newdata)
           await createProduct(newdata)
           toast.success('Producto Creado Exitosamente', {
             position: "bottom-right",
@@ -81,7 +66,7 @@ export function ProductFormPage() {
         }
 
 
-        //navigate("/products")
+      navigate("/products")
 
 
 
@@ -116,45 +101,85 @@ export function ProductFormPage() {
 
 
 
-  };
+  });
 
-useEffect(()=>{
-  async function loadProduct(){
-    console.log(params.id)
-  if (params.id){
-    const res=await getProduct(params.id)
-    console.log(res)
-    setFormData({
-      nombre: res.nombre,
-      precio: res.precio,
-      descripcion: res.descripcion,
-      cantidad_producto: String(res.cantidad_producto),
-      estado_producto: String(res.estado_producto),
-      categoria: String(res.categoria),
-      foto_producto: res.foto_producto,
-    });
+  useEffect(() => {
+    async function loadProduct() {
+      console.log(params.id)
+      if (params.id) {
+        const res = await getProduct(params.id)
+        const response = await getAllCategories();
+        const categorias = response.data;
+        console.log(res.data)
+        console.log(categorias)
+        const cat = categorias.find(categoria => categoria.id === res.data.categoria);
 
-  }
-
-}
-loadProduct();
-},[params.id])
+        setValue('nombre', res.data.nombre)
+        setValue('precio', res.data.precio)
+        setValue('descripcion', res.data.descripcion)
+        setValue('cantidad_producto', String(res.data.cantidad_producto))
+        setValue('categoria', cat.nombre_categoria)
+        setValue('estado_producto', String(res.data.estado_producto))
+        //setValue('foto_producto', FileList(res.data.foto_producto,1))
+      };
+    }
+    loadProduct();
+  }, [])
 
   return (
     <div>
       <form onSubmit={onSubmit}>
-        <input type="text" name="nombre" placeholder="Nombre" onChange={handleInputChange} />
-        <input type="number" name="precio" placeholder="Precio" onChange={handleInputChange} />
-        <textarea name="descripcion" placeholder="Descripción" onChange={handleInputChange}></textarea>
-        <input type="number" name="cantidad_producto" placeholder="Cantidad" onChange={handleInputChange} />
-        <select name="estado_producto" onChange={handleInputChange}>
+        <input type="text" name="nombre" placeholder="nombre" {...register("nombre", { required: true })} />
+
+        <input type="number" name="precio" placeholder="precio" {...register("precio", { required: true })} />
+
+        <textarea name="descripcion" placeholder="descripción" {...register("descripcion", { required: true })}></textarea>
+
+        <input type="number" name="cantidad_producto" placeholder="cantidad_producto" {...register("cantidad_producto", { required: true })} />
+
+        <select name="estado_producto" {...register("estado_producto", { required: true })}>
           <option value="true">Activo</option>
           <option value="false">Inactivo</option>
         </select>
-        <input type="text" name="categoria" placeholder="Categoría" onChange={handleInputChange} />
-        <input type="file" name="foto_producto" onChange={handleFileChange} />
+
+        <input type="text" name="categoria" placeholder="categoría" {...register("categoria", { required: true })} />
+
+        <input type="file" name="foto_producto" {...register("foto_producto", { required: false })} />
+
         <button type="submit">Crear Producto</button>
+
       </form>
+      {params.id &&
+        <div>
+          <button
+
+            onClick={async () => {
+              const accepted = window.confirm("are you sure?");
+              if (accepted) {
+                await deleteProduct(params.id);
+                toast.success('Tarea eliminada exitosamente', {
+
+                  position: "bottom-right",
+                  style: {
+                    background: "#101010",
+                    color: "#fff"
+                  }
+                })
+
+                navigate("/products")
+              }
+
+            }}
+          >Delete
+
+          </button>
+
+        </div>
+
+
+
+      }
+
     </div>
   )
 }

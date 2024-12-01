@@ -12,6 +12,14 @@ export function ProductCard({product}) {
             navigate('/products/'+product.id)
         }}
         >
+            
+            {product.foto_producto && (
+                <img 
+                    src={product.foto_producto} 
+                    alt={product.nombre}
+                    className="w-full h-48 object-cover mb-3 rounded-md"
+                />
+            )}
             <h1 className="font-bold uppercase">{product.nombre}</h1>
             <p className="text-slate-400">{product.cantidad_producto}</p>
             <p className="text-slate-400">{product.precio}</p>
