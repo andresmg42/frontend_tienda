@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form'
-import { createProduct, getProduct, updateProduct, deleteProduct} from '../api/products.api'
+import { createProduct, getProduct, updateProduct, deleteProduct } from '../api/products.api'
 import { getAllCategories } from '../api/categories.api'
 import toast from 'react-hot-toast'
 import { useEffect, useState } from 'react'
@@ -66,7 +66,7 @@ export function ProductFormPage() {
         }
 
 
-      navigate("/products")
+        navigate("/products")
 
 
 
@@ -127,32 +127,32 @@ export function ProductFormPage() {
   }, [])
 
   return (
-    <div>
+    <div className='max-w-xl mx-auto'>
       <form onSubmit={onSubmit}>
-        <input type="text" name="nombre" placeholder="nombre" {...register("nombre", { required: true })} />
+        <input className='bg-zinc-700 p-3 rounded-lg block w-full mb-3' type="text" name="nombre" placeholder="nombre" {...register("nombre", { required: true })} />
 
-        <input type="number" name="precio" placeholder="precio" {...register("precio", { required: true })} />
+        <input className='bg-zinc-700 p-3 rounded-lg block w-full mb-3' type="number" name="precio" placeholder="precio" {...register("precio", { required: true })} />
 
-        <textarea name="descripcion" placeholder="descripción" {...register("descripcion", { required: true })}></textarea>
+        <textarea className='bg-zinc-700 p-3 rounded-lg block w-full mb-3' name="descripcion" placeholder="descripción" {...register("descripcion", { required: true })}></textarea>
 
-        <input type="number" name="cantidad_producto" placeholder="cantidad_producto" {...register("cantidad_producto", { required: true })} />
+        <input className='bg-zinc-700 p-3 rounded-lg block w-full mb-3' type="number" name="cantidad_producto" placeholder="cantidad_producto" {...register("cantidad_producto", { required: true })} />
 
-        <select name="estado_producto" {...register("estado_producto", { required: true })}>
+        <select className='bg-zinc-700 p-3 rounded-lg block w-full mb-3' name="estado_producto" {...register("estado_producto", { required: true })}>
           <option value="true">Activo</option>
           <option value="false">Inactivo</option>
         </select>
 
-        <input type="text" name="categoria" placeholder="categoría" {...register("categoria", { required: true })} />
+        <input className='bg-zinc-700 p-3 rounded-lg block w-full mb-3' type="text" name="categoria" placeholder="categoría" {...register("categoria", { required: true })} />
 
-        <input type="file" name="foto_producto" {...register("foto_producto", { required: false })} />
+        <input className='bg-zinc-700 p-3 rounded-lg block w-full mb-3' type="file" name="foto_producto" {...register("foto_producto", { required: false })} />
 
-        <button type="submit">Crear Producto</button>
+        <button className='bg-indigo-500 p-3 rounded-lg  w-48 mt-3' type="submit">Save</button>
 
       </form>
       {params.id &&
         <div>
           <button
-
+            className='bg-red-500 p-3 rounded-lg w-48 mt-3'
             onClick={async () => {
               const accepted = window.confirm("are you sure?");
               if (accepted) {

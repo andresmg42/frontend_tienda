@@ -14,7 +14,11 @@ export const createProduct=(product)=>{
 
 export const getProduct=(id)=>productoApi.get('/'+id+'/')
 
-export const updateProduct=(id,product)=> productoApi.put('/'+id+'/',product)
+export const updateProduct=(id,product)=> {
+    return productoApi.put("/"+id+"/",product,{
+        headers: { 'Content-Type': 'multipart/form-data' },
+      })
+}
 
 export const deleteProduct=(id)=> productoApi.delete('/'+id+'/')
        
