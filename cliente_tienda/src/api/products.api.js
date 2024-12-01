@@ -21,5 +21,7 @@ export const updateProduct=(id,product)=> {
 }
 
 export const deleteProduct=(id)=> productoApi.delete('/'+id+'/')
+
+export const get_products_by_category=(category_id)=> productoApi.get('/get_by_category/'+category_id+'/')
        
 

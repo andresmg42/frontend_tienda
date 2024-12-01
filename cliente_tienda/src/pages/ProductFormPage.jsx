@@ -41,7 +41,7 @@ export function ProductFormPage() {
         if (params.id) {
           console.log(newdata)
           await updateProduct(params.id, newdata);
-          toast.success('Tarea Actualizada correctamente', {
+          toast.success('Producto Actualizado correctamente', {
 
             position: "bottom-right",
             style: {

@@ -9,7 +9,7 @@ export function ProductCard({product}) {
         hover:cursor-pointer"
 
         onClick={()=>{
-            navigate('/products/'+product.id)
+            navigate('/product-create/'+product.id)
         }}
         >
             

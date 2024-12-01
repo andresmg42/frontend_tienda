@@ -14,7 +14,8 @@ function App() {
         <Route path="/" element={<Navigate to="/products" />} />
         <Route path="/products" element={<ProductPage />} />
         <Route path="/product-create" element={<ProductFormPage />} />
-        <Route path="/products/:id" element={<ProductFormPage/>}/>
+        <Route path="/product-create/:id" element={<ProductFormPage/>}/>
+        <Route path="/products/:id" element={<ProductPage/>}/>
       </Routes>
       <Toaster/>
      </div>
