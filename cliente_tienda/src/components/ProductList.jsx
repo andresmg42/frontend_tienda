@@ -4,7 +4,7 @@ import { ProductCard } from "./ProductCard"
 export function ProductList({category_id}) {
 
     const [products,setProducts]=useState([])
-
+    console.log('estoy en ProductList'+category_id)
     useEffect(()=>{
       async  function loadProducts(){
         if(category_id!=undefined){
@@ -20,7 +20,7 @@ export function ProductList({category_id}) {
             
         }
         loadProducts()
-    },[])
+    },[category_id])
     
   return (
     <div className="grid grid-cols-3 gap-3">

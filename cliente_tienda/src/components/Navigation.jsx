@@ -1,12 +1,30 @@
 import { Link } from "react-router-dom"
-import React, { useState } from 'react';
-import { Menu, ChevronDown,Search } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Menu, ChevronDown, Search } from 'lucide-react';
 import { useNavigate } from "react-router-dom";
+import { getAllCategories } from "../api/categories.api";
 
 
 export function Navigation() {
 
-  const navigate=useNavigate();
+  const [categorias, setCategorias] = useState([])
+
+  useEffect(()=>{
+    async  function loadCategorias(){
+      
+        const res= await getAllCategories()
+          
+          setCategorias(res.data)
+
+      }
+          
+      
+      loadCategorias()
+      
+  },[])
+
+  const navigate = useNavigate();
+
   const [isProductDropdownOpen, setIsProductDropdownOpen] = useState(false);
   const [isCategoryDropdownOpen, setIsCategoryDropdownOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -33,23 +51,23 @@ export function Navigation() {
 
   return (
     // <div className="flex justify-between py-3">
-     
+
     //     <Link to="/products">Products List</Link>
 
     //   <button className="bg-indigo-500 px-3 py-2 rounded-lg">
     //     <Link to="/product-create" >Create Product</Link>
     //   </button>
     // </div>
-<nav className="bg-indigo-500 text-white p-4">
+    <nav className="bg-indigo-500 text-white p-4">
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo o Título */}
-        
+
         <Link to="/products" className="text-xl font-bold" >Tienda</Link>
 
         {/* Menú de Navegación */}
         <div className="relative flex items-center space-x-4">
           {/* Ícono de Búsqueda */}
-          <div 
+          <div
             className="cursor-pointer"
             onClick={() => setIsSearchOpen(!isSearchOpen)}
           >
@@ -57,88 +75,72 @@ export function Navigation() {
           </div>
 
           {/* Menú de Productos */}
-          <div 
+          <div
             className="cursor-pointer flex items-center relative"
-            
+
             onClick={toggleProductDropdown}
           >
             Productos <ChevronDown className="ml-1" size={16} />
-            
+
             {isProductDropdownOpen && (
-              <div 
-              onMouseEnter={() => setIsProductDropdownOpen(true)}
-              onMouseLeave={() => setIsProductDropdownOpen(false)}
+              <div
+                onMouseEnter={() => setIsProductDropdownOpen(true)}
+                onMouseLeave={() => setIsProductDropdownOpen(false)}
                 className="absolute top-full left-0 bg-white text-black shadow-lg rounded-md mt-2 w-48 z-10"
                 onClick={(e) => e.stopPropagation()}
               >
                 <ul className="py-2">
-                  <li 
+                  <li
                     className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
                     onClick={() => {
                       navigate('/product-create');
-                      
+
                       setIsProductDropdownOpen(false);
                     }}
                   >
                     Crear Producto
                   </li>
-                  
-                  
+
+
                   {/* Submenu de Categorías */}
-                  <li 
-                  
+                  <li
+
                     className="px-4 py-2 hover:bg-gray-100 cursor-pointer relative"
                     onClick={toggleCategoryDropdown}
                   >
                     <div className="flex items-center justify-between">
-                      Ver por Categoría <ChevronDown size={16} />
+                      Ver por Categoría <ChevronDown size={16} 
+                      />
                     </div>
-                    
+
                     {isCategoryDropdownOpen && (
-                      <div 
-                      onMouseEnter={() => setIsProductDropdownOpen(true)}
-                      onMouseLeave={() => setIsProductDropdownOpen(false)}
-                      className="absolute left-[-192px] top-0 bg-white text-black shadow-lg rounded-md w-48 z-20"
-                      onClick={(e) => e.stopPropagation()}
-                    >
+                      <div
+                        onMouseEnter={() => setIsProductDropdownOpen(true)}
+                        onMouseLeave={() => setIsProductDropdownOpen(false)}
+                        className="absolute left-[-192px] top-0 bg-white text-black shadow-lg rounded-md w-48 z-20"
+                        onClick={(e)=>e.stopPropagation()}
+                      >
+
                         <ul className="py-2">
-                          <li 
-                            className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                            onClick={() => {
-                              console.log('Categoría: Libros');
-                              setIsProductDropdownOpen(false);
-                            }}
-                          >
-                            Libros
-                          </li>
-                          <li 
-                            className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                            onClick={() => {
-                              console.log('Categoría: Electrónica');
-                              setIsProductDropdownOpen(false);
-                            }}
-                          >
-                            Electrónica
-                          </li>
-                          <li 
-                            className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                            onClick={() => {
-                              console.log('Categoría: Uniformes');
-                              setIsProductDropdownOpen(false);
-                            }}
-                          >
-                            Uniformes
-                          </li>
-                          <li 
-                            className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                            onClick={() => {
-                              console.log('Categoría: Útiles');
-                              setIsProductDropdownOpen(false);
-                            }}
-                          >
-                            Útiles
-                          </li>
-                        </ul>
+                          {categorias.map(categoria => (
+                            //<ProductCard key={product.id} product={product}/>
+                            
+                            <li key={categoria.id}
+                              className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                              onClick={(e) => {
+                                e.stopPropagation()
+                                navigate('/products/'+categoria.id)
+                                setIsProductDropdownOpen(false);
+                                
+                              }}
+                              
+                            >
+                              {categoria.nombre_categoria}
+                            </li>
+                          ))}
+
+
+                         </ul>
                       </div>
                     )}
                   </li>
@@ -153,21 +155,21 @@ export function Navigation() {
           <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
             <div className="bg-white p-6 rounded-lg shadow-xl w-96">
               <form onSubmit={handleSearch} className="flex items-center">
-                <input 
-                  type="text" 
+                <input
+                  type="text"
                   placeholder="Buscar producto por nombre"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="w-full px-4 py-2 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-black"
                 />
-                <button 
-                  type="submit" 
+                <button
+                  type="submit"
                   className="bg-indigo-500 text-white px-4 py-2 rounded-r-lg hover:bg-blue-700"
                 >
                   <Search size={20} />
                 </button>
               </form>
-              <button 
+              <button
                 onClick={() => setIsSearchOpen(false)}
                 className="mt-4 w-full bg-indigo-500 py-2 rounded-lg hover:bg-gray-300"
               >
@@ -178,7 +180,7 @@ export function Navigation() {
         )}
       </div>
     </nav>
-   
+
 
   )
 }
