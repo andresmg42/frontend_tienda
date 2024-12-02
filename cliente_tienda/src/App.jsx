@@ -7,9 +7,10 @@ import {Toaster} from "react-hot-toast"
 function App() {
   return (
     <BrowserRouter>
-     <div className='container mx-auto'>
+    <Navigation/>
+     <div className='container mx-auto mt-4'>
 
-     <Navigation/>
+     
       <Routes>
         <Route path="/" element={<Navigate to="/products" />} />
         <Route path="/products" element={<ProductPage />} />

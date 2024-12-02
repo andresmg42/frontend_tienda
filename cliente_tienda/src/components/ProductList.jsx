@@ -9,12 +9,12 @@ export function ProductList({category_id}) {
       async  function loadProducts(){
         if(category_id!=undefined){
           const res= await get_products_by_category(category_id)
-            console.log(res.data['products'])
+            
             setProducts(res.data['products'])
 
         }else{
           const res= await getAllProducts()
-            console.log(res.data)
+            
             setProducts(res.data)
         }
             
