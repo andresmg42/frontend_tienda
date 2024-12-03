@@ -2,8 +2,8 @@ import { Link } from "react-router-dom"
 import React, { useState, useEffect } from 'react';
 import { Menu, ChevronDown, Search } from 'lucide-react';
 import { useNavigate } from "react-router-dom";
-import { getAllCategories } from "../api/categories.api";
-import { searchProducts } from "../api/products.api";
+import { getAllCategories } from "../../api/categories.api";
+import { searchProducts } from "../../api/products.api";
 
 
 export function Navigation() {
@@ -68,8 +68,14 @@ export function Navigation() {
     <nav className="bg-indigo-500 text-white p-4">
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo o Título */}
+      
+        <Link to="/products" className="text-xl font-bold" >Productos</Link>
+        <Link className="text-xl font-bold" >Usuarios</Link>
+        <Link className="text-xl font-bold">Categorias</Link>
+        <Link className="text-xl font-bold">Pedidos</Link>
+        <Link className="text-xl font-bold">Carrito</Link>
 
-        <Link to="/products" className="text-xl font-bold" >Tienda</Link>
+        
 
         {/* Menú de Navegación */}
         <div className="relative flex items-center space-x-4">

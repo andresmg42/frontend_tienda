@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form'
-import { createProduct, getProduct, updateProduct, deleteProduct } from '../api/products.api'
-import { getAllCategories } from '../api/categories.api'
+import { createProduct, getProduct, updateProduct, deleteProduct } from '../../api/products.api'
+import { getAllCategories } from '../../api/categories.api'
 import toast from 'react-hot-toast'
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from "react-router-dom"

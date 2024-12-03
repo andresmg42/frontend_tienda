@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { getAllProducts,searchProducts } from "../api/products.api"
+import { getAllProducts,searchProducts } from "../../api/products.api"
 import { ProductCard } from "./ProductCard"
 export function ProductList({ searchCriteria, searchValue }) {
 
