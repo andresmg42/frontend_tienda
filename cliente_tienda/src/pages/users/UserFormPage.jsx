@@ -5,8 +5,7 @@ import toast from 'react-hot-toast'
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from "react-router-dom"
 
-//1. arreglar cifrado contraseña, usar register
-//2. arreglar la actualizacion del usuario cuando no coloca la contraseña por lo que hay que dejar la misma que tenia
+
 
 
 export function UserFormPage() {
@@ -23,9 +22,12 @@ export function UserFormPage() {
           id:params.id,
           username: data.username,
           email: data.email,
+          is_staff: data.permissions==='Staff' || data.permissions==='SuperUser',
+          is_superuser: data.permissions==='SuperUser',
           password:data.password
+
         }
-        
+        console.log(newdata)
         if (params.id) {
          // console.log(newdata)
 
@@ -82,6 +84,13 @@ export function UserFormPage() {
         <input className='bg-zinc-700 p-3 rounded-lg block w-full mb-3' type="text" name="username" placeholder="username" {...register("username", { required: true })} />
 
         <input className='bg-zinc-700 p-3 rounded-lg block w-full mb-3' type="text" name="email" placeholder="email" {...register("email", { required: true })} />
+
+        <select className='bg-zinc-700 p-3 rounded-lg block w-full mb-3' name="permissions" {...register("permissions", { required: true })}>
+          <option value="Client">Client</option>
+          <option value="Staff">Staff</option>
+          <option value="SuperUser">Super User</option>
+          
+        </select>
 
         <input className='bg-zinc-700 p-3 rounded-lg block w-full mb-3' type='password' name="password" placeholder="password" {...register("password", {required: params.id === undefined? "la contraseña es requerida":false })}/>
 
