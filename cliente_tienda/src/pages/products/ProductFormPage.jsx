@@ -127,7 +127,7 @@ export function ProductFormPage() {
   }, [])
 
   return (
-    <div className='max-w-xl mx-auto'>
+    <div className='max-w-xl mx-auto mt-10'>
       <form onSubmit={onSubmit}>
         <input className='bg-zinc-700 p-3 rounded-lg block w-full mb-3' type="text" name="nombre" placeholder="nombre" {...register("nombre", { required: true })} />
 

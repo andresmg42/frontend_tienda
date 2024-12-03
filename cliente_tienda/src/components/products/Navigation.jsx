@@ -4,11 +4,12 @@ import { Menu, ChevronDown, Search } from 'lucide-react';
 import { useNavigate } from "react-router-dom";
 import { getAllCategories } from "../../api/categories.api";
 import { searchProducts } from "../../api/products.api";
+import { NavLink } from 'react-router-dom'
 
 
 export function Navigation() {
-  
-  const [searchCriteria,setSearchCriteria]= useState('')
+
+  const [searchCriteria, setSearchCriteria] = useState('')
 
   const [categorias, setCategorias] = useState([])
 
@@ -50,7 +51,7 @@ export function Navigation() {
     // Lógica de búsqueda
     console.log('Buscando producto:', searchTerm);
     console.log(searchCriteria)
-    navigate('/products/'+searchCriteria+'/'+searchTerm)
+    navigate('/products/' + searchCriteria + '/' + searchTerm)
 
 
     // Aquí podrías llamar a una función de búsqueda en tu backend o estado global
@@ -68,14 +69,38 @@ export function Navigation() {
     <nav className="bg-indigo-500 text-white p-4">
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo o Título */}
-      
-        <Link to="/products" className="text-xl font-bold" >Productos</Link>
-        <Link className="text-xl font-bold" >Usuarios</Link>
-        <Link className="text-xl font-bold">Categorias</Link>
-        <Link className="text-xl font-bold">Pedidos</Link>
-        <Link className="text-xl font-bold">Carrito</Link>
 
-        
+        <NavLink
+          to="/products"
+          className={({ isActive }) =>
+            `text-xl font-bold hover:scale-110 transition-transform duration-300 ease-in-out ${isActive ? 'scale-150' : 'text-white'
+            }`
+          }
+        >
+          Productos
+        </NavLink>
+        <Link
+          className="text-xl font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
+        >
+          Usuarios
+        </Link>
+        <Link
+          className="text-xl font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
+        >
+          Categorias
+        </Link>
+        <Link
+          className="text-xl font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
+        >
+          Pedidos
+        </Link>
+        <Link
+          className="text-xl font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
+        >
+          Carrito
+        </Link>
+
+
 
         {/* Menú de Navegación */}
         <div className="relative flex items-center space-x-4">
@@ -170,7 +195,7 @@ export function Navigation() {
               <form onSubmit={handleSearch} className="flex items-center">
                 <input
                   type="text"
-                  placeholder={"Buscar producto por "+searchCriteria}
+                  placeholder={"Buscar producto por " + searchCriteria}
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="w-full px-4 py-2 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-black"
@@ -182,8 +207,8 @@ export function Navigation() {
                   <Search size={20} />
                 </button>
               </form>
-              <select className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-black mt-3" name="busqueda" 
-              onChange={(e)=>setSearchCriteria(e.target.value)}
+              <select className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-black mt-3" name="busqueda"
+                onChange={(e) => setSearchCriteria(e.target.value)}
               //absolute top-full left-0 bg-white text-black shadow-lg rounded-md mt-2 w-48 z-10
               >
                 <option value="nombre">Nombre</option>
