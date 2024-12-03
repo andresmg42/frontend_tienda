@@ -3,25 +3,28 @@ import React, { useState, useEffect } from 'react';
 import { Menu, ChevronDown, Search } from 'lucide-react';
 import { useNavigate } from "react-router-dom";
 import { getAllCategories } from "../api/categories.api";
+import { searchProducts } from "../api/products.api";
 
 
 export function Navigation() {
+  
+  const [searchCriteria,setSearchCriteria]= useState('')
 
   const [categorias, setCategorias] = useState([])
 
-  useEffect(()=>{
-    async  function loadCategorias(){
-      
-        const res= await getAllCategories()
-          
-          setCategorias(res.data)
+  useEffect(() => {
+    async function loadCategorias() {
 
-      }
-          
-      
-      loadCategorias()
-      
-  },[])
+      const res = await getAllCategories()
+
+      setCategorias(res.data)
+
+    }
+
+
+    loadCategorias()
+
+  }, [])
 
   const navigate = useNavigate();
 
@@ -46,6 +49,10 @@ export function Navigation() {
     e.preventDefault();
     // Lógica de búsqueda
     console.log('Buscando producto:', searchTerm);
+    console.log(searchCriteria)
+    navigate('/products/'+searchCriteria+'/'+searchTerm)
+
+
     // Aquí podrías llamar a una función de búsqueda en tu backend o estado global
   };
 
@@ -109,7 +116,7 @@ export function Navigation() {
                     onClick={toggleCategoryDropdown}
                   >
                     <div className="flex items-center justify-between">
-                      Ver por Categoría <ChevronDown size={16} 
+                      Ver por Categoría <ChevronDown size={16}
                       />
                     </div>
 
@@ -117,30 +124,30 @@ export function Navigation() {
                       <div
                         onMouseEnter={() => setIsProductDropdownOpen(true)}
                         onMouseLeave={() => setIsProductDropdownOpen(false)}
-                        className="absolute left-[-192px] top-0 bg-white text-black shadow-lg rounded-md w-48 z-20"
-                        onClick={(e)=>e.stopPropagation()}
+                        className="absolute bottom-[-192px] top-0 bg-white text-black shadow-lg rounded-md w-48 z-20"
+                        onClick={(e) => e.stopPropagation()}
                       >
 
                         <ul className="py-2">
                           {categorias.map(categoria => (
                             //<ProductCard key={product.id} product={product}/>
-                            
+
                             <li key={categoria.id}
                               className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
                               onClick={(e) => {
                                 e.stopPropagation()
-                                navigate('/products/'+categoria.id)
+                                navigate('/products/categoria_id/' + categoria.id)
                                 setIsProductDropdownOpen(false);
-                                
+
                               }}
-                              
+
                             >
                               {categoria.nombre_categoria}
                             </li>
                           ))}
 
 
-                         </ul>
+                        </ul>
                       </div>
                     )}
                   </li>
@@ -157,7 +164,7 @@ export function Navigation() {
               <form onSubmit={handleSearch} className="flex items-center">
                 <input
                   type="text"
-                  placeholder="Buscar producto por nombre"
+                  placeholder={"Buscar producto por "+searchCriteria}
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="w-full px-4 py-2 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-black"
@@ -169,6 +176,16 @@ export function Navigation() {
                   <Search size={20} />
                 </button>
               </form>
+              <select className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-black mt-3" name="busqueda" 
+              onChange={(e)=>setSearchCriteria(e.target.value)}
+              //absolute top-full left-0 bg-white text-black shadow-lg rounded-md mt-2 w-48 z-10
+              >
+                <option value="nombre">Nombre</option>
+                <option value="precio" >Precio</option>
+                <option value="estado_producto">Estado</option>
+                <option value="cantidad_producto">Cantidad</option>
+                {/* <option value="categoria">Categoria</option> */}
+              </select>
               <button
                 onClick={() => setIsSearchOpen(false)}
                 className="mt-4 w-full bg-indigo-500 py-2 rounded-lg hover:bg-gray-300"

@@ -3,11 +3,12 @@ import { useNavigate, useParams } from "react-router-dom"
 
 
 export function ProductPage() {
-  const params = useParams();
+  const params = useParams(); // Obtén todos los parámetros como un objeto
+  const { criteria, value } = params;
   console.log(params.id)
   return (
     
-    <ProductList category_id={params.id}></ProductList>
+    <ProductList searchCriteria={criteria} searchValue={value} ></ProductList>
   )
 }
 

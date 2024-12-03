@@ -1,33 +1,42 @@
-import { useEffect,useState } from "react"
-import { get_products_by_category, getAllProducts } from "../api/products.api"
+import { useEffect, useState } from "react"
+import { getAllProducts,searchProducts } from "../api/products.api"
 import { ProductCard } from "./ProductCard"
-export function ProductList({category_id}) {
+export function ProductList({ searchCriteria, searchValue }) {
 
-    const [products,setProducts]=useState([])
-    console.log('estoy en ProductList'+category_id)
-    useEffect(()=>{
-      async  function loadProducts(){
-        if(category_id!=undefined){
-          const res= await get_products_by_category(category_id)
-            
-            setProducts(res.data['products'])
+  const [products, setProducts] = useState([])
+  
+  useEffect(() => {
+    async function loadProducts() {
+      try {
 
-        }else{
-          const res= await getAllProducts()
-            
-            setProducts(res.data)
+        
+
+
+        if (searchCriteria!=undefined && searchValue!=undefined) {
+          
+          const res = await searchProducts(searchCriteria,searchValue)
+          
+          setProducts(res.data['products'])
+
+        } else {
+          const res = await getAllProducts()
+          console.log(res.data)
+          setProducts(res.data)
         }
-            
-        }
-        loadProducts()
-    },[category_id])
-    
+      } catch {
+        console.log("Error al cargar los datos")
+      }
+
+    }
+    loadProducts()
+  }, [searchCriteria,searchValue])
+
   return (
     <div className="grid grid-cols-3 gap-3">
-        {products.map(product=>(
-           <ProductCard key={product.id} product={product}/>
-        ))}
-        
+      {products.map(product => (
+        <ProductCard key={product.id} product={product} />
+      ))}
+
     </div>
   )
 }
