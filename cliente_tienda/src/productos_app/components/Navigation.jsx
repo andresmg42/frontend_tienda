@@ -69,7 +69,7 @@ export function Navigation() {
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo o Título */}
 
-        <Link to="/products" className="text-xl font-bold" >Tienda</Link>
+        <Link to="/products" className="text-xl font-bold" >Gestion Productos</Link>
 
         {/* Menú de Navegación */}
         <div className="relative flex items-center space-x-4">
@@ -172,6 +172,7 @@ export function Navigation() {
                 <button
                   type="submit"
                   className="bg-indigo-500 text-white px-4 py-2 rounded-r-lg hover:bg-blue-700"
+                  
                 >
                   <Search size={20} />
                 </button>
@@ -190,7 +191,7 @@ export function Navigation() {
                 onClick={() => setIsSearchOpen(false)}
                 className="mt-4 w-full bg-indigo-500 py-2 rounded-lg hover:bg-gray-300"
               >
-                Cancelar
+                Salir
               </button>
             </div>
           </div>
