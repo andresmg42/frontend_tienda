@@ -1,10 +1,13 @@
 import { useForm } from 'react-hook-form'
-import { createUser, getUser, updateUser, deleteUser } from '../../api/users.api'
+import { createUser, getUser, updateUser, deleteUser, registerUser } from '../../api/users.api'
 import { getAllUsers } from '../../api/users.api'
 import toast from 'react-hot-toast'
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from "react-router-dom"
-import bcrypt from 'bcryptjs';
+
+//1. arreglar cifrado contraseña, usar register
+//2. arreglar la actualizacion del usuario cuando no coloca la contraseña por lo que hay que dejar la misma que tenia
+
 
 export function UserFormPage() {
   const navigate = useNavigate();
@@ -15,19 +18,18 @@ export function UserFormPage() {
 
 
   const onSubmit = handleSubmit(async data => {
-
-    const salt = bcrypt.genSaltSync(10);
-    const hashedPassword = bcrypt.hashSync(data.password, salt);
-
+   
         const newdata = {
+          id:params.id,
           username: data.username,
           email: data.email,
-          password:hashedPassword
+          password:data.password
         }
-
+        
         if (params.id) {
-          console.log(newdata)
-          await updateUser(params.id, newdata);
+         // console.log(newdata)
+
+          await updateUser(newdata);
           toast.success('Usuario Actualizado correctamente', {
 
             position: "bottom-right",
@@ -39,7 +41,7 @@ export function UserFormPage() {
 
         } else {
           console.log(newdata)
-          await createUser(newdata)
+          await registerUser(newdata)
           toast.success('usuario Creado Exitosamente', {
             position: "bottom-right",
             style: {
@@ -66,6 +68,7 @@ export function UserFormPage() {
 
         setValue('username', res.data.username)
         setValue('email', res.data.email)
+    
         
   
       };
@@ -80,13 +83,13 @@ export function UserFormPage() {
 
         <input className='bg-zinc-700 p-3 rounded-lg block w-full mb-3' type="text" name="email" placeholder="email" {...register("email", { required: true })} />
 
-        <input className='bg-zinc-700 p-3 rounded-lg block w-full mb-3' type='password' name="password" placeholder="password" {...register("password", { required: true })}/>
+        <input className='bg-zinc-700 p-3 rounded-lg block w-full mb-3' type='password' name="password" placeholder="password" {...register("password", {required: params.id === undefined? "la contraseña es requerida":false })}/>
 
-        <input className='bg-zinc-700 p-3 rounded-lg block w-full mb-3' type='password' name="password2" placeholder="again write your parsswowrd" {...register("password", { required: true })}/>
+        <input className='bg-zinc-700 p-3 rounded-lg block w-full mb-3' type='password' name="password2" placeholder="again write your parsswowrd" {...register("password", {required: params.id === undefined? "la contraseña es requerida":false })}/>
 
 
         <button className='bg-indigo-500 p-3 rounded-lg  w-48 mt-3' type="submit">Save</button>
-
+      
       </form>
       {params.id &&
         <div>
