@@ -3,7 +3,7 @@ const productoApi= axios.create({
     baseURL:'http://localhost:8000/api/'
 })
 
-export const getAllProducts = () => productoApi.get("/productos/")
+export const getAllProducts = () => productoApi.get("productos/")
 
 
 export const createProduct=(product)=>{
@@ -22,7 +22,7 @@ export const updateProduct=(id,product)=> {
 
 export const deleteProduct=(id)=> productoApi.delete('/productos/'+id+'/')
 
-export const get_products_by_category=(category_id)=> productoApi.get('/productos/get_by_category/'+category_id+'/')
+// export const get_products_by_category=(category_id)=> productoApi.get('/productos/get_by_category/'+category_id+'/')
 
 export const searchProducts=(searchCriteria,searchValue)=> productoApi.get('/filter_products/?criteria='+searchCriteria+'&'+'value='+searchValue)
        

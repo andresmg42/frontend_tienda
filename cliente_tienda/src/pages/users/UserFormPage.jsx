@@ -19,7 +19,7 @@ export function UserFormPage() {
   const onSubmit = handleSubmit(async data => {
    
         const newdata = {
-          id:params.id,
+          //id:params.id,
           username: data.username,
           email: data.email,
           is_staff: data.permissions==='Staff' || data.permissions==='SuperUser',
@@ -30,6 +30,7 @@ export function UserFormPage() {
         console.log(newdata)
         if (params.id) {
          // console.log(newdata)
+         newdata.id=params.id
 
           await updateUser(newdata);
           toast.success('Usuario Actualizado correctamente', {
@@ -43,7 +44,8 @@ export function UserFormPage() {
 
         } else {
           console.log(newdata)
-          await registerUser(newdata)
+          try{
+            await registerUser(newdata)
           toast.success('usuario Creado Exitosamente', {
             position: "bottom-right",
             style: {
@@ -51,6 +53,19 @@ export function UserFormPage() {
               color: "#fff",
             },
           });
+
+
+          }catch(error){
+            console.log(error.response?.data || error.message)
+            toast.error('datos invalidos o el usuario ya existe', {
+              position: "bottom-right",
+              style: {
+                background: "#101010",
+                color: "#fff",
+              },
+            });
+          }
+          
 
 
 

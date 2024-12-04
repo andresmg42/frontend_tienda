@@ -9,7 +9,7 @@ import { NavLink } from 'react-router-dom'
 
 export function Navigation() {
 
-  const [searchCriteria, setSearchCriteria] = useState('')
+  const [searchCriteria, setSearchCriteria] = useState('nombre')
 
   const [categorias, setCategorias] = useState([])
 

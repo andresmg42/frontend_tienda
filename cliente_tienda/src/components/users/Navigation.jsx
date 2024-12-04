@@ -121,7 +121,7 @@ export function Navigation() {
                   <li
                     className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
                     onClick={() => {
-                      navigate('/product-create');
+                      navigate('/users-create');
 
                       setIsUserDropdownOpen(false);
                     }}
@@ -160,7 +160,7 @@ export function Navigation() {
 
                             }}
 
-                          >Cliente</li>
+                          >Clientes</li>
 
                           <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
 

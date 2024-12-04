@@ -4,6 +4,7 @@ import { ProductFormPage } from './pages/products/ProductFormPage'
 import {Toaster} from "react-hot-toast"
 import { UserPage } from './pages/users/UserPage'
 import { UserFormPage } from './pages/users/UserFormPage'
+import { LoginFormPage } from './pages/login/LoginFormPage'
 
 function App() {
   return (
@@ -15,7 +16,8 @@ function App() {
       <Routes>
 
         {/* PRODUCTOS */}
-        <Route path="/" element={<Navigate to="/products" />} />
+        <Route path="/" element={<Navigate to="/login" />} />
+        <Route path='/login' element={<LoginFormPage/>}/>
         <Route path="/products" element={<ProductPage />} />
         <Route path="/products/:criteria/:value" element={<ProductPage/>}/>
         <Route path="/product-create" element={<ProductFormPage />} />
