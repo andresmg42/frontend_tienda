@@ -7,8 +7,11 @@ export function ProductPage() {
   const { criteria, value } = params;
   console.log(params.id)
   return (
-    
-    <><Navigation /><div className='container mx-auto mt-4'><ProductList searchCriteria={criteria} searchValue={value}></ProductList></div></>
+
+    <div>
+      <Navigation />
+      <div className='container mx-auto mt-4'><ProductList searchCriteria={criteria} searchValue={value}></ProductList></div>
+    </div>
   )
 }
 

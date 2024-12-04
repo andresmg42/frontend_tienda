@@ -9,7 +9,7 @@ import { NavLink } from 'react-router-dom'
 
 export function Navigation() {
 
-  const [searchCriteria, setSearchCriteria] = useState('')
+  const [searchCriteria, setSearchCriteria] = useState('username')
 
 
 
@@ -23,16 +23,25 @@ export function Navigation() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
 
- 
+  const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
+  const [isPermissionDropdownOpen, setIsPermissionDropdownOpen] = useState(false);
 
+  const togglePermissionDropdown = (e) => {
+    e.stopPropagation();
+    setIsPermissionDropdownOpen(!isPermissionDropdownOpen);
+  };
 
+  const toggleUserDropdown = () => {
+    setIsUserDropdownOpen(!isUserDropdownOpen);
+    setIsPermissionDropdownOpen(false);
+  };
 
 
 
   const handleSearch = (e) => {
     e.preventDefault();
     console.log('Buscando usuario:', searchTerm);
-    console.log(searchCriteria)
+    console.log('searchCriteria:',searchCriteria)
     navigate('/users/' + searchCriteria + '/' + searchTerm)
 
 
@@ -45,7 +54,7 @@ export function Navigation() {
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo o Título */}
 
-        <Link
+        <Link to="/products"
           className="text-xl font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
         >
           Productos
@@ -90,15 +99,89 @@ export function Navigation() {
           </div>
 
 
+        
+
+          {/* <Link className="text-xl font-bold hover:scale-110 transition-transform duration-300 ease-in-out" to="/users-create">Crear Usuario</Link> */}
+          {/* MENU DE USUARIO */}
           <div
-            className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-            onClick={() => {
-              navigate('/user-create');
+            className="cursor-pointer flex items-center relative"
 
-            }}
+            onClick={toggleUserDropdown}
           >
-            Crear Usuario
+            Usuarios <ChevronDown className="ml-1" size={16} />
 
+            {isUserDropdownOpen && (
+              <div
+                onMouseEnter={() => setIsUserDropdownOpen(true)}
+                onMouseLeave={() => setIsUserDropdownOpen(false)}
+                className="absolute top-full left-0 bg-white text-black shadow-lg rounded-md mt-2 w-48 z-10"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <ul className="py-2">
+                  <li
+                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                    onClick={() => {
+                      navigate('/product-create');
+
+                      setIsUserDropdownOpen(false);
+                    }}
+                  >
+                    Crear Usuario
+                  </li>
+
+
+                  {/* Submenu de Permisos */}
+                  <li
+
+                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer relative"
+                    onClick={togglePermissionDropdown}
+                  >
+                    <div className="flex items-center justify-between">
+                      Ver por Permisos <ChevronDown size={16}
+                      />
+                    </div>
+
+                    {isPermissionDropdownOpen && (
+                      <div
+                        onMouseEnter={() => setIsUserDropdownOpen(true)}
+                        onMouseLeave={() => setIsUserDropdownOpen(false)}
+                        className="absolute bottom-[-192px] top-0 bg-white text-black shadow-lg rounded-md w-48 z-20"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+
+                        <ul className="py-2">
+
+                          <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                          
+                          onClick={(e) => {
+                            e.stopPropagation()
+                            navigate('/users/is_staff/true')
+                            setIsUserDropdownOpen(false);
+
+                          }}
+                          
+                          >Empleados</li>
+
+                          <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                          
+                          onClick={(e) => {
+                            e.stopPropagation()
+                            navigate('/users/is_superuser/true')
+                            setIsUserDropdownOpen(false);
+
+                          }}
+                          
+                          >Super Usuarios</li>
+                          
+
+
+                        </ul>
+                      </div>
+                    )}
+                  </li>
+                </ul>
+              </div>
+            )}
           </div>
 
           {/* Barra de Búsqueda */}
@@ -108,7 +191,7 @@ export function Navigation() {
                 <form onSubmit={handleSearch} className="flex items-center">
                   <input
                     type="text"
-                    placeholder={"Buscar producto por " + searchCriteria}
+                    placeholder={"Buscar usuario por " + searchCriteria}
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="w-full px-4 py-2 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-black"
@@ -124,8 +207,9 @@ export function Navigation() {
                   onChange={(e) => setSearchCriteria(e.target.value)}
                 //absolute top-full left-0 bg-white text-black shadow-lg rounded-md mt-2 w-48 z-10
                 >
-                  <option value="nombre">Nombre</option>
-                  <option value="precio" >Email</option>
+                  <option value="username">Nombre</option>
+                  <option value="email" >Email</option>
+                  
                 </select>
                 <button
                   onClick={() => setIsSearchOpen(false)}
