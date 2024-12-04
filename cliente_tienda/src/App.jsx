@@ -5,6 +5,8 @@ import {Toaster} from "react-hot-toast"
 import { UserPage } from './pages/users/UserPage'
 import { UserFormPage } from './pages/users/UserFormPage'
 import { LoginFormPage } from './pages/login/LoginFormPage'
+import ClientPage from './pages/cliente/ClientPage'
+
 
 function App() {
   return (
@@ -28,6 +30,10 @@ function App() {
         <Route path="/users/:criteria/:value" element={<UserPage/>}/>
         <Route path="/users-create" element={<UserFormPage />} />
         <Route path="/users-create/:id" element={<UserFormPage/>}/>
+
+        {/* CLIENTE */}
+        <Route path="/client" element={<ClientPage />} />
+
        
       </Routes>
       <Toaster/>
