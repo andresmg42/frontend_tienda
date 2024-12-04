@@ -1,4 +1,4 @@
-import { useForm } from 'react-hook-form'
+import { useForm, useWatch } from 'react-hook-form'
 import { createUser, getUser, updateUser, deleteUser, registerUser } from '../../api/users.api'
 import { getAllUsers } from '../../api/users.api'
 import toast from 'react-hot-toast'
@@ -13,66 +13,69 @@ export function UserFormPage() {
 
   const params = useParams();
 
-  const { register, handleSubmit, formState: { errors }, setValue } = useForm();
+  const { register, handleSubmit, formState: { errors }, setValue, watch } = useForm();
 
+
+
+  const password = watch('password')
 
   const onSubmit = handleSubmit(async data => {
-   
-        const newdata = {
-          //id:params.id,
-          username: data.username,
-          email: data.email,
-          is_staff: data.permissions==='Staff' || data.permissions==='SuperUser',
-          is_superuser: data.permissions==='SuperUser',
-          password:data.password
 
+    const newdata = {
+      //id:params.id,
+      username: data.username,
+      email: data.email,
+      is_staff: data.permissions === 'Staff' || data.permissions === 'SuperUser',
+      is_superuser: data.permissions === 'SuperUser',
+      password: data.password
+
+    }
+    console.log(newdata)
+    if (params.id) {
+      // console.log(newdata)
+      newdata.id = params.id
+
+      await updateUser(newdata);
+      toast.success('Usuario Actualizado correctamente', {
+
+        position: "bottom-right",
+        style: {
+          background: "#101010",
+          color: "#fff"
         }
-        console.log(newdata)
-        if (params.id) {
-         // console.log(newdata)
-         newdata.id=params.id
+      })
 
-          await updateUser(newdata);
-          toast.success('Usuario Actualizado correctamente', {
-
-            position: "bottom-right",
-            style: {
-              background: "#101010",
-              color: "#fff"
-            }
-          })
-
-        } else {
-          console.log(newdata)
-          try{
-            await registerUser(newdata)
-          toast.success('usuario Creado Exitosamente', {
-            position: "bottom-right",
-            style: {
-              background: "#101010",
-              color: "#fff",
-            },
-          });
+    } else {
+      console.log(newdata)
+      try {
+        await registerUser(newdata)
+        toast.success('usuario Creado Exitosamente', {
+          position: "bottom-right",
+          style: {
+            background: "#101010",
+            color: "#fff",
+          },
+        });
 
 
-          }catch(error){
-            console.log(error.response?.data || error.message)
-            toast.error('datos invalidos o el usuario ya existe', {
-              position: "bottom-right",
-              style: {
-                background: "#101010",
-                color: "#fff",
-              },
-            });
-          }
-          
+      } catch (error) {
+        console.log(error.response?.data || error.message)
+        toast.error('datos invalidos o el usuario ya existe', {
+          position: "bottom-right",
+          style: {
+            background: "#101010",
+            color: "#fff",
+          },
+        });
+      }
 
 
 
-        }
+
+    }
 
 
-        navigate("/users")
+    navigate("/users")
 
 
   });
@@ -85,9 +88,9 @@ export function UserFormPage() {
 
         setValue('username', res.data.username)
         setValue('email', res.data.email)
-    
-        
-  
+
+
+
       };
     }
     loadUser();
@@ -104,16 +107,21 @@ export function UserFormPage() {
           <option value="Client">Client</option>
           <option value="Staff">Staff</option>
           <option value="SuperUser">Super User</option>
-          
+
         </select>
 
-        <input className='bg-zinc-700 p-3 rounded-lg block w-full mb-3' type='password' name="password" placeholder="password" {...register("password", {required: params.id === undefined? "la contraseña es requerida":false })}/>
+        <input className='bg-zinc-700 p-3 rounded-lg block w-full mb-3' type='password' name="password" placeholder="password" {...register("password", { required: params.id === undefined ? "la contraseña es requerida" : false })} />
+        {errors.password && <p className="text-red-500">{errors.password.message}</p>}
 
-        <input className='bg-zinc-700 p-3 rounded-lg block w-full mb-3' type='password' name="password2" placeholder="again write your parsswowrd" {...register("password", {required: params.id === undefined? "la contraseña es requerida":false })}/>
+        <input className='bg-zinc-700 p-3 rounded-lg block w-full mb-3' type='password' name="password2" placeholder="again write your parsswowrd" {...register("password2", {
+          required: params.id === undefined ? "la contraseña es requerida" : false,
+          validate: (value) => value === password || 'las contraseñas no coinciden'
 
+        })} />
+        {errors.password2 && <p className="text-red-500">{errors.password.message}</p>}
 
         <button className='bg-indigo-500 p-3 rounded-lg  w-48 mt-3' type="submit">Save</button>
-      
+
       </form>
       {params.id &&
         <div>
