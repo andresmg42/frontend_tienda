@@ -80,11 +80,13 @@ export function Navigation() {
           Productos
         </NavLink>
         <Link
+        to='/users'
           className="text-xl font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
         >
           Usuarios
         </Link>
         <Link
+
           className="text-xl font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
         >
           Categorias

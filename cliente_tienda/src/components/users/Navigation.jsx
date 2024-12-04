@@ -41,11 +41,11 @@ export function Navigation() {
   const handleSearch = (e) => {
     e.preventDefault();
     console.log('Buscando usuario:', searchTerm);
-    console.log('searchCriteria:',searchCriteria)
+    console.log('searchCriteria:', searchCriteria)
     navigate('/users/' + searchCriteria + '/' + searchTerm)
 
 
-    
+
   };
 
   return (
@@ -99,7 +99,7 @@ export function Navigation() {
           </div>
 
 
-        
+
 
           {/* <Link className="text-xl font-bold hover:scale-110 transition-transform duration-300 ease-in-out" to="/users-create">Crear Usuario</Link> */}
           {/* MENU DE USUARIO */}
@@ -152,27 +152,40 @@ export function Navigation() {
                         <ul className="py-2">
 
                           <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                          
-                          onClick={(e) => {
-                            e.stopPropagation()
-                            navigate('/users/is_staff/true')
-                            setIsUserDropdownOpen(false);
 
-                          }}
-                          
+                            onClick={(e) => {
+                              e.stopPropagation()
+                              navigate('/users/is_staff/false')
+                              setIsUserDropdownOpen(false);
+
+                            }}
+
+                          >Cliente</li>
+
+                          <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+
+                            onClick={(e) => {
+                              e.stopPropagation()
+                              navigate('/users/is_staff/true')
+                              setIsUserDropdownOpen(false);
+
+                            }}
+
                           >Empleados</li>
 
                           <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                          
-                          onClick={(e) => {
-                            e.stopPropagation()
-                            navigate('/users/is_superuser/true')
-                            setIsUserDropdownOpen(false);
 
-                          }}
-                          
+                            onClick={(e) => {
+                              e.stopPropagation()
+                              navigate('/users/is_superuser/true')
+                              setIsUserDropdownOpen(false);
+
+                            }}
+
                           >Super Usuarios</li>
-                          
+
+
+
 
 
                         </ul>
@@ -209,7 +222,7 @@ export function Navigation() {
                 >
                   <option value="username">Nombre</option>
                   <option value="email" >Email</option>
-                  
+
                 </select>
                 <button
                   onClick={() => setIsSearchOpen(false)}
