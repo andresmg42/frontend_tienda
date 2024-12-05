@@ -84,7 +84,7 @@ export function ProductFormPage() {
 
 
     } catch (error) {
-      console.error("Error al validar la categoría:", error);
+    
       toast.error('Ocurrió un error. Intenta nuevamente.', {
         position: "bottom-right",
         style: {

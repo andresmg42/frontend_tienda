@@ -19,8 +19,10 @@ export function UserList({ searchCriteria, searchValue }) {
           setUsers(res.data['users'])
 
         } else {
+          
           const res = await getAllUsers()
-          console.log(res.data)
+          
+          
           setUsers(res.data)
         }
       } catch {

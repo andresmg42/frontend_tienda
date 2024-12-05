@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form'
-import { login,profile} from '../../api/users.api'
+import { login} from '../../api/users.api'
 import { getAllUsers } from '../../api/users.api'
 import toast from 'react-hot-toast'
 import { useEffect, useState } from 'react'
@@ -26,8 +26,7 @@ export function LoginFormPage() {
         
       }
 
-      const res2=await profile(data)
-      console.log(res2)
+     
       navigate('/products')
 
   });
