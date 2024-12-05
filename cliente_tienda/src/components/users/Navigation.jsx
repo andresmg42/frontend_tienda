@@ -50,7 +50,7 @@ export function Navigation() {
 
   return (
 
-    <nav className="bg-indigo-500 text-white p-4">
+    <nav className="text-white p-4" style={{ backgroundColor: "#0FA0CC" }}>
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo o Título */}
 
@@ -63,7 +63,7 @@ export function Navigation() {
         <NavLink
           to="/users"
           className={({ isActive }) =>
-            `text-xl font-bold hover:scale-110 transition-transform duration-300 ease-in-out ${isActive ? 'scale-150' : 'text-white'
+            `text-xl font-bold hover:scale-110 transition-transform duration-300 ease-in-out ${isActive ? 'scale-100' : 'text-white'
             }`
           }
         >
