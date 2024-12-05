@@ -197,6 +197,14 @@ export function Navigation() {
             )}
           </div>
 
+          <Link className="text-xl font-bold hover:scale-110 transition-transform duration-300 ease-in-out" 
+          
+          onClick={()=>localStorage.removeItem('authToken')} 
+          
+          to='/login'
+
+          >Salir</Link>
+
           {/* Barra de Búsqueda */}
           {isSearchOpen && (
             <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">

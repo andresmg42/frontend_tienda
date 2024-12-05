@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form'
-import { login,profile} from '../../api/users.api'
+import { login} from '../../api/users.api'
 import { getAllUsers } from '../../api/users.api'
 import toast from 'react-hot-toast'
 import { useEffect, useState } from 'react'
@@ -23,11 +23,10 @@ export function LoginFormPage() {
         localStorage.setItem('authToken',res.data.token);
         console.log(localStorage.getItem('authToken'))
         alert('Inicio de secion Exitoso')
-        
+        console.log("comprovando",localStorage.getItem('authToken'))
       }
 
-      const res2=await profile(data)
-      console.log(res2)
+     
       navigate('/products')
 
   });

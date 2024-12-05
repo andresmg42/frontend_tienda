@@ -1,5 +1,5 @@
-import { useForm, useWatch } from 'react-hook-form'
-import { createUser, getUser, updateUser, deleteUser, registerUser } from '../../api/users.api'
+import { useForm} from 'react-hook-form'
+import { getUser, updateUser, deleteUser, registerUser } from '../../api/users.api'
 import { getAllUsers } from '../../api/users.api'
 import toast from 'react-hot-toast'
 import { useEffect, useState } from 'react'
@@ -34,7 +34,8 @@ export function UserFormPage() {
     if (params.id) {
       // console.log(newdata)
       newdata.id = params.id
-
+      
+     try {
       await updateUser(newdata);
       toast.success('Usuario Actualizado correctamente', {
 
@@ -44,6 +45,17 @@ export function UserFormPage() {
           color: "#fff"
         }
       })
+     } catch (error) {
+      toast.error(error.response.data.detail, {
+
+        position: "bottom-right",
+        style: {
+          background: "#101010",
+          color: "#fff"
+        }
+      })
+      
+     }
 
     } else {
       console.log(newdata)
@@ -60,7 +72,8 @@ export function UserFormPage() {
 
       } catch (error) {
         console.log(error.response?.data || error.message)
-        toast.error('datos invalidos o el usuario ya existe', {
+        
+        toast.error(error.response.data.detail, {
           position: "bottom-right",
           style: {
             background: "#101010",
@@ -114,9 +127,12 @@ export function UserFormPage() {
         {errors.password && <p className="text-red-500">{errors.password.message}</p>}
 
         <input className='bg-zinc-700 p-3 rounded-lg block w-full mb-3' type='password' name="password2" placeholder="again write your parsswowrd" {...register("password2", {
-          required: params.id === undefined ? "la contraseña es requerida" : false,
-          validate: (value) => value === password || 'las contraseñas no coinciden'
-
+          required: params.id === undefined? "la contraseña es requerida" : false,
+          validate: (value) => {
+            if (!password && !value) return true
+           return  value === password || 'las contraseñas no coinciden'
+           
+          }
         })} />
         {errors.password2 && <p className="text-red-500">{errors.password2.message}</p>}
 
@@ -130,15 +146,29 @@ export function UserFormPage() {
             onClick={async () => {
               const accepted = window.confirm("are you sure?");
               if (accepted) {
-                await deleteUser(params.id);
-                toast.success('Usuario eliminada exitosamente', {
+                try {
+                  await deleteUser(params.id);
+                  toast.success('Usuario eliminada exitosamente', {
 
-                  position: "bottom-right",
-                  style: {
-                    background: "#101010",
-                    color: "#fff"
-                  }
-                })
+                    position: "bottom-right",
+                    style: {
+                      background: "#101010",
+                      color: "#fff"
+                    }
+                  })
+                  
+                } catch (error) {
+                  toast.error('Usuario no autorizado', {
+
+                    position: "bottom-right",
+                    style: {
+                      background: "#101010",
+                      color: "#fff"
+                    }
+                  })
+                }
+               
+                
 
                 navigate("/users")
               }
