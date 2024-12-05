@@ -118,7 +118,7 @@ export function UserFormPage() {
           validate: (value) => value === password || 'las contraseñas no coinciden'
 
         })} />
-        {errors.password2 && <p className="text-red-500">{errors.password.message}</p>}
+        {errors.password2 && <p className="text-red-500">{errors.password2.message}</p>}
 
         <button className='bg-indigo-500 p-3 rounded-lg  w-48 mt-3' type="submit">Save</button>
 
