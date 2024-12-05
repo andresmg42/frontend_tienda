@@ -39,7 +39,7 @@ export function ProductFormPage() {
         }
 
         if (params.id) {
-          console.log(newdata)
+          
           await updateProduct(params.id, newdata);
           toast.success('Producto Actualizado correctamente', {
 
@@ -85,7 +85,7 @@ export function ProductFormPage() {
 
     } catch (error) {
     
-      toast.error('Ocurrió un error. Intenta nuevamente.', {
+      toast.error('Ocurrió un error', {
         position: "bottom-right",
         style: {
           background: "#101010",
@@ -156,7 +156,9 @@ export function ProductFormPage() {
             onClick={async () => {
               const accepted = window.confirm("are you sure?");
               if (accepted) {
-                await deleteProduct(params.id);
+                try {
+
+                  await deleteProduct(params.id);
                 toast.success('Tarea eliminada exitosamente', {
 
                   position: "bottom-right",
@@ -167,6 +169,19 @@ export function ProductFormPage() {
                 })
 
                 navigate("/products")
+                  
+                } catch (error) {
+                  toast.error('Usted no tiene permiso para esta accion', {
+
+                    position: "bottom-right",
+                    style: {
+                      background: "#101010",
+                      color: "#fff"
+                    }
+                  })
+                  
+                }
+                
               }
 
             }}
