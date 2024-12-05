@@ -158,7 +158,7 @@ export function UserFormPage() {
                   })
                   
                 } catch (error) {
-                  toast.error('Usuario no autorizado', {
+                  toast.error('No tiene permiso para hacer esta solicitud', {
 
                     position: "bottom-right",
                     style: {

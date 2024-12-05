@@ -8,7 +8,7 @@ export const getAllProducts = () => productoApi.get("productos/")
 
 export const createProduct=(product)=>{
     return productoApi.post("/productos/",product,{
-        headers: { 'Content-Type': 'multipart/form-data' },
+        headers: { 'Content-Type': 'multipart/form-data','Authorization': `Token ${localStorage.getItem('authToken')}` },
       })
 }
 
@@ -16,11 +16,16 @@ export const getProduct=(id)=>productoApi.get('/productos/'+id+'/')
 
 export const updateProduct=(id,product)=> {
     return productoApi.put("/productos/"+id+"/",product,{
-        headers: { 'Content-Type': 'multipart/form-data' },
+        headers: { 'Content-Type': 'multipart/form-data','Authorization': `Token ${localStorage.getItem('authToken')}`},
       })
 }
 
-export const deleteProduct=(id)=> productoApi.delete('/productos/'+id+'/')
+export const deleteProduct=(id)=> productoApi.delete('/productos/'+id+'/',{headers: {
+    'Content-Type': 'application/json',
+    'Authorization': `Token ${localStorage.getItem('authToken')}`
+    
+    
+  }})
 
 // export const get_products_by_category=(category_id)=> productoApi.get('/productos/get_by_category/'+category_id+'/')
 
