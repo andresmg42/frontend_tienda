@@ -43,8 +43,11 @@ export const searchUsers=(searchCriteria,searchValue)=> UserApi.get('/api/usuari
 
 export const login=(user)=>UserApi.post('/login/',user)
 
+export const register_user=(user)=>UserApi.post('/register_user/',user)
 
-
+export const verfify_Email=(token)=>UserApi.get('/verify_email/',{headers: {
+  'Authorization': `Token ${token}`
+}})
 
 
   // COPIA------------------------------------------------------------------
