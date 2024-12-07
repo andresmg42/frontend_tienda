@@ -67,7 +67,7 @@ export function LoginFormPage() {
             <button
               className="bg-indigo-500 p-3 rounded-lg w-full hover:bg-indigo-600 transition duration-300"
               type="button"
-              onClick={() => navigate("/signup")}
+              onClick={() => navigate("/register-user")}
             >
               Sign Up
             </button>
@@ -75,7 +75,7 @@ export function LoginFormPage() {
               ¿No tienes cuenta?{" "}
               <span
                 className="text-indigo-500 font-bold cursor-pointer"
-                onClick={() => navigate("/signup")}
+                onClick={() => navigate("/register-user")}
               >
                 Regístrate
               </span>
