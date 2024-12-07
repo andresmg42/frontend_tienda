@@ -4,6 +4,8 @@ import { getAllUsers } from '../../api/users.api'
 import toast from 'react-hot-toast'
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from "react-router-dom"
+import { Link } from "react-router-dom"
+
 
 
 
@@ -34,6 +36,7 @@ export function LoginFormPage() {
   
 
   return (
+<<<<<<< HEAD
     <div className="max-w-xl mx-auto mt-10">
       <h1 className="text-center text-3xl font-bold text-gray-800 mb-6">Log in</h1>
   
@@ -80,6 +83,24 @@ export function LoginFormPage() {
             </p>
           </div>
         </div>
+=======
+    <div className='max-w-xl mx-auto mt-10'>
+
+      <div className='text-xl'>Login</div>
+      <form className='mt-10' onSubmit={onSubmit}>
+
+        <input className='bg-zinc-700 p-3 rounded-lg block w-full mb-3' type="text" name="username" placeholder="username" {...register("username", { required: true })} />
+
+
+        <input className='bg-zinc-700 p-3 rounded-lg block w-full mb-3' type='password' name="password" placeholder="password" {...register("password", {required:true })}/>
+
+     
+
+        <button className='bg-indigo-500 p-3 rounded-lg  w-48 mt-3' type="submit">Login</button>
+
+        <p className='mt-10'>No tienes cuenta? <Link className='text-xl' to='/register-user'>Registrarse</Link></p>
+      
+>>>>>>> b69ba0b (captcha completado)
       </form>
     </div>
   );
