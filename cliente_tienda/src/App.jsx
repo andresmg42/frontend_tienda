@@ -7,7 +7,7 @@ import { UserFormPage } from './pages/users/UserFormPage'
 import { LoginFormPage } from './pages/login/LoginFormPage'
 import {Register} from './components/login/Register';
 import {EmailVerification} from './components/login/EmailVerification';
-//import {ClientPage} from './pages/cliente/ClientPage'
+import {ClientPage} from './pages/cliente/ClientPage'
 
 function App() {
   return (
@@ -33,7 +33,7 @@ function App() {
         <Route path="/users-create/:id" element={<UserFormPage/>}/>
 
         {/* CLIENTE */}
-        {/* <Route path="/client" element={<ClientPage />} /> */}
+        <Route path="/client" element={<ClientPage />} />
         <Route path="/register-user" element={<Register />} />
         <Route 
           path="/verify_Email/:token" 
