@@ -7,6 +7,7 @@ import { UserFormPage } from './pages/users/UserFormPage'
 import { LoginFormPage } from './pages/login/LoginFormPage'
 import {Register} from './components/login/Register';
 import {EmailVerification} from './components/login/EmailVerification';
+//import {ClientPage} from './pages/cliente/ClientPage'
 
 function App() {
   return (

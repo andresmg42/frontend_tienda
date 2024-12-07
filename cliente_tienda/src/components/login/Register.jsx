@@ -1,17 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import toast from 'react-hot-toast'
+import { useNavigate} from "react-router-dom"
 import { authService } from '../../services/authService';
-
+import ReCAPTCHA from "react-google-recaptcha";
 export function Register() {
+
+    const navigate=useNavigate()
+
+    
     const [formData, setFormData] = useState({
         username: '',
         email: '',
         password: '',
-        confirmPassword: ''
+        confirmPassword: '',
+        
 
     });
 
-    const [error, setError] = useState(null);
-    const [success, setSuccess] = useState(false);
+    const captcha = useRef(null)
+
+
+
+
+   
 
     const handleChange = (e) => {
         setFormData({
@@ -23,36 +34,67 @@ export function Register() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if(formData.password!=formData.confirmPassword){
-            setError('las contraseñas no coinciden')
-            setSuccess(false);
+
+        if (formData.password != formData.confirmPassword) {
+            toast.error('las Contraseñas no coinciden', {
+
+                position: "top-right",
+                style: {
+                    background: "#101010",
+                    color: "#fff"
+                }
+            })
             return;
         }
+
+        if (!captcha) {
+
+            alert('por favor, verifica que no eres un robot.');
+            return;
+        }
+
         try {
+
             await authService.register(
                 formData.username,
                 formData.email,
                 formData.password,
+                captcha.current.getValue()
 
             );
-            setSuccess(true);
-            setError(null);
+
+            
+            
+
         } catch (err) {
-            setError(err);
-            setSuccess(false);
+            toast.error(err, {
+
+                position: "top-right",
+                style: {
+                    background: "#101010",
+                    color: "#fff"
+                }
+            })
+            
         }
+
+        toast.success('Registro exitoso', {
+
+            position: "top-right",
+            style: {
+                background: "#101010",
+                color: "#fff"
+            }
+        })
+
+        //navigate('/client')
     };
 
     return (
         <div className='max-w-xl mx-auto mt-10' >
-            <h2>Registro de Usuario</h2>
-            {error && <div className="error">{JSON.stringify(error)}</div>}
-            {success && (
-                <div className="success">
-                    Registro exitoso. Por favor revisa tu correo para verificación.
-                </div>
-            )}
-            <form onSubmit={handleSubmit}>
+            <div className='text-xl '>Registro de Usuario</div>
+
+            <form className='mt-10' onSubmit={handleSubmit}>
                 <input
                     className='bg-zinc-700 p-3 rounded-lg block w-full mb-3'
                     type="text"
@@ -90,6 +132,8 @@ export function Register() {
                     onChange={handleChange}
                     required
                 />
+
+                <ReCAPTCHA ref={captcha} sitekey='6Ldch5QqAAAAAJWAlfhVj8E7LFxqh4ezcB40DTqJ' />
 
                 <button className='bg-indigo-500 p-3 rounded-lg w-48 mt-3 hover:bg-indigo-700
         hover:cursor-pointer' type="submit">Registrarse</button>

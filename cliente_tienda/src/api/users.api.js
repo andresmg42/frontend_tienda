@@ -48,5 +48,3 @@ export const register_user=(user)=>UserApi.post('/register_user/',user)
 export const verfify_Email=(token)=>UserApi.get('/verify_email/',{headers: {
   'Authorization': `Token ${token}`
 }})
-
-

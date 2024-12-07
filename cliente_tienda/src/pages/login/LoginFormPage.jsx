@@ -4,6 +4,8 @@ import { getAllUsers } from '../../api/users.api'
 import toast from 'react-hot-toast'
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from "react-router-dom"
+import { Link } from "react-router-dom"
+
 
 
 
@@ -35,7 +37,9 @@ export function LoginFormPage() {
 
   return (
     <div className='max-w-xl mx-auto mt-10'>
-      <form onSubmit={onSubmit}>
+
+      <div className='text-xl'>Login</div>
+      <form className='mt-10' onSubmit={onSubmit}>
 
         <input className='bg-zinc-700 p-3 rounded-lg block w-full mb-3' type="text" name="username" placeholder="username" {...register("username", { required: true })} />
 
@@ -44,8 +48,9 @@ export function LoginFormPage() {
 
      
 
-
         <button className='bg-indigo-500 p-3 rounded-lg  w-48 mt-3' type="submit">Login</button>
+
+        <p className='mt-10'>No tienes cuenta? <Link className='text-xl' to='/register-user'>Registrarse</Link></p>
       
       </form>
       

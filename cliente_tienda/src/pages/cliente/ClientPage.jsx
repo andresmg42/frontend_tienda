@@ -1,5 +1,5 @@
 
-export default function ClientPage() {
+export function ClientPage() {
   return (
     <div>ClientPage</div>
   )
