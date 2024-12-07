@@ -5,7 +5,7 @@ export function ProductCard({product}) {
     const navigate=useNavigate();
 
     return (
-        <div className="bg-zinc-800 p-3 hover:bg-zinc-700
+        <div className="bg-white p-3 hover:bg-gray-200 transition duration-300 ease-in-out
         hover:cursor-pointer"
 
         onClick={()=>{
@@ -20,10 +20,10 @@ export function ProductCard({product}) {
                className="w-32 h-[120px] object-cover mb-3 rounded-md"
            />
             )}
-            <h1 className="font-bold uppercase">{product.nombre}</h1>
-            <p className="text-slate-400">{product.cantidad_producto}</p>
-            <p className="text-slate-400">{product.precio}</p>
-            <p className="text-slate-400">{product.descripcion}</p>
+            <h1 className="font-bold uppercase text-black">{product.nombre}</h1>
+            <p className="text-black">{product.cantidad_producto}</p>
+            <p className="text-black">{product.precio}</p>
+            <p className="text-black">{product.descripcion}</p>
             
         </div>
     );

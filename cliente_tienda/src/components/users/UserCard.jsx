@@ -5,7 +5,7 @@ export function UserCard({user}) {
     const navigate=useNavigate();
 
     return (
-        <div className="bg-zinc-800 p-3 hover:bg-zinc-700
+        <div className="bg-zinc-100 p-3 hover:bg-zinc-200
         hover:cursor-pointer"
 
         onClick={()=>{
@@ -13,8 +13,8 @@ export function UserCard({user}) {
         }}
         >
             
-            <h1 className="font-bold uppercase">{user.username}</h1>
-            <p className="text-slate-400">{user.email}</p>
+            <h1 className="font-bold uppercase text-black">{user.username}</h1>
+            <p className="text-slate-600">{user.email}</p>
             {/* <p className="text-slate-400">{product.precio}</p>
             <p className="text-slate-400">{product.descripcion}</p> */}
             
