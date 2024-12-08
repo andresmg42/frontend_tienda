@@ -9,6 +9,11 @@ export function ClientCard({ product }) {
 
     const handleInsertar = async () => {
 
+        if(!localStorage.getItem('user_id')){
+
+            navigate('/login')
+        }else{
+
         const res1= await searchUserProducts(localStorage.getItem('user_id'));
         console.log(res1.data)
         console.log(localStorage.getItem('user_id'))
@@ -80,6 +85,7 @@ export function ClientCard({ product }) {
 
 
     }
+}
 
     return (
         <div className="bg-zinc-800 p-3 hover:bg-zinc-700

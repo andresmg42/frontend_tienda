@@ -80,11 +80,7 @@ export function Navigation() {
         >
           Pedidos
         </Link>
-        <Link
-          className="text-xl font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
-        >
-          Carrito
-        </Link>
+        
 
 
 

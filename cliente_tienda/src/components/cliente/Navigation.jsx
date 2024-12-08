@@ -14,6 +14,9 @@ export function Navigation() {
 
   const [categorias, setCategorias] = useState([])
 
+
+
+
   useEffect(() => {
     async function loadCategorias() {
 
@@ -61,8 +64,8 @@ export function Navigation() {
         {/* Logo o Título */}
 
         <div
-         className="text-xl font-bold " 
-          
+          className="text-xl font-bold "
+
         >
           Tienda Universitaria
         </div>
@@ -130,18 +133,26 @@ export function Navigation() {
           Registrate
         </Link>
         <Link
-        to='/login'
+          to='/login'
           className="text font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
         >
           Ingresa
         </Link>
 
-        <Link
+        <button
           className="text font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
-          to='/carrito'
+          onClick={() => {
+            const id_user = localStorage.getItem('user_id')
+            if (id_user) {
+              navigate('/carrito/' + localStorage.getItem('user_id'))
+            }else{
+              navigate('/login')
+            }
+
+          }}
         >
           Carrito
-        </Link>
+        </button>
         {/* CARRITO */}
 
 
@@ -193,19 +204,19 @@ export function Navigation() {
             </div>
           )
         }
-        <Link className="text-xl font-bold hover:scale-110 transition-transform duration-300 ease-in-out" 
-          
-          onClick={()=>{
-            
+        <Link className="text-xl font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
+
+          onClick={() => {
+
             localStorage.removeItem('authToken')
             localStorage.removeItem('user_id')
-            
-          
-          }} 
-          
+
+
+          }}
+
           to='/login'
 
-          >Salir</Link>
+        >Salir</Link>
       </div >
     </nav >
 
