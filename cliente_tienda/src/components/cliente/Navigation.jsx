@@ -7,6 +7,7 @@ import { searchProducts } from "../../api/products.api";
 import { NavLink } from 'react-router-dom'
 
 
+
 export function Navigation() {
 
   const [searchCriteria, setSearchCriteria] = useState('nombre')
@@ -31,6 +32,7 @@ export function Navigation() {
 
   const [isCategoryDropdownOpen, setIsCategoryDropdownOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isCarOpen, setIsCarOpen] = useState(false)
   const [searchTerm, setSearchTerm] = useState('');
 
 
@@ -58,15 +60,12 @@ export function Navigation() {
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo o Título */}
 
-        <NavLink
-          to="/products"
-          className={({ isActive }) =>
-            `text-xl font-bold hover:scale-110 transition-transform duration-300 ease-in-out ${isActive ? 'scale-150' : 'text-white'
-            }`
-          }
+        <div
+         className="text-xl font-bold " 
+          
         >
-          Productos
-        </NavLink>
+          Tienda Universitaria
+        </div>
 
         {/* Submenu de Categorías */}
         <div
@@ -119,28 +118,39 @@ export function Navigation() {
 
         <Link
 
-          className="text-xl font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
+          className="text font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
         >
           Nosotros
         </Link>
 
         <Link
-
-          className="text-xl font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
+          to="/register-user"
+          className="text font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
         >
           Registrate
         </Link>
         <Link
-          className="text-xl font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
+        to='/login'
+          className="text font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
         >
           Ingresa
         </Link>
 
         <Link
-          className="text-xl font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
+          className="text font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
+          to='/carrito'
         >
           Carrito
         </Link>
+        {/* CARRITO */}
+
+
+        <div
+          className="cursor-pointer"
+          onClick={() => setIsSearchOpen(!isSearchOpen)}
+        >
+          <Search size={24} />
+        </div>
 
 
         {/* Barra de Búsqueda */}

@@ -26,7 +26,9 @@ export function ClientCard({ product }) {
             <p className="text-slate-400">{product.precio}</p>
             <p className="text-slate-400">{product.descripcion}</p>
 
-            <button className='bg-indigo-500 p-3 rounded-lg  w-48 mt-3 p-3 hover:bg-indigo-700
+            {/* CREAR ENTRADA EN LA BASE DE DATOS DE PRODUCTOUSUARIO */}
+
+            <button  className='bg-indigo-500 p-3 rounded-lg  w-48 mt-3 p-3 hover:bg-indigo-700
         hover:cursor-pointer'>Agregar al Carrito</button>
 
         </div>

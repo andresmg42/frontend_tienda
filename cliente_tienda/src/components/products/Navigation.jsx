@@ -58,14 +58,7 @@ export function Navigation() {
   };
 
   return (
-    // <div className="flex justify-between py-3">
-
-    //     <Link to="/products">Products List</Link>
-
-    //   <button className="bg-indigo-500 px-3 py-2 rounded-lg">
-    //     <Link to="/product-create" >Create Product</Link>
-    //   </button>
-    // </div>
+  
     <nav className="text-white p-4" style={{ backgroundColor: "#0FA0CC" }}>
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo o Título */}

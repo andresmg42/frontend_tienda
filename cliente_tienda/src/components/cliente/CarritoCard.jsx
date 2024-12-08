@@ -1,0 +1,76 @@
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { updateCantidadProductoCarrito,partialUpdateProduct } from "../../api/products.api";
+
+
+export function CarritoCard({ product }) {
+
+    const navigate = useNavigate();
+    //const cantidad=product.cantidad_producto
+    //const [contador,setContador]=useState(0);
+    const [cantidad,setCantidad]=useState(product.cantidad_user_producto)
+    const [cantidadP,setCantidadP]=useState(product.cantidad_producto)
+    
+
+
+    const handlePlus=async ()=>{
+    
+        const res=await updateCantidadProductoCarrito(product.id_user_product,cantidad+1)
+        const res2=await partialUpdateProduct(product.id,cantidadP-1)
+        setCantidad(res.data.cantidad_producto)
+        setCantidadP(res2.data.cantidad_producto)
+        
+        
+    }
+
+    const handleSub= async ()=>{
+        const res= await updateCantidadProductoCarrito(product.id_user_product,cantidad-1)
+        setCantidad(res.data.cantidad_producto)
+        const res2=await partialUpdateProduct(product.id,cantidadP+1)
+        setCantidadP(res2.data.cantidad_producto)
+    }
+
+  
+
+    return (
+        <div className="bg-withe p-3 hover:bg-gray-300
+        hover:cursor-pointer"
+
+        >
+
+            {product.foto_producto && (
+                <img
+                    src={product.foto_producto}
+                    alt={product.nombre}
+                    className="w-32 h-[120px] object-cover mb-3 rounded-md"
+                />
+            )}
+            <h1 className="font-bold uppercase">{product.nombre}</h1>
+            <p className="text-gray-600">Cantidad a comprar:{cantidad}</p>
+            <p className="text-gray-600">Cantidad a disponible:{cantidadP}</p>
+            <p className="text-gray-600">Precio:{product.precio}</p>
+            <p className="text-gray-600">Descripcion:{product.descripcion}</p>
+
+            <button className='bg-indigo-500 p-3 rounded-lg  w-48 mt-3 p-3 hover:bg-indigo-700
+        hover:cursor-pointer'
+        onClick={()=>{ 
+            
+            handlePlus()
+        
+
+        }}
+        >+</button>
+        <button className='bg-red-500 p-3 rounded-lg  w-48 mt-3 p-3 hover:bg-indigo-700
+        hover:cursor-pointer'
+        onClick={()=>{ 
+            
+            handleSub()
+        
+
+        }}
+        >-</button>
+
+        </div>
+    );
+}
+
