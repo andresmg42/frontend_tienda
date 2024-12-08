@@ -203,7 +203,7 @@ export function Navigation() {
           
           }} 
           
-          to='/login'
+          to='/client'
 
           >Salir</Link>
 

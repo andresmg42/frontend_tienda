@@ -51,7 +51,7 @@ export function Navigation() {
     e.preventDefault();
     console.log('Buscando producto:', searchTerm);
     console.log(searchCriteria)
-    navigate('/products/' + searchCriteria + '/' + searchTerm)
+    navigate('/client/' + searchCriteria + '/' + searchTerm)
 
 
 
@@ -63,12 +63,13 @@ export function Navigation() {
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo o Título */}
 
-        <div
+        <Link
           className="text-xl font-bold "
+          to='/client'
 
         >
           Tienda Universitaria
-        </div>
+        </Link>
 
         {/* Submenu de Categorías */}
         <div
@@ -97,7 +98,7 @@ export function Navigation() {
                     className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
                     onClick={(e) => {
                       e.stopPropagation()
-                      navigate('/products/categoria_id/' + categoria.id)
+                      navigate('/client/categoria_id/' + categoria.id)
                       setIsCategoryDropdownOpen(false);
 
                     }}
@@ -132,12 +133,7 @@ export function Navigation() {
         >
           Registrate
         </Link>
-        <Link
-          to='/login'
-          className="text font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
-        >
-          Ingresa
-        </Link>
+        
 
         <button
           className="text font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
@@ -204,6 +200,12 @@ export function Navigation() {
             </div>
           )
         }
+        <Link
+          to='/login'
+          className="text font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
+        >
+          Ingresa
+        </Link>
         <Link className="text-xl font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
 
           onClick={() => {
@@ -214,7 +216,7 @@ export function Navigation() {
 
           }}
 
-          to='/login'
+          to='/client'
 
         >Salir</Link>
       </div >
