@@ -1,17 +1,81 @@
 import { useNavigate } from "react-router-dom";
-
+import { insertarCarrito } from "../../api/products.api";
+import toast from "react-hot-toast";
+import { useState } from "react";
 export function ClientCard({ product }) {
 
     const navigate = useNavigate();
+    const [insertar, setInsertar] = useState(() => {
+        const key = 'insertar_' + product.id
+        return localStorage.getItem (key)=== 'false' ? false : true;
+
+    })
+
+    const handleInsertar = async () => {
+
+        if (insertar) {
+
+            const carrito = {
+                cantidad_producto: 0,
+                usuario: parseInt(localStorage.getItem('user_id')),
+                producto: product.id
+
+            }
+            try {
+                const res = await insertarCarrito(carrito)
+
+                const key='insertar_'+product.id
+
+                localStorage.setItem(key,'false');
+
+
+                setInsertar(false)
+                console.log(res)
+                toast.success('Agregado al carrito exitosamente', {
+
+                    position: "bottom-right",
+                    style: {
+                        background: "#101010",
+                        color: "#fff"
+                    }
+                });
+
+            } catch (error) {
+                toast.success('Error al agregar el carrito', {
+
+                    position: "bottom-right",
+                    style: {
+                        background: "#101010",
+                        color: "#fff"
+                    }
+                })
+            }
+
+
+
+        }
+
+        else {
+
+            toast.success('ya agregaste este producto al carrito', {
+
+                position: "bottom-right",
+                style: {
+                    background: "#101010",
+                    color: "#fff"
+                }
+            })
+
+        }
+
+
+    }
 
     return (
         <div className="bg-zinc-800 p-3 hover:bg-zinc-700
         hover:cursor-pointer"
 
-            onClick={() => {
-                // navigate('/pedido-create/'+product.id)
-                console.log('navegando a pedido')
-            }}
+
         >
 
             {product.foto_producto && (
@@ -28,8 +92,13 @@ export function ClientCard({ product }) {
 
             {/* CREAR ENTRADA EN LA BASE DE DATOS DE PRODUCTOUSUARIO */}
 
-            <button  className='bg-indigo-500 p-3 rounded-lg  w-48 mt-3 p-3 hover:bg-indigo-700
-        hover:cursor-pointer'>Agregar al Carrito</button>
+            <button className='bg-indigo-500 p-3 rounded-lg  w-48 mt-3 p-3 hover:bg-indigo-700
+        hover:cursor-pointer'
+                onClick={() => {
+                    handleInsertar()
+                }}
+
+            >Agregar al Carrito</button>
 
         </div>
     );

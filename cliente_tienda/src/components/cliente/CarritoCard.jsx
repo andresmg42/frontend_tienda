@@ -6,8 +6,7 @@ import { updateCantidadProductoCarrito,partialUpdateProduct } from "../../api/pr
 export function CarritoCard({ product }) {
 
     const navigate = useNavigate();
-    //const cantidad=product.cantidad_producto
-    //const [contador,setContador]=useState(0);
+    
     const [cantidad,setCantidad]=useState(product.cantidad_user_producto)
     const [cantidadP,setCantidadP]=useState(product.cantidad_producto)
     
@@ -29,6 +28,8 @@ export function CarritoCard({ product }) {
         const res2=await partialUpdateProduct(product.id,cantidadP+1)
         setCantidadP(res2.data.cantidad_producto)
     }
+
+   
 
   
 
@@ -60,7 +61,7 @@ export function CarritoCard({ product }) {
 
         }}
         >+</button>
-        <button className='bg-red-500 p-3 rounded-lg  w-48 mt-3 p-3 hover:bg-indigo-700
+        <button className='bg-red-500 p-3 rounded-lg  w-48 mt-3 p-3 hover:bg-red-700
         hover:cursor-pointer'
         onClick={()=>{ 
             

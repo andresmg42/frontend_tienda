@@ -221,6 +221,23 @@ export function Navigation() {
             </div>
           </div>
         )}
+        <Link className="text-xl font-bold hover:scale-110 transition-transform duration-300 ease-in-out" 
+          
+          onClick={()=>{
+            
+            localStorage.removeItem('authToken')
+            localStorage.removeItem('user_id')
+            Object.keys(localStorage).forEach(key => {
+              if (key.startsWith('insertar_')) {
+                  localStorage.removeItem(key);
+              }
+          });
+          
+          }}  
+          
+          to='/login'
+
+          >Salir</Link>
       </div>
     </nav>
 

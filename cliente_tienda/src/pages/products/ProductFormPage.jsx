@@ -159,7 +159,7 @@ export function ProductFormPage() {
                 try {
 
                   await deleteProduct(params.id);
-                toast.success('Tarea eliminada exitosamente', {
+                toast.success('Producto eliminada exitosamente', {
 
                   position: "bottom-right",
                   style: {

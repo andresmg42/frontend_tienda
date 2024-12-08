@@ -44,3 +44,5 @@ export const updateCantidadProductoCarrito=(id,cantidad_producto)=>productoApi.p
   headers: { 'Content-Type': 'application/json' }
 })
 
+export const insertarCarrito=(data)=>productoApi.post('/users_products/',data)
+

@@ -13,7 +13,8 @@ import { Link } from "react-router-dom"
 export function LoginFormPage() {
   const navigate = useNavigate();
 
-  
+
+
   const { register, handleSubmit, formState: { errors }, setValue } = useForm();
 
 
@@ -24,12 +25,21 @@ export function LoginFormPage() {
       if (res.data.token){
         localStorage.setItem('authToken',res.data.token);
         console.log(localStorage.getItem('authToken'))
+        localStorage.setItem('user_id',res.data.user.id)
         alert('Inicio de sesión exitoso')
+
+        if(res.data.user.is_staff){
+          navigate('/products')
+        }
+          
+        else{
+          navigate('/client')
+        }
         
       }
 
      
-      navigate('/products')
+    
 
   });
 
