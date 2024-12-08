@@ -1,19 +1,29 @@
 import { useNavigate } from "react-router-dom";
-import { insertarCarrito } from "../../api/products.api";
+import { insertarCarrito, searchUserProducts, } from "../../api/products.api";
 import toast from "react-hot-toast";
 import { useState } from "react";
 export function ClientCard({ product }) {
 
     const navigate = useNavigate();
-    const [insertar, setInsertar] = useState(() => {
-        const key = 'insertar_' + product.id
-        return localStorage.getItem (key)=== 'false' ? false : true;
-
-    })
+    
 
     const handleInsertar = async () => {
 
-        if (insertar) {
+        const res1= await searchUserProducts(localStorage.getItem('user_id'));
+        console.log(res1.data)
+        console.log(localStorage.getItem('user_id'))
+
+        const productos=res1.data
+
+        const product_exist = productos.find(element => element.id===product.id) 
+            
+
+            
+            
+        
+
+
+        if (!product_exist) {
 
             const carrito = {
                 cantidad_producto: 0,
@@ -24,12 +34,12 @@ export function ClientCard({ product }) {
             try {
                 const res = await insertarCarrito(carrito)
 
-                const key='insertar_'+product.id
+                
 
-                localStorage.setItem(key,'false');
+                
 
 
-                setInsertar(false)
+                
                 console.log(res)
                 toast.success('Agregado al carrito exitosamente', {
 

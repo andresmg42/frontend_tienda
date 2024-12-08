@@ -46,3 +46,4 @@ export const updateCantidadProductoCarrito=(id,cantidad_producto)=>productoApi.p
 
 export const insertarCarrito=(data)=>productoApi.post('/users_products/',data)
 
+export const vaciarCarrito=(id)=>productoApi.delete('/delete_all_userProducts/?user_id='+id)

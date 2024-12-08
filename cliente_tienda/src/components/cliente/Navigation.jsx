@@ -199,11 +199,7 @@ export function Navigation() {
             
             localStorage.removeItem('authToken')
             localStorage.removeItem('user_id')
-            Object.keys(localStorage).forEach(key => {
-              if (key.startsWith('insertar_')) {
-                  localStorage.removeItem(key);
-              }
-          });
+            
           
           }} 
           
