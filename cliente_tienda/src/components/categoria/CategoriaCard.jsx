@@ -9,7 +9,7 @@ export function CategoriaCard({categoria}) {
             <div className="bg-gray-200 p-3 hover:bg-gray-300 transition duration-300 ease-in-out
         hover:cursor-pointer"
             onClick={()=>{
-                navigate('/categoriasProductos/'+categoria.id)
+                navigate('/categoriasForm/'+categoria.id)
             }}
 
             >

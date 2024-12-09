@@ -1,17 +1,17 @@
 import React from 'react';
 import { Navigation } from '../../components/categoria/Navigation';
 import { useParams } from 'react-router-dom';
-import { CategoriasList } from '../../components/categoria/CategoriasList';
+import { CategoriasListFilter } from '../../components/categoria/CategoriasListFilter';
 
 
 export function CategoriaBusqueda() {
+    const {nombre} = useParams();
+    console.log('paramsEs:' + nombre)
     return (
-  
-      <div>
+
+        <div>
         <Navigation />
-        <div className='container mx-auto mt-4 text-black'>
-            
+        <div className='container mx-auto mt-4 text-black'><CategoriasListFilter nombre={nombre} /></div>
         </div>
-      </div>
     )
   }

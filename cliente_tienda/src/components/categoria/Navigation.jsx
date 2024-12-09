@@ -48,8 +48,7 @@ export function Navigation() {
     // Lógica de búsqueda
     console.log('Buscando producto:', searchTerm);
     console.log(searchCriteria)
-    const filterCategoria = categorias.filter(categoria => categoria.nombre === searchTerm)
-    navigate('/products/' + searchCriteria + '/' + searchTerm)
+    navigate('/categoriasBusqueda/' + searchTerm)
 
     // Aquí podrías llamar a una función de búsqueda en tu backend o estado global
   };

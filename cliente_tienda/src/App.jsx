@@ -14,7 +14,8 @@ import { useEffect, useState } from 'react'
 import { PedidosPage } from './pages/pedidos/PedidosPage'
 import { PedidosProductosPage } from './pages/pedidos/PedidosProductosPage'
 import { CategoriaPage } from './pages/categoria/CategoriaPage'
-import { CategoriaProductoPage } from './pages/categoria/CategoriaProductoPage'
+import { CategoriaFormPage } from './pages/categoria/CategoriaFormPage'
+import { CategoriaBusqueda } from './pages/categoria/CategoriaBusqueda'
 
 
 function App() {
@@ -69,7 +70,8 @@ function App() {
 
           {/* CATEGORIA */}
           <Route path="/categorias" element={<CategoriaPage />} />
-          <Route path="/categoriasProductos/:id" element={<CategoriaProductoPage />} />
+          <Route path="/categoriasForm/:id" element={<CategoriaFormPage />} />
+          <Route path="/categoriasBusqueda/:nombre" element={<CategoriaBusqueda />} />
 
           <Route path='/carrito' element={<CarritoPage />} />
           <Route path='/carrito/:id' element={<CarritoPage />} />
