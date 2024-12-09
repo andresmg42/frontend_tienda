@@ -3,6 +3,4 @@ const categoriaApi= axios.create({
     baseURL:'http://localhost:8000/api/categorias/'
 })
 
-export const getAllCategories=()=>{
-    return categoriaApi.get("/")
-}
+export const getAllCategories = () => categoriaApi.get("/")

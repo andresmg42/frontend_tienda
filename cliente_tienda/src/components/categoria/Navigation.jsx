@@ -82,21 +82,21 @@ export function Navigation() {
         >
           Usuarios
         </Link>
-        <Link
-          to='/categorias'
-          className="text-xl font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
-        >
-          Categorias
-        </Link>
         <NavLink
-          to="/pedidos"
+          to="/categorias"
           className={({ isActive }) =>
             `text-xl font-bold hover:scale-110 transition-transform duration-300 ease-in-out ${isActive ? 'scale-100' : 'text-white'
             }`
           }
         >
-          Pedidos
+          Categorias
         </NavLink>
+        <Link
+          to="/pedidos"
+          className="text-xl font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
+        >
+          Pedidos
+        </Link>
         <Link
           className="text-xl font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
         >

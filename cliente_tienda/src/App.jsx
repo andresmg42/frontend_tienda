@@ -10,6 +10,8 @@ import {EmailVerification} from './components/login/EmailVerification';
 import {ClientPage} from './pages/cliente/ClientPage'
 import { PedidosPage } from './pages/pedidos/PedidosPage'
 import { PedidosProductosPage } from './pages/pedidos/PedidosProductosPage'
+import { CategoriaPage } from './pages/categoria/CategoriaPage'
+import { CategoriaProductoPage } from './pages/categoria/CategoriaProductoPage'
 
 
 function App() {
@@ -38,6 +40,10 @@ function App() {
         {/* PEDIDOS */}
         <Route path="/pedidos" element={<PedidosPage />} />
         <Route path="/pedidosProductos/:id" element={<PedidosProductosPage/>}/>
+
+        {/* CATEGORIA */}
+        <Route path="/categorias" element={<CategoriaPage />} />
+        <Route path="/categoriasProductos/:id" element={<CategoriaProductoPage/>}/>
 
         {/* CLIENTE */}
         <Route path="/client" element={<ClientPage />} />
