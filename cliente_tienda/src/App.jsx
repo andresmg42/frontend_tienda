@@ -8,8 +8,6 @@ import { LoginFormPage } from './pages/login/LoginFormPage'
 import {Register} from './components/login/Register';
 import {EmailVerification} from './components/login/EmailVerification';
 import {ClientPage} from './pages/cliente/ClientPage'
-import { PedidosPage } from './pages/pedidos/PedidosPage'
-import { PedidosProductosPage } from './pages/pedidos/PedidosProductosPage'
 
 function App() {
   return (
@@ -27,10 +25,6 @@ function App() {
         <Route path="/products/:criteria/:value" element={<ProductPage/>}/>
         <Route path="/product-create" element={<ProductFormPage />} />
         <Route path="/product-create/:id" element={<ProductFormPage/>}/>
-
-        {/* PEDIDOS */}
-        <Route path="/pedidos" element={<PedidosPage />} />
-        <Route path="/pedidosProductos/:id" element={<PedidosProductosPage/>}/>
 
         {/* USUARIOS */}
         <Route path="/users" element={<UserPage />} />

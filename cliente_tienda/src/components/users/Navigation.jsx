@@ -76,7 +76,6 @@ export function Navigation() {
           Categorias
         </Link>
         <Link
-          to='/pedidos'
           className="text-xl font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
         >
           Pedidos
