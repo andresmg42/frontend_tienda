@@ -1,9 +1,19 @@
 import React from 'react'
-import { vaciarCarrito } from '../../api/products.api'
+import { searchUserProducts, vaciarCarrito } from '../../api/products.api'
 import toast from 'react-hot-toast'
-export  function NavigationCar() {
+import { useState,useEffect } from 'react'
 
- const handleVaciarCarrito=async ()=>{
+
+export  function NavigationCar({total_global}) {
+
+ 
+
+const handleVaciarCarrito=async ()=>{
+
+
+
+  
+
   const res= await vaciarCarrito(localStorage.getItem('user_id'))
   console.log(res)
   toast.success('carrito vaciado exitosamente', {
@@ -14,6 +24,8 @@ export  function NavigationCar() {
         color: "#fff"
     }
 });
+
+
 
 setTimeout(() => {
   location.reload(); // Recarga la página
@@ -31,7 +43,7 @@ setTimeout(() => {
 
              </div>
              <div>
-
+                Total:{total_global}
              </div>
 
              <div>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import {searchUserProducts} from '../../api/products.api'
 import { CarritoCard } from "./CarritoCard"
-export function CarritoList({searchValue }) {
+export function CarritoList({searchValue, set_total,Total}) {
 
   const [products, setProducts] = useState([])
   
@@ -34,7 +34,7 @@ export function CarritoList({searchValue }) {
   return (
     <div className="grid grid-cols-3 gap-3">
       {products && products.length >0 ? (products.map(product => (
-        <CarritoCard key={product.id} product={product} />
+        <CarritoCard key={product.id} product={product} set_total={set_total} Total={Total}/>
       ))):(
         <p className="text-center text-gray-500">Tu carrito está vacío. ¡Agrega algunos productos!</p>
 

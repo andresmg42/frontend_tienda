@@ -3,14 +3,15 @@ import { useEffect, useState } from "react";
 import { updateCantidadProductoCarrito,partialUpdateProduct } from "../../api/products.api";
 
 
-export function CarritoCard({ product }) {
+export function CarritoCard({ product ,set_total,Total}) {
 
     const navigate = useNavigate();
     
     const [cantidad,setCantidad]=useState(product.cantidad_user_producto)
     const [cantidadP,setCantidadP]=useState(product.cantidad_producto)
-    var total=product.precio*cantidad
-    localStorage.setItem('total',total)
+    const total=product.precio*cantidad
+   
+    
     const handlePlus= async ()=>{
         console.log('este es el producto en carrtoCard',product)
         if(cantidadP>0){
@@ -35,6 +36,9 @@ export function CarritoCard({ product }) {
                 console.error("Error al actualizar cantidades",error);
                 
             }
+            set_total(Total+parseFloat(product.precio))
+            localStorage.setItem('total',Total)
+            
         }
     };
 
@@ -62,6 +66,9 @@ export function CarritoCard({ product }) {
             } catch (error) {
                 console.log("error al actualizar las cantidades",error)
             }
+            set_total(Total-parseFloat(product.precio))
+            localStorage.setItem('total',Total)
+            
         }
     }
     
@@ -97,6 +104,7 @@ export function CarritoCard({ product }) {
         onClick={()=>{ 
             
             handlePlus()
+           
         
 
         }}
@@ -106,6 +114,7 @@ export function CarritoCard({ product }) {
         onClick={()=>{ 
             
             handleSub()
+           
         
 
         }}
