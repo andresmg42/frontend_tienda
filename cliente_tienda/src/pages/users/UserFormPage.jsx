@@ -14,7 +14,8 @@ export function UserFormPage() {
   const params = useParams();
 
   const { register, handleSubmit, formState: { errors }, setValue, watch } = useForm();
-
+ 
+  const [rol,setRol]=useState('Client')
 
 
   const password = watch('password')
@@ -101,6 +102,12 @@ export function UserFormPage() {
 
         setValue('username', res.data.username)
         setValue('email', res.data.email)
+        setValue("permissions",
+        res.data.is_superuser
+          ? "SuperUser"
+          : res.data.is_staff
+          ? "Staff"
+          : "Client")
 
 
 

@@ -19,8 +19,9 @@ export function LoginFormPage() {
 
 
   const onSubmit = handleSubmit(async data => {
+    try {
 
-    const res = await login(data)
+      const res = await login(data)
     console.log(res.data.token)
     if (res.data.token) {
       localStorage.setItem('authToken', res.data.token);
@@ -38,6 +39,11 @@ export function LoginFormPage() {
 
 
     }
+      
+    } catch (error) {
+      alert('datos incorrectos o el usuario no existe')
+    }
+    
 
   });
 
