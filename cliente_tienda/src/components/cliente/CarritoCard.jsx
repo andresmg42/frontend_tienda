@@ -9,25 +9,82 @@ export function CarritoCard({ product }) {
     
     const [cantidad,setCantidad]=useState(product.cantidad_user_producto)
     const [cantidadP,setCantidadP]=useState(product.cantidad_producto)
+    console.log(cantidadP)
+    const handlePlus= async ()=>{
+        console.log('este es el producto en carrtoCard',product)
+        if(cantidadP>0){
+
+            const nuevaCantidadUser=cantidad+1
+            const nuevaCantidadProducto=cantidadP-1
+            
+            try {
+                const res=await updateCantidadProductoCarrito(
+                    product.id_user_product,
+                    nuevaCantidadUser
+                );
+
+                const res2= await partialUpdateProduct(
+                    product.id,
+                    nuevaCantidadProducto
+                )
+
+                setCantidad(res.data.cantidad_producto);
+                setCantidadP(res2.data.cantidad_producto);
+            } catch (error) {
+                console.error("Error al actualizar cantidades",error);
+                
+            }
+        }
+    };
+
+    const handleSub=async()=>{
+
+        if(cantidad>0){
+            const nuevaCantidad=cantidad-1;
+            const nuevaCantidadProducto= cantidadP+1
+
+            try {
+                const res= await updateCantidadProductoCarrito(
+                    product.id_user_product,
+                    nuevaCantidad
+
+                );
+
+                 const res2= await partialUpdateProduct(
+                    product.id,
+                    nuevaCantidadProducto
+                 );
+
+                 setCantidad(res.data.cantidad_producto)
+                 setCantidadP(res2.data.cantidad_producto)
+
+            } catch (error) {
+                console.log("error al actualizar las cantidades",error)
+            }
+        }
+    }
     
 
 
-    const handlePlus=async ()=>{
-    
-        const res=await updateCantidadProductoCarrito(product.id_user_product,cantidad+1)
-        const res2=await partialUpdateProduct(product.id,cantidadP-1)
-        setCantidad(res.data.cantidad_producto)
-        setCantidadP(res2.data.cantidad_producto)
+    // const handlePlus=async ()=>{
+    //     let cantidad_p_u=()=>cantidadP-1<0 ? cantidad:cantidad +1
+    //     let cantidad_p=()=>cantidadP-1<0 ? 0: cantidadP-1
+    //     const res=await updateCantidadProductoCarrito(product.id_user_product,cantidad_p_u)
+    //     const res2=await partialUpdateProduct(product.id,cantidad_p)
+    //     setCantidad(res.data.cantidad_producto)
+    //     setCantidadP(res2.data.cantidad_producto)
         
         
-    }
+    // }
 
-    const handleSub= async ()=>{
-        const res= await updateCantidadProductoCarrito(product.id_user_product,cantidad-1)
-        setCantidad(res.data.cantidad_producto)
-        const res2=await partialUpdateProduct(product.id,cantidadP+1)
-        setCantidadP(res2.data.cantidad_producto)
-    }
+    // const handleSub= async ()=>{
+    //     let cantidad_p_u=()=>cantidad-1<0 ? 0:cantidad -1
+    //     let cantidad_p=()=>cantidad-1<0 ? cantidadP: cantidadP-1
+    //     const res= await updateCantidadProductoCarrito(product.id_user_product,cantidad_p_u)
+    //     setCantidad(res.data.cantidad_producto)
+    //     const res2=await partialUpdateProduct(product.id,cantidad_p)
+    //     setCantidadP(res2.data.cantidad_producto)
+    // }
 
    
 
@@ -48,7 +105,7 @@ export function CarritoCard({ product }) {
             )}
             <h1 className="font-bold uppercase">{product.nombre}</h1>
             <p className="text-gray-600">Cantidad a comprar:{cantidad}</p>
-            <p className="text-gray-600">Cantidad a disponible:{cantidadP}</p>
+            <p className="text-gray-600">Cantidad disponible:{cantidadP}</p>
             <p className="text-gray-600">Precio:{product.precio}</p>
             <p className="text-gray-600">Descripcion:{product.descripcion}</p>
 
