@@ -37,6 +37,7 @@ setTimeout(() => {
              <div>
                 Comprar
              </div>
+             
              <button
              onClick={()=>{
               handleVaciarCarrito()

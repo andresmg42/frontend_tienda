@@ -9,7 +9,8 @@ export function CarritoCard({ product }) {
     
     const [cantidad,setCantidad]=useState(product.cantidad_user_producto)
     const [cantidadP,setCantidadP]=useState(product.cantidad_producto)
-    console.log(cantidadP)
+    var total=product.precio*cantidad
+    localStorage.setItem('total',total)
     const handlePlus= async ()=>{
         console.log('este es el producto en carrtoCard',product)
         if(cantidadP>0){
@@ -65,6 +66,8 @@ export function CarritoCard({ product }) {
     }
     
 
+
+ 
    
 
   
@@ -87,7 +90,7 @@ export function CarritoCard({ product }) {
             <p className="text-gray-600">Cantidad disponible:{cantidadP}</p>
             <p className="text-gray-600">Precio:{product.precio}</p>
             <p className="text-gray-600">Descripcion:{product.descripcion}</p>
-            <p className="text-gray-600">Total:{product.precio*cantidad}</p>
+            <p className="text-gray-600">Total:{total}</p>
 
             <button className='bg-indigo-500 p-3 rounded-lg  w-48 mt-3 p-3 hover:bg-indigo-700
         hover:cursor-pointer'
