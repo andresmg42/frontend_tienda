@@ -43,7 +43,7 @@ setTimeout(() => {
 
              </div>
              <div>
-                Total:{total_global}
+                Total:{total_global}$
              </div>
 
              <div>
