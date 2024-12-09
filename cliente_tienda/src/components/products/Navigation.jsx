@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import React, { useState, useEffect } from 'react';
-import {  ChevronDown, Search, Plus, LogOut } from 'lucide-react';
+import { ChevronDown, Search, Plus, LogOut } from 'lucide-react';
 import { useNavigate } from "react-router-dom";
 import { getAllCategories } from "../../api/categories.api";
 import { NavLink } from 'react-router-dom'
@@ -73,6 +73,7 @@ export function Navigation() {
           Usuarios
         </Link>
         <Link
+          to='/categorias'
           className="text-xl font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
         >
           Categorias
@@ -83,7 +84,7 @@ export function Navigation() {
         >
           Pedidos
         </Link>
-       
+
 
 
 
@@ -119,14 +120,15 @@ export function Navigation() {
               </form>
               <select className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-black mt-3" name="busqueda"
                 onChange={(e) => setSearchCriteria(e.target.value)}
-              //absolute top-full left-0 bg-white text-black shadow-lg rounded-md mt-2 w-48 z-10
+              
+
 
               >
                 <option value="nombre">Nombre</option>
                 <option value="precio" >Precio</option>
                 <option value="estado_producto">Estado</option>
                 <option value="cantidad_producto">Cantidad</option>
-                {/* <option value="categoria">Categoria</option> */}
+                
               </select>
               <button
                 onClick={() => setIsSearchOpen(false)}
@@ -137,19 +139,18 @@ export function Navigation() {
             </div>
           </div>
         )}
-        
+
       </div>
 
-           
 
-            {/* Botón de Salir */}
-            <div className="fixed bottom-4 left-4">
+      {/* Botón de Salir */}
+      <div className="fixed bottom-4 left-4">
         <button
           className="text-white p-2 rounded-full shadow-lg transition duration-300 transform hover:scale-110"
           style={{ backgroundColor: "#0FA0CC" }}
           onClick={() => {
             localStorage.removeItem('authToken');
-            navigate('/client');
+            navigate('/login');
           }}
         >
           <LogOut size={24} />

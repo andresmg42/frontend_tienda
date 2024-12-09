@@ -56,6 +56,7 @@ export function Navigation() {
         </NavLink>
 
         <Link
+          to='/categorias'
           className="text-xl font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
         >
           Categorias
@@ -110,6 +111,7 @@ export function Navigation() {
                 <button
                   onClick={() => setIsSearchOpen(false)}
                   className="mt-4 w-full bg-indigo-500 py-2 rounded-lg hover:bg-red-700"
+                 
                 >
                   Cancelar
                 </button>
