@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom"
 import React, { useState, useEffect } from 'react';
-import { Menu, ChevronDown, Search } from 'lucide-react';
+
 import { useNavigate } from "react-router-dom";
 import { getAllCategories } from "../../api/categories.api";
-import { searchProducts } from "../../api/products.api";
-import { NavLink } from 'react-router-dom'
+import { ChevronDown, Search, Plus, LogOut } from 'lucide-react';
+
 
 
 
@@ -133,7 +133,7 @@ export function Navigation() {
         >
           Registrate
         </Link>
-        
+
 
         <button
           className="text font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
@@ -141,7 +141,7 @@ export function Navigation() {
             const id_user = localStorage.getItem('user_id')
             if (id_user) {
               navigate('/carrito/' + localStorage.getItem('user_id'))
-            }else{
+            } else {
               navigate('/login')
             }
 
@@ -182,7 +182,7 @@ export function Navigation() {
                 </form>
                 <select className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-black mt-3" name="busqueda"
                   onChange={(e) => setSearchCriteria(e.target.value)}
-                //absolute top-full left-0 bg-white text-black shadow-lg rounded-md mt-2 w-48 z-10
+
                 >
                   <option value="nombre">Nombre</option>
                   <option value="precio" >Precio</option>
@@ -200,25 +200,31 @@ export function Navigation() {
             </div>
           )
         }
-        <Link
+
+
+        {localStorage.getItem('authToken') ? (
+          <div className="fixed bottom-4 left-4">
+          <button
+            className="text-white p-2 rounded-full shadow-lg transition duration-300 transform hover:scale-110"
+            style={{ backgroundColor: "#0FA0CC" }}
+            onClick={() => {
+              localStorage.removeItem('authToken');
+              navigate('/client');
+            }}
+          >
+            <LogOut size={24} />
+          </button>
+        </div>
+        ):(<Link
           to='/login'
           className="text font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
         >
-          Ingresa
-        </Link>
-        <Link className="text-xl font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
+          LogIn
+        </Link>)}
 
-          onClick={() => {
+        
+        
 
-            localStorage.removeItem('authToken')
-            localStorage.removeItem('user_id')
-
-
-          }}
-
-          to='/client'
-
-        >Salir</Link>
       </div >
     </nav >
 

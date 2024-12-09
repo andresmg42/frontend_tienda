@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom"
-import React, { useState, useEffect } from 'react';
-import { Menu, ChevronDown, Search, Plus, LogOut } from 'lucide-react';
+import React, { useState } from 'react';
+import { ChevronDown, Search, Plus, LogOut } from 'lucide-react';
 import { useNavigate } from "react-router-dom";
-import { getAllCategories } from "../../api/categories.api";
-import { searchProducts } from "../../api/products.api";
+
 import { NavLink } from 'react-router-dom'
 
 
