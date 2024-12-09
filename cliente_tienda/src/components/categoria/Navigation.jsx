@@ -9,7 +9,7 @@ import { NavLink } from 'react-router-dom'
 
 export function Navigation() {
 
-  const [searchCriteria, setSearchCriteria] = useState('nombre')
+  const [searchCriteria, setSearchCriteria] = useState('categoria')
 
   const [categorias, setCategorias] = useState([])
 
@@ -48,6 +48,7 @@ export function Navigation() {
     // Lógica de búsqueda
     console.log('Buscando producto:', searchTerm);
     console.log(searchCriteria)
+    const filterCategoria = categorias.filter(categoria => categoria.nombre === searchTerm)
     navigate('/products/' + searchCriteria + '/' + searchTerm)
 
     // Aquí podrías llamar a una función de búsqueda en tu backend o estado global
@@ -102,7 +103,7 @@ export function Navigation() {
           Carrito
         </Link>
 
-        {/* Menú de Navegación */}
+          {/* Menú de Navegación */}
         <div className="relative flex items-center space-x-4">
           {/* Ícono de Búsqueda */}
           <div
@@ -111,6 +112,7 @@ export function Navigation() {
           >
             <Search size={24} />
           </div>
+        </div>
         </div>
 
         {/* Barra de Búsqueda */}
@@ -137,10 +139,7 @@ export function Navigation() {
               //absolute top-full left-0 bg-white text-black shadow-lg rounded-md mt-2 w-48 z-10
 
               >
-                <option value="nombre">Nombre</option>
-                <option value="precio" >Precio</option>
-                <option value="estado_producto">Estado</option>
-                <option value="cantidad_producto">Cantidad</option>
+                <option value="nombre">Categoria</option>
                 {/* <option value="categoria">Categoria</option> */}
               </select>
               <button
@@ -152,94 +151,7 @@ export function Navigation() {
             </div>
           </div>
         )}
-      </div>
-
-            {/* Botón de Salir */}
-            <div className="fixed bottom-4 left-4">
-        <button
-          className="text-white p-2 rounded-full shadow-lg transition duration-300 transform hover:scale-110"
-          style={{ backgroundColor: "#0FA0CC" }}
-          onClick={() => {
-            localStorage.removeItem('authToken');
-            navigate('/login');
-          }}
-        >
-          <LogOut size={24} />
-        </button>
-      </div>
-
-      {/* Botón de opciones adicionales */}
-      <div className="fixed bottom-4 right-4">
-        <div className="relative">
-          <button
-            className="text-white p-4 rounded-full shadow-lg transition duration-300 transform hover:scale-110"
-            style={{ backgroundColor: "#0FA0CC" }}
-            onClick={toggleProductDropdown}
-          >
-            <Plus size={24} />
-          </button>
-          {isProductDropdownOpen && (
-            <div
-              onMouseEnter={() => setIsProductDropdownOpen(true)}
-              onMouseLeave={() => setIsProductDropdownOpen(false)}
-              className="absolute bottom-full right-0 mb-2 bg-white text-black shadow-lg rounded-md w-48 z-10"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <ul className="py-2">
-                <li
-                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                  onClick={() => {
-                    navigate('/product-create');
-                    setIsProductDropdownOpen(false);
-                  }}
-                >
-                  Crear Producto
-                </li>
-                <li
-                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer relative"
-                  onClick={toggleCategoryDropdown}
-                >
-                  <div className="flex items-center justify-between">
-                    Ver por categoría <ChevronDown size={16} />
-                  </div>
-                  {isCategoryDropdownOpen && (
-                    <div
-                      onMouseEnter={() => setIsProductDropdownOpen(true)}
-                      onMouseLeave={() => setIsProductDropdownOpen(false)}
-                      className="absolute bottom-0 right-full bg-white text-black shadow-lg rounded-md w-48 z-20"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      <ul className="py-2">
-                        <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                          onClick={(e) => {
-                            e.stopPropagation()
-                            navigate('/products')
-                            setIsProductDropdownOpen(false);
-                          }}
-                        >
-                          Ver Todo
-                        </li>
-                        {categorias.map(categoria => (
-                          <li key={categoria.id}
-                            className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                            onClick={(e) => {
-                              e.stopPropagation()
-                              navigate('/products/categoria_id/' + categoria.id)
-                              setIsProductDropdownOpen(false);
-                            }}
-                          >
-                            {categoria.nombre_categoria}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                </li>
-              </ul>
-            </div>
-          )}
-        </div>
-      </div>
+        
     </nav>
   )
 }
