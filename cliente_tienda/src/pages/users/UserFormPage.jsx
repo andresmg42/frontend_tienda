@@ -14,7 +14,8 @@ export function UserFormPage() {
   const params = useParams();
 
   const { register, handleSubmit, formState: { errors }, setValue, watch } = useForm();
-
+ 
+  const [rol,setRol]=useState('Client')
 
 
   const password = watch('password')
@@ -101,6 +102,12 @@ export function UserFormPage() {
 
         setValue('username', res.data.username)
         setValue('email', res.data.email)
+        setValue("permissions",
+        res.data.is_superuser
+          ? "SuperUser"
+          : res.data.is_staff
+          ? "Staff"
+          : "Client")
 
 
 
@@ -148,7 +155,7 @@ export function UserFormPage() {
                 const accepted = window.confirm("¿Estás seguro de querer eliminar este usuario?");
                 if (accepted) {
                   try {
-                    await deleteProduct(params.id);
+                    await deleteUser(params.id);
                     toast.success('Usuario eliminado exitosamente', {
                       position: "bottom-right",
                       style: {
@@ -158,6 +165,7 @@ export function UserFormPage() {
                     })
                     navigate("/products")
                   } catch (error) {
+                    console.log(error)
                     toast.error('No tienes permiso para realizar esta acción', {
                       position: "bottom-right",
                       style: {

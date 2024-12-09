@@ -97,11 +97,7 @@ export function Navigation() {
         >
           Pedidos
         </NavLink>
-        <Link
-          className="text-xl font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
-        >
-          Carrito
-        </Link>
+        
 
 
 
@@ -115,80 +111,6 @@ export function Navigation() {
             <Search size={24} />
           </div>
 
-          {/* Menú de Productos */}
-          <div
-            className="cursor-pointer flex items-center relative"
-
-            onClick={toggleProductDropdown}
-          >
-            Productos <ChevronDown className="ml-1" size={16} />
-
-            {isProductDropdownOpen && (
-              <div
-                onMouseEnter={() => setIsProductDropdownOpen(true)}
-                onMouseLeave={() => setIsProductDropdownOpen(false)}
-                className="absolute top-full left-0 bg-white text-black shadow-lg rounded-md mt-2 w-48 z-10"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <ul className="py-2">
-                  <li
-                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                    onClick={() => {
-                      navigate('/product-create');
-
-                      setIsProductDropdownOpen(false);
-                    }}
-                  >
-                    Crear Producto
-                  </li>
-
-
-                  {/* Submenu de Categorías */}
-                  <li
-
-                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer relative"
-                    onClick={toggleCategoryDropdown}
-                  >
-                    <div className="flex items-center justify-between">
-                      Ver por Categoría <ChevronDown size={16}
-                      />
-                    </div>
-
-                    {isCategoryDropdownOpen && (
-                      <div
-                        onMouseEnter={() => setIsProductDropdownOpen(true)}
-                        onMouseLeave={() => setIsProductDropdownOpen(false)}
-                        className="absolute bottom-[-192px] top-0 bg-white text-black shadow-lg rounded-md w-48 z-20"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-
-                        <ul className="py-2">
-                          {categorias.map(categoria => (
-                            //<ProductCard key={product.id} product={product}/>
-
-                            <li key={categoria.id}
-                              className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                              onClick={(e) => {
-                                e.stopPropagation()
-                                navigate('/products/categoria_id/' + categoria.id)
-                                setIsProductDropdownOpen(false);
-
-                              }}
-
-                            >
-                              {categoria.nombre_categoria}
-                            </li>
-                          ))}
-
-
-                        </ul>
-                      </div>
-                    )}
-                  </li>
-                </ul>
-              </div>
-            )}
-          </div>
         </div>
 
         {/* Barra de Búsqueda */}

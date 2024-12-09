@@ -20,7 +20,7 @@ export function ClientList({ searchCriteria, searchValue }) {
 
         } else {
           const res = await searchProducts('estado_producto','activo')
-          console.log(res.data)
+          
           setProducts(res.data['products'])
         }
       } catch {
