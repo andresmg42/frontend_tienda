@@ -1,10 +1,10 @@
 import { useForm } from 'react-hook-form'
-import { login} from '../../api/users.api'
-import { getAllUsers } from '../../api/users.api'
-import toast from 'react-hot-toast'
-import { useEffect, useState } from 'react'
-import { useNavigate, useParams } from "react-router-dom"
-import { Link } from "react-router-dom"
+import { login } from '../../api/users.api'
+
+
+
+import { useNavigate } from "react-router-dom"
+
 
 
 
@@ -19,37 +19,34 @@ export function LoginFormPage() {
 
 
   const onSubmit = handleSubmit(async data => {
-      
-      const res=await login(data)
-      console.log(res.data.token)
-      if (res.data.token){
-        localStorage.setItem('authToken',res.data.token);
-        console.log(localStorage.getItem('authToken'))
-        localStorage.setItem('user_id',res.data.user.id)
-        alert('Inicio de sesión exitoso')
 
-        if(res.data.user.is_staff){
-          navigate('/products')
-        }
-          
-        else{
-          navigate('/client')
-        }
-       
-        
+    const res = await login(data)
+    console.log(res.data.token)
+    if (res.data.token) {
+      localStorage.setItem('authToken', res.data.token);
+      console.log(localStorage.getItem('authToken'))
+      localStorage.setItem('user_id', res.data.user.id)
+      alert('Inicio de sesión exitoso')
+
+      if (res.data.user.is_staff) {
+        navigate('/products')
       }
 
-     
-    
+      else {
+        navigate('/client')
+      }
+
+
+    }
 
   });
 
-  
+
 
   return (
     <div className="max-w-xl mx-auto mt-10">
       <h1 className="text-center text-3xl font-bold text-gray-800 mb-6">Log in</h1>
-  
+
       <form onSubmit={onSubmit}>
         <input
           className="bg-gray-200 text-black p-3 rounded-lg block w-full mb-3"
@@ -58,7 +55,7 @@ export function LoginFormPage() {
           placeholder="Username"
           {...register("username", { required: true })}
         />
-  
+
         <input
           className="bg-gray-200 text-black p-3 rounded-lg block w-full mb-3"
           type="password"
@@ -66,7 +63,7 @@ export function LoginFormPage() {
           placeholder="Password"
           {...register("password", { required: true })}
         />
-  
+
         <div className="flex justify-between items-center mt-3 space-x-200">
           <button
             className="bg-indigo-500 p-3 rounded-lg w-full hover:bg-indigo-600 transition duration-300 mr-3"
@@ -96,5 +93,5 @@ export function LoginFormPage() {
       </form>
     </div>
   );
-  
+
 }

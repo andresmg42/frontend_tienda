@@ -14,6 +14,14 @@ export function Navigation() {
 
   const [categorias, setCategorias] = useState([])
 
+  const toggleUserDropdown = () => {
+    setIsUserDropdownOpen(!isUserDropdownOpen);
+   
+  };
+
+
+  const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
+
 
 
 
@@ -71,48 +79,7 @@ export function Navigation() {
           Tienda Universitaria
         </Link>
 
-        {/* Submenu de Categorías */}
-        <div
-
-          className="px-4 py-2  cursor-pointer relative"
-          onClick={toggleCategoryDropdown}
-        >
-          <div className="flex items-center justify-between">
-            Ver por Categoría <ChevronDown size={16}
-            />
-          </div>
-
-          {isCategoryDropdownOpen && (
-            <div
-              onMouseEnter={() => setIsCategoryDropdownOpen(true)}
-              onMouseLeave={() => setIsCategoryDropdownOpen(false)}
-              className="absolute top-full left-0 bg-white text-black shadow-lg rounded-md w-48 z-20"
-              onClick={(e) => e.stopPropagation()}
-            >
-
-              <ul className="py-2">
-                {categorias.map(categoria => (
-                  //<ProductCard key={product.id} product={product}/>
-
-                  <li key={categoria.id}
-                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      navigate('/client/categoria_id/' + categoria.id)
-                      setIsCategoryDropdownOpen(false);
-
-                    }}
-
-                  >
-                    {categoria.nombre_categoria}
-                  </li>
-                ))}
-
-
-              </ul>
-            </div>
-          )}
-        </div>
+      
 
         <div></div>
 
@@ -138,8 +105,8 @@ export function Navigation() {
         <button
           className="text font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
           onClick={() => {
-            const id_user = localStorage.getItem('user_id')
-            if (id_user) {
+            const authToken = localStorage.getItem('authToken')
+            if (authToken) {
               navigate('/carrito/' + localStorage.getItem('user_id'))
             } else {
               navigate('/login')
@@ -188,7 +155,7 @@ export function Navigation() {
                   <option value="precio" >Precio</option>
                   <option value="estado_producto">Estado</option>
                   <option value="cantidad_producto">Cantidad</option>
-                  {/* <option value="categoria">Categoria</option> */}
+                  
                 </select>
                 <button
                   onClick={() => setIsSearchOpen(false)}
@@ -204,26 +171,69 @@ export function Navigation() {
 
         {localStorage.getItem('authToken') ? (
           <div className="fixed bottom-4 left-4">
-          <button
-            className="text-white p-2 rounded-full shadow-lg transition duration-300 transform hover:scale-110"
-            style={{ backgroundColor: "#0FA0CC" }}
-            onClick={() => {
-              localStorage.removeItem('authToken');
-              navigate('/client');
-            }}
-          >
-            <LogOut size={24} />
-          </button>
-        </div>
-        ):(<Link
+            <button
+              className="text-white p-2 rounded-full shadow-lg transition duration-300 transform hover:scale-110"
+              style={{ backgroundColor: "#0FA0CC" }}
+              onClick={() => {
+                localStorage.removeItem('authToken');
+                localStorage.removeItem('user_id')
+                navigate('/client');
+              }}
+            >
+              <LogOut size={24} />
+            </button>
+          </div>
+        ) : (<Link
           to='/login'
           className="text font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
         >
           LogIn
         </Link>)}
 
-        
-        
+        {/* BOTON DE OPCIONES ADICIONALES */}
+        <div className="fixed bottom-4 right-4">
+          <div className="relative">
+            <button
+              className="text-white p-4 rounded-full shadow-lg transition duration-300 transform hover:scale-110"
+              style={{ backgroundColor: "#0FA0CC" }}
+              onClick={toggleUserDropdown}
+            >
+              <Plus size={24} />
+            </button>
+            {isUserDropdownOpen && (
+              <div
+                onMouseEnter={() => setIsUserDropdownOpen(true)}
+                onMouseLeave={() => setIsUserDropdownOpen(false)}
+                className="absolute bottom-full right-0 mb-2 bg-white text-black shadow-lg rounded-md w-48 z-10"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <ul className="py-2">
+                {categorias.map(categoria => (
+                  
+
+                  <li key={categoria.id}
+                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      navigate('/client/categoria_id/' + categoria.id)
+                      setIsCategoryDropdownOpen(false);
+
+                    }}
+
+                  >
+                    {categoria.nombre_categoria}
+                  </li>
+                ))}
+
+
+              </ul>
+              </div>
+            )}
+          </div>
+        </div>
+
+
+
 
       </div >
     </nav >
