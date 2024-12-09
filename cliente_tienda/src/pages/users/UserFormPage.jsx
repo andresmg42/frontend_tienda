@@ -37,7 +37,7 @@ export function UserFormPage() {
       
      try {
       await updateUser(newdata);
-      toast.success('Usuario Actualizado correctamente', {
+      toast.success('Usuario actualizado correctamente', {
 
         position: "bottom-right",
         style: {
@@ -61,7 +61,7 @@ export function UserFormPage() {
       console.log(newdata)
       try {
         await registerUser(newdata)
-        toast.success('usuario Creado Exitosamente', {
+        toast.success('Usuario creado exitosamente', {
           position: "bottom-right",
           style: {
             background: "#101010",
@@ -112,77 +112,72 @@ export function UserFormPage() {
   return (
     <div className='max-w-xl mx-auto mt-10'>
       <form onSubmit={onSubmit}>
-        <input className='bg-zinc-700 p-3 rounded-lg block w-full mb-3' type="text" name="username" placeholder="username" {...register("username", { required: true })} />
+        <input className='bg-gray-200 text-black p-3 rounded-lg block w-full mb-3' type="text" name="username" placeholder="Username" {...register("username", { required: true })} />
 
-        <input className='bg-zinc-700 p-3 rounded-lg block w-full mb-3' type="text" name="email" placeholder="email" {...register("email", { required: true })} />
+        <input className='bg-gray-200 text-black p-3 rounded-lg block w-full mb-3' type="text" name="email" placeholder="Email" {...register("email", { required: true })} />
 
-        <select className='bg-zinc-700 p-3 rounded-lg block w-full mb-3' name="permissions" {...register("permissions", { required: true })}>
+        <select className='bg-gray-200 text-black p-3 rounded-lg block w-full mb-3' name="permissions" {...register("permissions", { required: true })}>
           <option value="Client">Client</option>
           <option value="Staff">Staff</option>
           <option value="SuperUser">Super User</option>
 
         </select>
 
-        <input className='bg-zinc-700 p-3 rounded-lg block w-full mb-3' type='password' name="password" placeholder="password" {...register("password", { required: params.id === undefined ? "la contraseña es requerida" : false })} />
+        <input className='bg-gray-200 text-black p-3 rounded-lg block w-full mb-3' type='password' name="password" placeholder="Password" {...register("password", { required: params.id === undefined ? "La contraseña es requerida" : false })} />
         {errors.password && <p className="text-red-500">{errors.password.message}</p>}
 
-        <input className='bg-zinc-700 p-3 rounded-lg block w-full mb-3' type='password' name="password2" placeholder="again write your parsswowrd" {...register("password2", {
-          required: params.id === undefined? "la contraseña es requerida" : false,
+        <input className='bg-gray-200 p-3 text-black rounded-lg block w-full mb-3' type='password' name="password2" placeholder="Write your parssword again" {...register("password2", {
+          required: params.id === undefined? "La contraseña es requerida" : false,
           validate: (value) => {
             if (!password && !value) return true
-           return  value === password || 'las contraseñas no coinciden'
+           return  value === password || 'Las contraseñas no coinciden'
            
           }
         })} />
         {errors.password2 && <p className="text-red-500">{errors.password2.message}</p>}
 
-        <button className='bg-indigo-500 p-3 rounded-lg  w-48 mt-3' type="submit">Save</button>
-
-      </form>
-      {params.id &&
-        <div>
-          <button
-            className='bg-red-500 p-3 rounded-lg w-48 mt-3'
-            onClick={async () => {
-              const accepted = window.confirm("are you sure?");
-              if (accepted) {
-                try {
-                  await deleteUser(params.id);
-                  toast.success('Usuario eliminada exitosamente', {
-
-                    position: "bottom-right",
-                    style: {
-                      background: "#101010",
-                      color: "#fff"
-                    }
-                  })
-                  
-                } catch (error) {
-                  toast.error('No tiene permiso para hacer esta solicitud', {
-
-                    position: "bottom-right",
-                    style: {
-                      background: "#101010",
-                      color: "#fff"
-                    }
-                  })
-                }
-               
-                
-
-                navigate("/users")
-              }
-
-            }}
-          >Delete
-
+        <div className="flex gap-4 mt-3">
+          <button className='bg-indigo-500 p-3 rounded-lg flex-1 hover:bg-indigo-700 hover:cursor-pointer transition duration-300' type="submit">
+            Save
           </button>
-
+          {params.id && (
+            <button
+              type="button"
+              className='bg-red-500 p-3 rounded-lg flex-1 hover:bg-red-700 hover:cursor-pointer transition duration-300'
+              onClick={async () => {
+                const accepted = window.confirm("¿Estás seguro de querer eliminar este usuario?");
+                if (accepted) {
+                  try {
+                    await deleteUser(params.id);
+                    toast.success('Usuario eliminado exitosamente', {
+                      position: "bottom-right",
+                      style: {
+                        background: "#101010",
+                        color: "#fff"
+                      }
+                    })
+                    navigate("/products")
+                  } catch (error) {
+                    console.log(error)
+                    toast.error('No tienes permiso para realizar esta acción', {
+                      position: "bottom-right",
+                      style: {
+                        background: "#101010",
+                        color: "#fff"
+                      }
+                    })
+                  }
+                }
+              }}
+            >
+              Delete
+            </button>
+          )}
         </div>
 
 
 
-      }
+      </form>
 
     </div>
   )

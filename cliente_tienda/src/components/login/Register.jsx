@@ -36,7 +36,7 @@ export function Register() {
 
 
         if (formData.password != formData.confirmPassword) {
-            toast.error('las Contraseñas no coinciden', {
+            toast.error('Las contraseñas no coinciden', {
 
                 position: "top-right",
                 style: {
@@ -47,9 +47,14 @@ export function Register() {
             return;
         }
 
-        if (!captcha) {
-
-            alert('por favor, verifica que no eres un robot.');
+        if (!captcha.current || !captcha.current.getValue()) {
+            toast.error('Por favor, verifica que no eres un robot.', {
+                position: "top-right",
+                style: {
+                    background: "#101010",
+                    color: "#fff"
+                }
+            });
             return;
         }
 
@@ -92,11 +97,13 @@ export function Register() {
 
     return (
         <div className='max-w-xl mx-auto mt-10' >
+            <h1 className="text-center text-3xl font-bold text-gray-800">Sign Up</h1>
+
             <div className='text-xl '>Registro de Usuario</div>
 
-            <form className='mt-10' onSubmit={handleSubmit}>
+            <form className='mt-0' onSubmit={handleSubmit}>
                 <input
-                    className='bg-zinc-700 p-3 rounded-lg block w-full mb-3'
+                    className="bg-gray-200 text-black p-3 rounded-lg block w-full mb-3"
                     type="text"
                     name="username"
                     placeholder="Username"
@@ -105,7 +112,7 @@ export function Register() {
                     required
                 />
                 <input
-                    className='bg-zinc-700 p-3 rounded-lg block w-full mb-3'
+                    className="bg-gray-200 text-black p-3 rounded-lg block w-full mb-3"
                     type="email"
                     name="email"
                     placeholder="Email"
@@ -114,7 +121,7 @@ export function Register() {
                     required
                 />
                 <input
-                    className='bg-zinc-700 p-3 rounded-lg block w-full mb-3'
+                    className="bg-gray-200 text-black p-3 rounded-lg block w-full mb-3"
                     type="password"
                     name="password"
                     placeholder="Password"
@@ -124,7 +131,7 @@ export function Register() {
                 />
 
                 <input
-                    className='bg-zinc-700 p-3 rounded-lg block w-full mb-3'
+                    className="bg-gray-200 text-black p-3 rounded-lg block w-full mb-3"
                     type="password"
                     name="confirmPassword"
                     placeholder="Confirm your password"
@@ -133,12 +140,22 @@ export function Register() {
                     required
                 />
 
-                <ReCAPTCHA ref={captcha} sitekey='6Ldch5QqAAAAAJWAlfhVj8E7LFxqh4ezcB40DTqJ' />
+                {/* CAPTCHA  */}
+                <div className="mb-3">
+                    <ReCAPTCHA
+                        ref={captcha}
+                        sitekey="6Ldch5QqAAAAAJWAlfhVj8E7LFxqh4ezcB40DTqJ"
+                    />
+                </div>
 
-                <button className='bg-indigo-500 p-3 rounded-lg w-48 mt-3 hover:bg-indigo-700
-        hover:cursor-pointer' type="submit">Registrarse</button>
+                {/* Botón Registrarse centrado */}
+                <button
+                    className='bg-indigo-500 p-3 rounded-lg w-full hover:bg-indigo-700 hover:cursor-pointer transition duration-300'
+                    type="submit"
+                >
+                    Registrarse
+                </button>
             </form>
         </div>
     );
 }
-

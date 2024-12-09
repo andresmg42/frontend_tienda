@@ -11,6 +11,9 @@ import { ClientPage } from './pages/cliente/ClientPage'
 import { CarritoPage } from './pages/cliente/CarritoPage'
 import ProtectedRoute from './pages/login/ProtectedRoute'
 import { useEffect, useState } from 'react'
+import { PedidosPage } from './pages/pedidos/PedidosPage'
+import { PedidosProductosPage } from './pages/pedidos/PedidosProductosPage'
+
 
 function App() {
   //const [isAutenticated, setIsAutenticated] = useState(() => localStorage.getItem('IsAutenticated') === 'true');
@@ -34,6 +37,10 @@ function App() {
 
         {/* USUARIOS */}
 
+
+        {/* PEDIDOS */}
+        <Route path="/pedidos" element={<PedidosPage />} />
+        <Route path="/pedidosProductos/:id" element={<PedidosProductosPage/>}/>
 
         {/* CLIENTE */}
         <Route path="/client" element={<ClientPage />} />
