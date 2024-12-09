@@ -8,6 +8,9 @@ import { LoginFormPage } from './pages/login/LoginFormPage'
 import {Register} from './components/login/Register';
 import {EmailVerification} from './components/login/EmailVerification';
 import {ClientPage} from './pages/cliente/ClientPage'
+import { PedidosPage } from './pages/pedidos/PedidosPage'
+import { PedidosProductosPage } from './pages/pedidos/PedidosProductosPage'
+
 
 function App() {
   return (
@@ -31,6 +34,10 @@ function App() {
         <Route path="/users/:criteria/:value" element={<UserPage/>}/>
         <Route path="/users-create" element={<UserFormPage />} />
         <Route path="/users-create/:id" element={<UserFormPage/>}/>
+
+        {/* PEDIDOS */}
+        <Route path="/pedidos" element={<PedidosPage />} />
+        <Route path="/pedidosProductos/:id" element={<PedidosProductosPage/>}/>
 
         {/* CLIENTE */}
         <Route path="/client" element={<ClientPage />} />
