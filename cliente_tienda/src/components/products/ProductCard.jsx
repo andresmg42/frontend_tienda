@@ -21,9 +21,9 @@ export function ProductCard({product}) {
            />
             )}
             <h1 className="font-bold uppercase text-black">{product.nombre}</h1>
-            <p className="text-black">{product.cantidad_producto}</p>
-            <p className="text-black">{product.precio}</p>
-            <p className="text-black">{product.descripcion}</p>
+            <p className="text-black">${product.precio}</p>
+            <p className="text-black opacity-40">Disponibles: {product.cantidad_producto}</p>
+            <p className="text-black opacity-40">Descripción: {product.descripcion}</p>
             
         </div>
     );

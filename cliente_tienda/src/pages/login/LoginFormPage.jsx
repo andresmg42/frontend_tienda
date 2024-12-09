@@ -24,7 +24,13 @@ export function LoginFormPage() {
       if (res.data.token){
         localStorage.setItem('authToken',res.data.token);
         console.log(localStorage.getItem('authToken'))
-        alert('Inicio de sesión exitoso')
+        toast.success('Inicio de sesión exitoso', {
+          position: "top-right",
+          style: {
+            background: "#101010",
+            color: "#fff",
+          },
+        })
         
       }
 
