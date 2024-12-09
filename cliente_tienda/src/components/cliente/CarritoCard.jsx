@@ -65,27 +65,6 @@ export function CarritoCard({ product }) {
     }
     
 
-
-    // const handlePlus=async ()=>{
-    //     let cantidad_p_u=()=>cantidadP-1<0 ? cantidad:cantidad +1
-    //     let cantidad_p=()=>cantidadP-1<0 ? 0: cantidadP-1
-    //     const res=await updateCantidadProductoCarrito(product.id_user_product,cantidad_p_u)
-    //     const res2=await partialUpdateProduct(product.id,cantidad_p)
-    //     setCantidad(res.data.cantidad_producto)
-    //     setCantidadP(res2.data.cantidad_producto)
-        
-        
-    // }
-
-    // const handleSub= async ()=>{
-    //     let cantidad_p_u=()=>cantidad-1<0 ? 0:cantidad -1
-    //     let cantidad_p=()=>cantidad-1<0 ? cantidadP: cantidadP-1
-    //     const res= await updateCantidadProductoCarrito(product.id_user_product,cantidad_p_u)
-    //     setCantidad(res.data.cantidad_producto)
-    //     const res2=await partialUpdateProduct(product.id,cantidad_p)
-    //     setCantidadP(res2.data.cantidad_producto)
-    // }
-
    
 
   
@@ -108,6 +87,7 @@ export function CarritoCard({ product }) {
             <p className="text-gray-600">Cantidad disponible:{cantidadP}</p>
             <p className="text-gray-600">Precio:{product.precio}</p>
             <p className="text-gray-600">Descripcion:{product.descripcion}</p>
+            <p className="text-gray-600">Total:{product.precio*cantidad}</p>
 
             <button className='bg-indigo-500 p-3 rounded-lg  w-48 mt-3 p-3 hover:bg-indigo-700
         hover:cursor-pointer'
