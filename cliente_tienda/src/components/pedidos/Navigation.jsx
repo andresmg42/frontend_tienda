@@ -70,15 +70,12 @@ export function Navigation() {
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo o Título */}
 
-        <NavLink
+        <Link
           to="/products"
-          className={({ isActive }) =>
-            `text-xl font-bold hover:scale-110 transition-transform duration-300 ease-in-out ${isActive ? 'scale-150' : 'text-white'
-            }`
-          }
+          className="text-xl font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
         >
           Productos
-        </NavLink>
+        </Link>
         <Link
         to='/users'
           className="text-xl font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
@@ -91,12 +88,15 @@ export function Navigation() {
         >
           Categorias
         </Link>
-        <Link
-          to='/pedidos'
-          className="text-xl font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
+        <NavLink
+          to="/pedidos"
+          className={({ isActive }) =>
+            `text-xl font-bold hover:scale-110 transition-transform duration-300 ease-in-out ${isActive ? 'scale-150' : 'text-white'
+            }`
+          }
         >
           Pedidos
-        </Link>
+        </NavLink>
         <Link
           className="text-xl font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
         >
