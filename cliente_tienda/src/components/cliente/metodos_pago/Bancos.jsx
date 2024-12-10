@@ -6,14 +6,20 @@ import davivienda from "../../../images/davivienda.jpg"
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+import { authService } from '../../../services/authService'
 
-export default function Bancos() {
+export default function Bancos({userP,formD}) {
 
 const[opcion,setOpcion]=useState('bancolombia')
 
 
 
-const handleSubmit=()=>{
+const handleSubmit=(e)=>{
+ e.preventDefault(e)
+  const res=authService.HacerCompra(formD,userP)
+  console.log(res)
+
+
   switch(opcion){
     case 'nequi': window.open('https://transacciones.nequi.com/bdigital/login.jsp');
     break;

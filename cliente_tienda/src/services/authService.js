@@ -33,53 +33,12 @@ export const authService = {
   },
 
   async HacerCompra(formData,userProducts) {
-
- 
-    // const [userProducts,setUserProducts]=useState([]);
-     
-    
-     
-    
-    //   useEffect(()=>{
-    //    async function loadUserProducts(){
-    //     try {
-    //       const res= await searchUserProducts(localStorage.getItem('user_id'))
-    //       setUserProducts(res.data)
-    //     } catch (error) {
-    //       console.log('error al cargar los productos del usuario en PedidosClientePage',error)
-    //     }
-    
-    //    };
-    //    loadUserProducts()
-    
-    //   },[])
-    
-    
-      // const [formData, setFormData]=useState({
-      //   direccion:"",
-      //   metodo_pago:"Transferencia bancaria",
-      //   usuarios:parseInt( localStorage.getItem('user_id')),
-      //   estado_pedido:false,
-    
-        
-    
-      // });
-
-
-    
-      // const handleChange=(e)=>{
-      //   setFormData({
-      //     ...formData,[e.target.name]:e.target.value
-      //   });
-      // };
-    
-     
-        
+       let lista;
     
         try {
           const res_pedido= await createPedido(formData)
     
-          const lista=userProducts.map((product)=>{
+          lista=userProducts.map((product)=>{
             return {
               cantidad_producto_carrito:product.cantidad_user_producto,
               pedido_ppid:res_pedido.data.id,
@@ -88,7 +47,7 @@ export const authService = {
             } 
           })
           
-          console.log(lista)
+          console.log('Esta es la lista : ',lista)
 
         } catch (error) {
           console.log('error al crear Pedido',error)
