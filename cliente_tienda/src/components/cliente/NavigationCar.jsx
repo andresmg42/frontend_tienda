@@ -2,6 +2,7 @@ import React from 'react'
 import { searchUserProducts, vaciarCarrito } from '../../api/products.api'
 import toast from 'react-hot-toast'
 import { useState,useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
 
 export  function NavigationCar({total_global}) {
@@ -46,9 +47,9 @@ setTimeout(() => {
                 Total:{total_global}$
              </div>
 
-             <div>
+             <Link to='/pasarela'>
                 Comprar
-             </div>
+             </Link>
              
              <button
              onClick={()=>{

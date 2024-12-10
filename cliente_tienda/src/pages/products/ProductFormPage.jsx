@@ -58,23 +58,7 @@ export function ProductFormPage() {
     }
   });
 
-/*
-  const handleDelete = async () => {
-    try {
-      await deleteProduct(params.id);
-      toast.success('Producto eliminado exitosamente', {
-        position: 'bottom-right',
-        style: { background: '#101010', color: '#fff' },
-      });
-      navigate('/products');
-    } catch (error) {
-      toast.error('No tienes permiso para realizar esta acción', {
-        position: 'bottom-right',
-        style: { background: '#101010', color: '#fff' },
-      });
-    }
-    setShowModal(false);
-  }; */
+
 
   useEffect(() => {
     async function loadProduct() {
@@ -90,7 +74,7 @@ export function ProductFormPage() {
         setValue('cantidad_producto', String(res.data.cantidad_producto));
         setValue('categoria', cat.nombre_categoria);
         setValue('estado_producto', String(res.data.estado_producto));
-        //setValue('foto_producto', FileList(res.data.foto_producto,1))
+      
 
       }
     }

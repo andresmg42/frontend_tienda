@@ -15,7 +15,7 @@ import { PedidosPage } from './pages/pedidos/PedidosPage'
 import { PedidosProductosPage } from './pages/pedidos/PedidosProductosPage'
 import { CategoriaPage } from './pages/categoria/CategoriaPage'
 import { CategoriaProductoPage } from './pages/categoria/CategoriaProductoPage'
-
+import PedidosClientePage from './pages/cliente/PedidosClientePage'
 
 function App() {
   //const [isAutenticated, setIsAutenticated] = useState(() => localStorage.getItem('IsAutenticated') === 'true');
@@ -39,12 +39,6 @@ function App() {
 
 
 
-
-
-
-
-
-
         {/* CLIENTE */}
         <Route path="/client" element={<ClientPage />} />
         <Route path="/client/:criteria/:value" element={<ClientPage />} />
@@ -64,7 +58,7 @@ function App() {
           {/* PEDIDOS */}
           <Route path="/pedidos" element={<PedidosPage />} />
           <Route path="/pedidosProductos/:id" element={<PedidosProductosPage />} />
-
+          <Route path='/pasarela' element={<PedidosClientePage/>}></Route>
 
 
           {/* CATEGORIA */}
