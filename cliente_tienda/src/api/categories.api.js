@@ -24,3 +24,12 @@ export const deleteCategoria = (id) => {
         },
     });
 }
+
+export const createCategoria = (categoria) => {
+    return categoriaApi.post("/", categoria, {
+        headers: {
+            'Content-Type': 'application/json', // or 'multipart/form-data' if you're sending files
+            'Authorization': `Token ${localStorage.getItem('authToken')}`
+        },
+    });
+}

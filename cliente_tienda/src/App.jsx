@@ -71,6 +71,7 @@ function App() {
           {/* CATEGORIA */}
           <Route path="/categorias" element={<CategoriaPage />} />
           <Route path="/categoriasForm/:id" element={<CategoriaFormPage />} />
+          <Route path="/categoriasForm" element={<CategoriaFormPage />} />
           <Route path="/categoriasBusqueda/:nombre" element={<CategoriaBusqueda />} />
 
           <Route path='/carrito' element={<CarritoPage />} />
