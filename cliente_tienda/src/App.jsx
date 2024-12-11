@@ -17,6 +17,7 @@ import { CategoriaPage } from './pages/categoria/CategoriaPage'
 import { CategoriaProductoPage } from './pages/categoria/CategoriaProductoPage'
 import PedidosClientePage from './pages/cliente/PedidosClientePage'
 import Bancos from './components/cliente/metodos_pago/Bancos'
+import Targetas from './components/cliente/metodos_pago/Targetas'
 
 function App() {
   //const [isAutenticated, setIsAutenticated] = useState(() => localStorage.getItem('IsAutenticated') === 'true');
@@ -80,6 +81,8 @@ function App() {
 
           {/* METODOS PAGO */}
           <Route path='/bancos' element={<Bancos/>}/>
+          <Route path='/Targetas' element={<Targetas/>}/>
+
 
 
 

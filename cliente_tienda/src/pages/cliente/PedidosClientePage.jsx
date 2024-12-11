@@ -3,6 +3,10 @@ import React, { useEffect, useState } from 'react'
 import { searchUserProducts } from '../../api/products.api';
 
 import Bancos from '../../components/cliente/metodos_pago/Bancos'
+import Targetas from '../../components/cliente/metodos_pago/Targetas';
+import { useNavigate } from 'react-router-dom';
+import { authService } from '../../services/authService';
+import toast from 'react-hot-toast';
 
 export default function PedidosClientePage() {
 
@@ -11,11 +15,10 @@ export default function PedidosClientePage() {
 
   const [Transferencia, setTransferencia] = useState(false)
   const [Targeta, setTargeta] = useState(false)
-  const [pse, setPse] = useState(false)
-  const [Recaudo, setRecaudo] = useState(false)
-  const [contraEntrega, setContraEntrega] = useState(false)
 
-
+  
+  const navigate=useNavigate()
+ 
 
   useEffect(() => {
     async function loadUserProducts() {
@@ -42,24 +45,29 @@ export default function PedidosClientePage() {
 
   });
 
+  const guardarDatosEfecty=()=>{
+    
+  }
+
   const handleChange = (e) => {
     setFormData({
       ...formData, [e.target.name]: e.target.value
     });
+    
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     switch (formData.metodo_pago) {
-      case 'Targeta de credito': setTargeta(true);
+      case 'Targeta de credito': setTargeta(true); setTransferencia(false); 
         break;
-      case 'Redes de Recaudo': setRecaudo(true);
-        break;
-      case 'pago Electronico': setPse(true);
-        break;
-      case 'pago Contraentrega': setContraEntrega(true);
-        break;
-      default: setTransferencia(true)
+      case 'efecty': 
+      authService.HacerCompra(formData,userProducts);
+      setTargeta(false); 
+      setTransferencia(false); 
+      window.open('https://www.efectyvirtual.com/PortalEcommerce/Account/Login?Geolocalizacion=%2F%2F'); navigate('/client')
+      break;
+      default: setTransferencia(true); setTargeta(false); 
 
 
 
@@ -67,6 +75,8 @@ export default function PedidosClientePage() {
 
     }
   }
+
+  
 
   return (
     <div className='max-w-xl mx-auto mt-10'>
@@ -94,9 +104,7 @@ export default function PedidosClientePage() {
         >
           <option value="Transferencia bancaria"> Transeferecia Bancaria</option>
           <option value="Targeta de credito">Targeta de Credito</option>
-          <option value="Redes de Recaudo">Redes de Recaudo</option>
-          <option value="pago Contraentrega">Pago Contraentrega</option>
-          <option value="pago Electronico">Pago PSE</option>
+          <option value="efecty">Efecty</option>
 
 
         </select>
@@ -113,6 +121,8 @@ export default function PedidosClientePage() {
       </form>
 
       {Transferencia && (<Bancos userP={userProducts} formD={formData} />)}
+      {Targeta && (<Targetas userP={userProducts} formD={formData} />)}
+     
 
     </div>
   )
