@@ -17,13 +17,27 @@ export default function Targetas({ userP, formD }) {
 
   const [isFormularioOpen, setIsFormularioOpen] = useState(false)
 
+  const [errors,setErrors]=useState({})
+
   const navigate=useNavigate()
+
+  const [formData,setFormData]=useState({
+    name:'',
+    country:'',
+    cardnumber:'',
+    expirationdate:'',
+    securitycode:''
+  })
+
+  const handleOnchange=(e)=>{
+  setFormData({...formData, [e.target.name]:e.target.value })
+  
+  }
 
 
   const handleSubmit = (e) => {
     e.preventDefault(e)
-    // const res = authService.HacerCompra(formD, userP)
-    // console.log(res)
+ 
 
     
     setIsFormularioOpen(true)
@@ -31,13 +45,14 @@ export default function Targetas({ userP, formD }) {
 
   const handleSubmit2=(e)=>{
     e.preventDefault(e)
+    setIsFormularioOpen(false)
     const res=authService.HacerCompra(formD,userP)
     toast.success('Pago exitoso', {
       position: 'bottom-right',
       style: { background: '#101010', color: '#fff' },
     });
     console.log(res.data)
-    setIsFormularioOpen(false)
+    
     navigate('/client')
     
   }
@@ -87,58 +102,83 @@ export default function Targetas({ userP, formD }) {
 
               <h1 className="text-sm text-gray-500 font-semibold mt-4">Name</h1>
               <input
-                className="w-full h-10 p-2 border rounded-lg "
+                className="w-full h-10 p-2 border text-black rounded-lg "
                 type="text"
                 name='name'
+                value={formData.name}
+                onChange={handleOnchange}
                 placeholder='Name'
+                required
               />
 
               <h1 className="text-sm text-gray-500 font-semibold mt-4">Coutry</h1>
               <input
-                className="w-full h-10 p-2 border rounded-lg "
+                className="w-full h-10 p-2 border rounded-lg text-black"
                 type="text"
                 name='country'
+                value={formData.country}
                 placeholder='Country'
+                onChange={handleOnchange}
+                required
               />
 
               <h2 className="text-lg text-gray-500 font-semibold mt-4">Payment Information</h2>
 
               <div className="space-y-3">
-                <h4 className="text-sm text-gray-500 font-semibold mt-4" >Card Number</h4>
+                <h4 className="text-sm text-gray-500 font-semibold mt-4">Card Number</h4>
                 <input
-                  className="w-full h-10 p-2 border rounded-lg"
+                  className="w-full h-10 p-2 border rounded-lg text-black"
                   type="text"
                   name="cardnumber"
                   placeholder='1234 1234 1234 1234'
+                 value={formData.cardnumber} 
+                 onChange={handleOnchange}
+                 required
                 />
 
                 <div className="flex space-x-3">
                   <div className="w-1/2">
                     <h1 className="text-sm text-gray-500 font-semibold mt-4" >Expiration Date</h1>
                     <input
-                      className="w-full h-10 p-2 border rounded-lg"
+                      className="w-full h-10 p-2 border rounded-lg text-black"
                       type='date'
                       name="expirationdate"
+                      value={formData.expirationdate}
+                      onChange={handleOnchange}
                     />
                   </div>
                   <div className="w-1/2">
                     <h1 className="text-sm text-gray-500 font-semibold mt-4">Security Code</h1>
                     <input
-                      className="w-full h-10 p-2 border rounded-lg"
+                      className="w-full h-10 p-2 border rounded-lg  text-black"
                       type='text'
                       name="securitycode"
                       placeholder='CVC'
+                      value={formData.securitycode}
+                      onChange={handleOnchange}
+                      required
                     />
                   </div>
                 </div>
 
-                <a
-                  href="https://www.paypal.com/signin?/myaccount/transfer/state"
-                  className="text-blue-500 hover:underline"
+              </div>
+              <button
+                  
+                  className="text-indigo-500 hover:underline"
+                  onClick={()=>{
+                    const noEmptyFormData= Object.values(formData).every(value=>value==='');
+                    
+                    if(!noEmptyFormData){
+                      window.open("https://www.paypal.com/signin?/myaccount/transfer/state")
+                    }
+                    
+                   
+
+                  }}
+                  
                 >
                   PayPal
-                </a>
-              </div>
+                </button>
 
               <button
                 className='bg-indigo-500 p-3 rounded-lg w-full hover:bg-green-700 hover:cursor-pointer transition duration-300'
