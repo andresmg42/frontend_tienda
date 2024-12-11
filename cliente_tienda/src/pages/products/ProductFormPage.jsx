@@ -5,6 +5,7 @@ import toast from 'react-hot-toast';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
+
 export function ProductFormPage() {
   const navigate = useNavigate();
   const params = useParams();
@@ -58,6 +59,10 @@ export function ProductFormPage() {
     }
   });
 
+    const handleBackClick = () => {
+    navigate('/products');
+  };
+
 /*
   const handleDelete = async () => {
     try {
@@ -75,6 +80,8 @@ export function ProductFormPage() {
     }
     setShowModal(false);
   }; */
+
+  
 
   useEffect(() => {
     async function loadProduct() {
@@ -99,7 +106,26 @@ export function ProductFormPage() {
 
   return (
     <div className="max-w-xl mx-auto mt-10">
-      <form onSubmit={onSubmit}>
+      {/* Contenedor para la flecha */}
+        <button
+          className="absolute top-0 left-0 p-3 text-gray-600 hover:text-gray-900 transition duration-300 flex items-center"
+          onClick={handleBackClick}
+        >
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={2}
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+          <span className="ml-2">Back</span>
+        </button>
+
+      {/* Formulario */}
+      <form onSubmit={onSubmit} className="mt-10">
         <input
           className="bg-gray-200 text-black p-3 rounded-lg block w-full mb-3"
           type="text"
@@ -156,61 +182,33 @@ export function ProductFormPage() {
           >
             Save
           </button>
-          {params.id &&
-        <div>
-          <button
-            className='bg-red-500 p-3 rounded-lg w-48 hover:bg-red-700 hover:cursor-pointer transition duration-300'
-            onClick={async () => {
-              const accepted = window.confirm("¿Estás seguro de querer borrar este producto?");
-              if (accepted) {
-                try {
-
-                  await deleteProduct(params.id);
-                toast.success('Producto eliminado exitosamente', {
-
-                  position: "bottom-right",
-                  style: {
-                    background: "#101010",
-                    color: "#fff"
+          {params.id && (
+            <button
+              className="bg-red-500 p-3 rounded-lg flex-1 hover:bg-red-700 transition duration-300"
+              onClick={async () => {
+                const accepted = window.confirm('¿Estás seguro de querer borrar este producto?');
+                if (accepted) {
+                  try {
+                    await deleteProduct(params.id);
+                    toast.success('Producto eliminado exitosamente', {
+                      position: 'bottom-right',
+                      style: { background: '#101010', color: '#fff' },
+                    });
+                    navigate('/products');
+                  } catch (error) {
+                    toast.error('No tiene permiso para realizar esta acción', {
+                      position: 'bottom-right',
+                      style: { background: '#101010', color: '#fff' },
+                    });
                   }
-                })
-
-                navigate("/products")
-                  
-                } catch (error) {
-                  toast.error('Usted no tiene permiso para realizar esta acción', {
-
-                    position: "bottom-right",
-                    style: {
-                      background: "#101010",
-                      color: "#fff"
-                    }
-                  })
-                  
                 }
-                
-              }
-
-            }}
-          >Delete
-
-          </button>
-
-        </div>
-
-
-
-      }
+              }}
+            >
+              Delete
+            </button>
+          )}
         </div>
       </form>
-
-
- 
-
-
-
-
-
     </div>
   );
 }

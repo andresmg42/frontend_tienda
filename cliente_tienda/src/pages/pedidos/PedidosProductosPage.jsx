@@ -88,12 +88,12 @@ export function PedidosProductosPage() {
 
     return (
         <div>
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-3 gap-3 ">
                 {pedidosProductos.map((producto, index) => (
                     <PedidoProductoCard key={index}  productId={producto.producto_ppid} cantidad={producto.cantidad_producto_carrito} />
                 ))}
             </div>
-            <p className="text-slate-400 text-2xl mt-7 ml-2"><strong>TOTAL PEDIDO: </strong>{totalPrice}</p>
+            <p className="text-slate-900 text-2xl mt-7 ml-2"><strong>TOTAL PEDIDO: </strong> ${totalPrice.toLocaleString('es-ES')}</p>
             <label className="text-slate-400 flex items-center ml-2 mt-7">
                 <input 
                     type="checkbox" 
@@ -107,7 +107,7 @@ export function PedidosProductosPage() {
                 onClick={()=>{
                     navigate('/pedidos/')
                 }}
-                className="bg-indigo-500 p-3 w-48 font-bold rounded-lg mt-7 ml-2"
+                className="bg-red-600 p-3 w-48 font-bold rounded-lg mt-7 ml-2 hover:bg-red-700 cursor-pointer"
             >
                 Cerrar
             </button>

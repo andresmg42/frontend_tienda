@@ -22,8 +22,8 @@ export function PedidoCard({pedido}) {
     }, [pedido.usuarios]);
     
         return (
-            <div className="bg-zinc-800 p-3 hover:bg-zinc-700
-            hover:cursor-pointer"
+            <div className="bg-gray-100 text-black p-3 hover:bg-gray-300 
+            hover:cursor-pointer rounded-lg transition duration-300"
 
             onClick={()=>{
                 navigate('/pedidosProductos/'+pedido.id)
@@ -32,14 +32,21 @@ export function PedidoCard({pedido}) {
             >
                 <div className="flex justify-between items-center">
                 <div>
-                    <h1 className="font-bold uppercase"><strong>Pedido #</strong>{pedido.id}</h1>
-                    <p className="text-slate-400"><strong>Metodo de pago: </strong>{pedido.metodo_pago}</p>
-                    <p className="text-slate-400"><strong>Fecha: </strong>{pedido.fecha}</p>
-                    <p className="text-slate-400"><strong>Hora: </strong>{pedido.hora}</p>
-                    <p className="text-slate-400"><strong>Cliente: </strong>{usuario ? usuario.username : 'Cargando...'}</p>
+                    <h1 className="font-bold uppercase text-black"><strong>Pedido #</strong>{pedido.id}</h1>
+                    <p className="text-slate-700"><strong>Método de pago: </strong>{pedido.metodo_pago}</p>
+                    <p className="text-slate-700"><strong>Fecha: </strong>{pedido.fecha}</p>
+                    <p className="text-slate-700"><strong>Hora: </strong>{pedido.hora}</p>
+                    <p className="text-slate-700"><strong>Cliente: </strong>{usuario ? usuario.username : 'Cargando...'}</p>
+
                 </div>
                 <div>
-                    <p className="font-bold uppercase">{pedido.estado_pedido ? 'ENTREGADO' : 'PENDIENTE'}</p>
+                <p
+                    className={`font-bold uppercase ${
+                        pedido.estado_pedido ? 'text-green-600' : 'text-red-600'
+                    }`}
+                    >
+                    {pedido.estado_pedido ? 'ENTREGADO' : 'PENDIENTE'}
+                </p>
                 </div>
             </div>
                 
