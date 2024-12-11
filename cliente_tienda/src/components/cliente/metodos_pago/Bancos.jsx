@@ -3,16 +3,16 @@ import bancolombia from "../../../images/bancolombia.png"
 import nequi from "../../../images/nequi.png"
 import bancoBogota from "../../../images/bancoBogota.png"
 import davivienda from "../../../images/davivienda.jpg"
-import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { authService } from '../../../services/authService'
+
 
 export default function Bancos({userP,formD}) {
 
 const[opcion,setOpcion]=useState('bancolombia')
 
-
+const navigate=useNavigate();
 
 const handleSubmit=(e)=>{
  e.preventDefault(e)
@@ -29,6 +29,8 @@ const handleSubmit=(e)=>{
     break;
     default: window.open('https://sucursalpersonas.transaccionesbancolombia.com/mua/USER?scis=YY%2F8m2Cyz9CFiqf4WV6s13R2rT1MnXo5GpPyHFTkRiw%3D#no-back-button');
   }
+  navigate('/client')
+  
 }
 
   return (

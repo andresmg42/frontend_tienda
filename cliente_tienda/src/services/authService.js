@@ -1,5 +1,6 @@
 import { register_user ,verfify_Email} from '../api/users.api';
 import { createPedido, llenarPedidosProductos } from '../api/pedidos.api';
+import { vaciarCarrito } from '../api/products.api';
 
 export const authService = {
   async register(username, email, password,captcha) {
@@ -59,7 +60,11 @@ export const authService = {
         } catch (error) {
           console.error('error la llenarPedidosProduct',error)
         }
+
+       const res= vaciarCarrito(localStorage.getItem('user_id'))
+       console.log(res)
   
+        
     
        
         

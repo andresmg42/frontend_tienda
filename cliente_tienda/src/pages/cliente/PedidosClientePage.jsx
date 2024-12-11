@@ -6,7 +6,8 @@ import Bancos from '../../components/cliente/metodos_pago/Bancos'
 import Targetas from '../../components/cliente/metodos_pago/Targetas';
 import { useNavigate } from 'react-router-dom';
 import { authService } from '../../services/authService';
-import toast from 'react-hot-toast';
+
+
 
 export default function PedidosClientePage() {
 
@@ -65,7 +66,7 @@ export default function PedidosClientePage() {
       authService.HacerCompra(formData,userProducts);
       setTargeta(false); 
       setTransferencia(false); 
-      window.open('https://www.efectyvirtual.com/PortalEcommerce/Account/Login?Geolocalizacion=%2F%2F'); navigate('/client')
+      window.open('https://www.efectyvirtual.com/PortalEcommerce/Account/Login?Geolocalizacion=%2F%2F'); navigate('/client'); 
       break;
       default: setTransferencia(true); setTargeta(false); 
 
@@ -123,6 +124,7 @@ export default function PedidosClientePage() {
       {Transferencia && (<Bancos userP={userProducts} formD={formData} />)}
       {Targeta && (<Targetas userP={userProducts} formD={formData} />)}
      
+     <img src="" alt="" />
 
     </div>
   )
