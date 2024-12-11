@@ -27,8 +27,23 @@ export const deleteProduct=(id)=> productoApi.delete('/productos/'+id+'/',{heade
     
   }})
 
-// export const get_products_by_category=(category_id)=> productoApi.get('/productos/get_by_category/'+category_id+'/')
+export const partialUpdateProduct=(id,cantidad_producto)=> productoApi.patch('/productos/'+id+'/',{cantidad_producto},{headers: {
+  'Content-Type': 'application/json',
+  'Authorization': `Token ${localStorage.getItem('authToken')}`
+  
+  
+}})
+
+
 
 export const searchProducts=(searchCriteria,searchValue)=> productoApi.get('/filter_products/?criteria='+searchCriteria+'&'+'value='+searchValue)
        
+export const searchUserProducts=(searchValue)=>productoApi.get('/search_users_products/?criteria=usuario_id&value='+searchValue)
 
+export const updateCantidadProductoCarrito=(id,cantidad_producto)=>productoApi.patch('/users_products/'+id+'/',{cantidad_producto},{
+  headers: { 'Content-Type': 'application/json' }
+})
+
+export const insertarCarrito=(data)=>productoApi.post('/users_products/',data)
+
+export const vaciarCarrito=(id)=>productoApi.delete('/delete_all_userProducts/?user_id='+id)

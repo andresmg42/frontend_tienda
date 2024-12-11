@@ -5,7 +5,7 @@ import { Navigation } from '../../components/products/Navigation'
 export function ProductPage() {
   const params = useParams(); // Obtén todos los parámetros como un objeto
   const { criteria, value } = params;
-  console.log(params.id)
+  console.log(params)
   return (
 
     <div>

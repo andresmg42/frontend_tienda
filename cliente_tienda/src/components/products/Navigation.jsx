@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom"
 import React, { useState, useEffect } from 'react';
-import { Menu, ChevronDown, Search, Plus, LogOut } from 'lucide-react';
+import { ChevronDown, Search, Plus, LogOut } from 'lucide-react';
 import { useNavigate } from "react-router-dom";
 import { getAllCategories } from "../../api/categories.api";
-import { searchProducts } from "../../api/products.api";
 import { NavLink } from 'react-router-dom'
 
 
@@ -54,18 +53,7 @@ export function Navigation() {
   };
 
   return (
-    // <div className="flex justify-between py-3">
-
-    //     <Link to="/products">Products List</Link>
-
-    //   <button className="bg-indigo-500 px-3 py-2 rounded-lg">
-
-    //     <Link to="/product-create" >Create Product</Link>
-
-    //   </button>
-
-    // </div>
-
+  
     <nav className="text-white p-4" style={{ backgroundColor: "#0FA0CC" }}>
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo o Título */}
@@ -85,6 +73,7 @@ export function Navigation() {
           Usuarios
         </Link>
         <Link
+          to='/categorias'
           className="text-xl font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
         >
           Categorias
@@ -95,11 +84,9 @@ export function Navigation() {
         >
           Pedidos
         </Link>
-        <Link
-          className="text-xl font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
-        >
-          Carrito
-        </Link>
+
+
+
 
         {/* Menú de Navegación */}
         <div className="relative flex items-center space-x-4">
@@ -133,14 +120,15 @@ export function Navigation() {
               </form>
               <select className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-black mt-3" name="busqueda"
                 onChange={(e) => setSearchCriteria(e.target.value)}
-              //absolute top-full left-0 bg-white text-black shadow-lg rounded-md mt-2 w-48 z-10
+              
+
 
               >
                 <option value="nombre">Nombre</option>
                 <option value="precio" >Precio</option>
                 <option value="estado_producto">Estado</option>
                 <option value="cantidad_producto">Cantidad</option>
-                {/* <option value="categoria">Categoria</option> */}
+                
               </select>
               <button
                 onClick={() => setIsSearchOpen(false)}
@@ -151,10 +139,12 @@ export function Navigation() {
             </div>
           </div>
         )}
+
       </div>
 
-            {/* Botón de Salir */}
-            <div className="fixed bottom-4 left-4">
+
+      {/* Botón de Salir */}
+      <div className="fixed bottom-4 left-4">
         <button
           className="text-white p-2 rounded-full shadow-lg transition duration-300 transform hover:scale-110"
           style={{ backgroundColor: "#0FA0CC" }}
