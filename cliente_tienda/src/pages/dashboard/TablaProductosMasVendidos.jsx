@@ -1,34 +1,34 @@
 import React from 'react'
 import DataTable from "react-data-table-component"
 import { useState, useEffect } from 'react'
-import { indicadoresUsuario } from '../../api/dashboard.api'
+import { tablaProductosMasVendidos } from '../../api/dashboard.api'
 
 
 
-export function Table() {
+export function TablaProductosMasVendidos() {
 
 
     const [data, setData] = useState([])
 
     useEffect(() => {
-        async function loadIndicadoreUsuario() {
-            const res = await indicadoresUsuario();
+        async function loadTablaProductosMasVendidos() {
+            const res = await tablaProductosMasVendidos();
             setData(res.data)
             setRecords(res.data)
             console.log(res.data)
         }
-        loadIndicadoreUsuario()
+        loadTablaProductosMasVendidos()
 
     }, [])
 
-    console.log('esta es la data:',data)
+    console.log('esta es la data 2:', data)
 
     const [records, setRecords] = useState(data)
 
-    console.log('estos son los records:',records)
+    console.log('estos son los records:', records)
 
     const handleChange = (e) => {
-       const filteredRecords= data.filter(record => {
+        const filteredRecords = data.filter(record => {
             return record.usuarios__username.toLowerCase().includes(e.target.value.toLowerCase())
 
         })
@@ -41,34 +41,49 @@ export function Table() {
     const columns = [
         {
             name: 'Nombre',
-            selector: row => row.usuarios__username
+            selector: row => row.nombre
 
         },
         {
+            name: "Precio",
+            selector: row => row.precio
+
+        },
+        {
+
+            name: "Estado",
+            selector: row => row.estado_producto ? "Activo":"Inactivo"
+
+
+        },
+        {
+
+            name: "Cantidad",
+            selector: row => row.cantidad_producto
+
+        },
+        {
+
             name: "Total Vendidos",
-            selector: row => row.total_productos_vendidos
+            selector: row => row.total_vendidos
 
         },
+
         {
 
-            name: "Total Pedidos",
-            selector: row => row.total_pedidos
-
+            name: "Ingresos por U",
+            selector: row => row.ingresos
 
         },
-        {
-
-            name: "Ingresos por Usuario",
-            selector: row => row.ingresos_por_usuario
-
-        }
+  
+        
 
     ]
     return (
         <div className='table_container'>
             <input type="text" onChange={handleChange} />
             <DataTable
-            title={'Indicadores Usuario'}
+                title={'Productos mas Vendidos'}
                 columns={columns}
                 data={records}
                 selectableRows

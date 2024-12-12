@@ -10,3 +10,5 @@ export const indicadoresUsuario=()=>pedidosApi.get('indicadores_por_usuario')
 export const ventasDiarias=()=>pedidosApi.get('ventas_diarias')
 
 export const metodosPMasUtilizados=()=>pedidosApi.get('metodos_pago_mas_utilizados')
+
+export const tablaProductosMasVendidos=()=>pedidosApi.get('productosMasVendidos')

@@ -1,10 +1,13 @@
 import React, { useEffect } from "react";
-import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme } from "victory";
+
 import { productosMasVendidos } from "../../api/dashboard.api";
 import { useState } from "react";
-import { Table } from "./Table";
+import { TableIndicadoresUsuario } from "./TableIndicadoresUsuario";
 import { TableVentasDiarias } from "./TablaVentasDiarias";
 import PiePago from "./PiePago";
+import { BarrasProductosMasVendidos } from "./BarrasProductosMasVendidos";
+
+import { TablaProductosMasVendidos } from "./TablaProductosMasVendidos";
 
 
 export default function Dashboard() {
@@ -35,58 +38,38 @@ export default function Dashboard() {
       <div className="grid grid-cosl-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {/* PRODUCTOS MAS VENDIDOS */}
 
-        <div className="shadow-md rouded px-4 py-6">
-          <h2 className="text-xl font-bold mb-2 text-gray-500">Productos Mas Vendidos</h2>
-          <VictoryChart theme={VictoryTheme.material} domainPadding={20}>
-            {/* Eje X */}
-            <VictoryAxis
-              style={{
-                axis: { stroke: "#756f6a" },
-                ticks: { stroke: "#756f6a" },
-                tickLabels: { fontSize: 12, padding: 5 },
-              }}
-            />
-            {/* Eje Y */}
-            <VictoryAxis
-              dependentAxis
-              style={{
-                axis: { stroke: "#756f6a" },
-                grid: { stroke: "gray", strokeDasharray: "4, 4" },
-                tickLabels: { fontSize: 12, padding: 5 },
-              }}
-            />
-            {/* Gráfico de barras */}
-            <VictoryBar
-              data={data}
-              x="nombre"
-              y="total_vendidos"
-              style={{
-                data: { fill: "#c43a31", width: 20 },
-              }}
-            />
-          </VictoryChart>
-
-
+        <div className="bg-white shadow-md rounded px-4 py-6">
+          <TablaProductosMasVendidos />
         </div>
-
         {/* INDICADORES USUARIO */}
-
         <div className="bg-white shadow-md rounded px-4 py-6">
 
-          <Table />
+          <TableIndicadoresUsuario />
 
 
         </div>
-
         {/* VENTAS DIARIAS */}
 
         <div className="bg-white shadow-md rounded px-4 py-6">
           <TableVentasDiarias />
         </div>
 
+
+
+        <div className="shadow-md r0ouded px-4 py-6">
+          <h2 className="text-xl font-bold mb-2 text-gray-500">Productos Mas Vendidos</h2>
+          
+         <BarrasProductosMasVendidos/>
+
+        </div>
+
+
+
+
         {/* PIE METODOS PAGO MAS UTILIZADOS */}
 
         <div className="bg-white shadow-md rounded px-4 py-6">
+        <h2 className="text-xl font-bold mb-2 text-gray-500">Metodos de Pago Mas Usados</h2>
 
           <PiePago />
 
