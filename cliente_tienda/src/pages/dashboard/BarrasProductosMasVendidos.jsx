@@ -43,7 +43,7 @@ export function BarrasProductosMasVendidos({selectedRows}) {
               x="nombre"
               y="total_vendidos"
               style={{
-                data: { fill: "#c43a31", width: 20 },
+                data: { fill: "#0FA0CC", width: 20 },
               }}
               
             />

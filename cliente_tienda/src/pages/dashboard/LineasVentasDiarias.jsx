@@ -88,10 +88,7 @@ export default function LineasVentasDiarias() {
           style={{
             data: {
               stroke:
-                VictoryTheme.clean
-                  .palette
-                  .qualitative[0],
-              strokeWidth: 2,
+               "#0FA0CC"
             },
           }}
         />
@@ -100,10 +97,7 @@ export default function LineasVentasDiarias() {
           size={5}
           style={{
             data: {
-              fill: VictoryTheme.clean
-                .palette.qualitative[
-                0
-              ],
+              fill: "#0FA0CC"
             },
           }}
 

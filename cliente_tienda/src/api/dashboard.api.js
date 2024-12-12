@@ -12,3 +12,5 @@ export const ventasDiarias=()=>pedidosApi.get('ventas_diarias')
 export const metodosPMasUtilizados=()=>pedidosApi.get('metodos_pago_mas_utilizados')
 
 export const tablaProductosMasVendidos=()=>pedidosApi.get('productosMasVendidos')
+
+export const  valorTotalVentas=()=>pedidosApi.get('valor_total_ventas')

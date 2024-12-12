@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-import { productosMasVendidos } from "../../api/dashboard.api";
+import { productosMasVendidos, valorTotalVentas } from "../../api/dashboard.api";
 import { useState } from "react";
 import { TableIndicadoresUsuario } from "./TableIndicadoresUsuario";
 import { TableVentasDiarias } from "./TablaVentasDiarias";
@@ -17,15 +17,17 @@ export default function Dashboard() {
  
   const[selectedRows,setSelectedRows]=useState([])
   const [data, setData] = useState([])
+  const [total_ventas, setTotalVentas] = useState(0)
 
-  // const[dataBar,setDataBar]=useState([])
 
   useEffect(() => {
     async function loadProductosMasVendidos() {
       const res = await productosMasVendidos();
+      const res2= await valorTotalVentas();
       setData(res.data)
       setSelectedRows(res.data)
-      console.log(data)
+      setTotalVentas(res2.data.total_ventas)
+      
     }
     loadProductosMasVendidos();
 
@@ -33,17 +35,12 @@ export default function Dashboard() {
 
   
 
-  // if(selectedRows.length!=0){
-  //   setDataBar(selectedRows)
-  // }else{
-  //   setDataBar(data)
-  // }
-
 
 
   return (
     <div className="container mx-auto px-4">
       <h2 className="text-3xl font-bold mb-8 text-gray-500">Dash Board</h2>
+      <div className="text-xl text-gray-500">Total Ingresos: {total_ventas}</div>
       <div className="grid grid-cosl-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {/* PRODUCTOS MAS VENDIDOS */}
 
