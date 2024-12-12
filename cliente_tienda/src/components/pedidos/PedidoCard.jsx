@@ -26,7 +26,7 @@ export function PedidoCard({pedido}) {
             hover:cursor-pointer rounded-lg transition duration-300"
 
             onClick={()=>{
-                navigate('/pedidosProductos/'+pedido.id)
+                navigate('/pedidosProductos/'+pedido.id+'/'+pedido.usuarios)
             }}
 
             >
