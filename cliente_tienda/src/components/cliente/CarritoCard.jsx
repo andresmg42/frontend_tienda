@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { updateCantidadProductoCarrito,partialUpdateProduct } from "../../api/products.api";
+import { updateCantidadProductoCarrito } from "../../api/products.api";
 
 
 export function CarritoCard({ product ,set_total,Total}) {
@@ -19,19 +19,22 @@ export function CarritoCard({ product ,set_total,Total}) {
             const nuevaCantidadUser=cantidad+1
             const nuevaCantidadProducto=cantidadP-1
             
+
             try {
                 const res=await updateCantidadProductoCarrito(
                     product.id_user_product,
                     nuevaCantidadUser
                 );
 
-                const res2= await partialUpdateProduct(
-                    product.id,
-                    nuevaCantidadProducto
-                )
+                // const res2= await partialUpdateProduct(
+                //     product.id,
+                //     nuevaCantidadProducto
+                // )
+
+                
 
                 setCantidad(res.data.cantidad_producto);
-                setCantidadP(res2.data.cantidad_producto);
+                setCantidadP(nuevaCantidadProducto);
             } catch (error) {
                 console.error("Error al actualizar cantidades",error);
                 
@@ -55,13 +58,13 @@ export function CarritoCard({ product ,set_total,Total}) {
 
                 );
 
-                 const res2= await partialUpdateProduct(
-                    product.id,
-                    nuevaCantidadProducto
-                 );
+                //  const res2= await partialUpdateProduct(
+                //     product.id,
+                //     nuevaCantidadProducto
+                //  );
 
                  setCantidad(res.data.cantidad_producto)
-                 setCantidadP(res2.data.cantidad_producto)
+                 setCantidadP(nuevaCantidadProducto)
 
             } catch (error) {
                 console.log("error al actualizar las cantidades",error)

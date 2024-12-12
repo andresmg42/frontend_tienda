@@ -33,6 +33,7 @@ export const authService = {
     }
   },
 
+  // ACTUALIZAR LOS PRODUCTOS AQUI NO EN CARRITO CARD
   async HacerCompra(formData,userProducts) {
        let lista;
     
@@ -60,6 +61,8 @@ export const authService = {
         } catch (error) {
           console.error('error la llenarPedidosProduct',error)
         }
+
+      
 
        const res= vaciarCarrito(localStorage.getItem('user_id'))
        console.log(res)
