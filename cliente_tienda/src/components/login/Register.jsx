@@ -3,6 +3,7 @@ import toast from 'react-hot-toast'
 import { useNavigate} from "react-router-dom"
 import { authService } from '../../services/authService';
 import ReCAPTCHA from "react-google-recaptcha";
+import logo from '../../assets/logo/clasSmart.png'
 export function Register() {
 
     const navigate=useNavigate()
@@ -97,11 +98,14 @@ export function Register() {
 
     return (
         <div className='max-w-xl mx-auto mt-10' >
+                  <div className="text-center mb-4">
+                    <img src={logo} alt="Logo" className="h-20 mx-auto" />
+                  </div>
             <h1 className="text-center text-3xl font-bold text-gray-800">Sign Up</h1>
 
             <div className='text-xl '>Registro de Usuario</div>
 
-            <form className='mt-0' onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 <input
                     className="bg-gray-200 text-black p-3 rounded-lg block w-full mb-3"
                     type="text"
@@ -150,7 +154,7 @@ export function Register() {
 
                 {/* Botón Registrarse centrado */}
                 <button
-                    className='bg-indigo-500 p-3 rounded-lg w-full hover:bg-indigo-700 hover:cursor-pointer transition duration-300'
+                    className='bg-[#0FA0CC] p-3 rounded-lg w-full hover:bg-[#0c88ad] hover:cursor-pointer transition duration-300'
                     type="submit"
                 >
                     Registrarse

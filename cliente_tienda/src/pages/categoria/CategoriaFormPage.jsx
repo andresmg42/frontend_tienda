@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { getCategoria, updateCategoria, deleteCategoria, createCategoria } from '../../api/categories.api';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ProductCard } from '../../components/products/ProductCard';
-import toast from 'react-hot-toast';;
+import toast from 'react-hot-toast';
 
 
 export function CategoriaFormPage() {

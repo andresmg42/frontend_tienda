@@ -20,7 +20,7 @@ export function CarritoPage() {
       setTotal(total)
       
     } catch (error) {
-      console.log('error al consultar los productos del usaurio',error)
+      console.log('Error al consultar los productos del usaurio',error)
     }
    }
    loadUserProducts()

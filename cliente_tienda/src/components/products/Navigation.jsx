@@ -113,7 +113,7 @@ export function Navigation() {
                 />
                 <button
                   type="submit"
-                  className="bg-indigo-500 text-white px-4 py-2 rounded-r-lg hover:bg-blue-700"
+                  className="bg-[#0FA0CC] text-white px-4 py-2 rounded-r-lg hover:bg-[#0c88ad]"
                 >
                   <Search size={20} />
                 </button>
@@ -132,7 +132,7 @@ export function Navigation() {
               </select>
               <button
                 onClick={() => setIsSearchOpen(false)}
-                className="mt-4 w-full bg-indigo-500 py-2 rounded-lg hover:bg-red-700"
+                className="mt-4 w-full bg-[#0FA0CC] py-2 rounded-lg hover:bg-red-600"
               >
                 Cancelar
               </button>
