@@ -5,7 +5,7 @@ import { tablaProductosMasVendidos } from '../../api/dashboard.api'
 
 
 
-export function TablaProductosMasVendidos() {
+export function TablaProductosMasVendidos({ setSelectedRows }) {
 
 
     const [data, setData] = useState([])
@@ -49,10 +49,11 @@ export function TablaProductosMasVendidos() {
             selector: row => row.precio
 
         },
+
         {
 
             name: "Estado",
-            selector: row => row.estado_producto ? "Activo":"Inactivo"
+            selector: row => row.estado_producto ? "Activo" : "Inactivo"
 
 
         },
@@ -75,8 +76,8 @@ export function TablaProductosMasVendidos() {
             selector: row => row.ingresos
 
         },
-  
-        
+
+
 
     ]
     return (
@@ -89,7 +90,20 @@ export function TablaProductosMasVendidos() {
                 selectableRows
                 pagination
                 paginationPerPage={5}
-                onSelectedRowsChange={rows => console.log(rows)}
+                onSelectedRowsChange={rows => {
+                    const selectedrows=rows.selectedRows.map(row => {
+
+                        const json = {
+
+                            'nombre': row.nombre,
+                            'total_vendidos': row.total_vendidos
+                        }
+                        return json
+                    })
+                    setSelectedRows(selectedrows)
+
+
+                }}
                 fixedHeader
             />
 

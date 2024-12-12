@@ -12,25 +12,32 @@ import { TablaProductosMasVendidos } from "./TablaProductosMasVendidos";
 
 export default function Dashboard() {
 
+ 
+  const[selectedRows,setSelectedRows]=useState([])
   const [data, setData] = useState([])
+
+  // const[dataBar,setDataBar]=useState([])
 
   useEffect(() => {
     async function loadProductosMasVendidos() {
       const res = await productosMasVendidos();
       setData(res.data)
+      setSelectedRows(res.data)
       console.log(data)
     }
     loadProductosMasVendidos();
 
   }, [])
 
-  // const data = [
-  //   { category: "A", value: 30 },
-  //   { category: "B", value: 80 },
-  //   { category: "C", value: 45 },
-  //   { category: "D", value: 60 },
-  //   { category: "E", value: 20 },
-  // ];
+  
+
+  // if(selectedRows.length!=0){
+  //   setDataBar(selectedRows)
+  // }else{
+  //   setDataBar(data)
+  // }
+
+
 
   return (
     <div className="container mx-auto px-4">
@@ -39,7 +46,7 @@ export default function Dashboard() {
         {/* PRODUCTOS MAS VENDIDOS */}
 
         <div className="bg-white shadow-md rounded px-4 py-6">
-          <TablaProductosMasVendidos />
+          <TablaProductosMasVendidos setSelectedRows={setSelectedRows} />
         </div>
         {/* INDICADORES USUARIO */}
         <div className="bg-white shadow-md rounded px-4 py-6">
@@ -59,7 +66,7 @@ export default function Dashboard() {
         <div className="shadow-md r0ouded px-4 py-6">
           <h2 className="text-xl font-bold mb-2 text-gray-500">Productos Mas Vendidos</h2>
           
-         <BarrasProductosMasVendidos/>
+         <BarrasProductosMasVendidos selectedRows={selectedRows}/>
 
         </div>
 

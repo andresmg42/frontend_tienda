@@ -2,18 +2,20 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme } from "victory";
 import { productosMasVendidos } from '../../api/dashboard.api';
-export function BarrasProductosMasVendidos() {
-    const [data, setData] = useState([])
+export function BarrasProductosMasVendidos({selectedRows}) {
+  //   const [data, setData] = useState([])
 
-  useEffect(() => {
-    async function loadProductosMasVendidos() {
-      const res = await productosMasVendidos();
-      setData(res.data)
+  //   const[filas,setFilas]=useState(data)
+
+  // useEffect(() => {
+  //   async function loadProductosMasVendidos() {
+  //     const res = await productosMasVendidos();
+  //     setData(res.data)
       
-    }
-    loadProductosMasVendidos();
+  //   }
+  //   loadProductosMasVendidos();
 
-  }, [])
+  // }, [])
 
   return (
     <div>
@@ -37,7 +39,7 @@ export function BarrasProductosMasVendidos() {
             />
             {/* Gráfico de barras */}
             <VictoryBar
-              data={data}
+              data={selectedRows}
               x="nombre"
               y="total_vendidos"
               style={{
