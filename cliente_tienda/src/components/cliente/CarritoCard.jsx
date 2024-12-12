@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { updateCantidadProductoCarrito,partialUpdateProduct } from "../../api/products.api";
 
 
@@ -18,7 +18,7 @@ export function CarritoCard({ product ,set_total,Total}) {
     }
     
     const handlePlus= async ()=>{
-        console.log('este es el producto en carrtoCard',product)
+       
         if(cantidadP>0){
 
             const nuevaCantidadUser=cantidad+1

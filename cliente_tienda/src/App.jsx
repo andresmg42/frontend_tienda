@@ -14,8 +14,13 @@ import { useEffect, useState } from 'react'
 import { PedidosPage } from './pages/pedidos/PedidosPage'
 import { PedidosProductosPage } from './pages/pedidos/PedidosProductosPage'
 import { CategoriaPage } from './pages/categoria/CategoriaPage'
+import PedidosClientePage from './pages/cliente/PedidosClientePage'
+import Bancos from './components/cliente/metodos_pago/Bancos'
+import Targetas from './components/cliente/metodos_pago/Targetas'
+import Dashboard from './pages/dashboard/Dashboard'
 import { CategoriaFormPage } from './pages/categoria/CategoriaFormPage'
 import { CategoriaBusqueda } from './pages/categoria/CategoriaBusqueda'
+import { PedidosFilterPage } from './pages/pedidos/PedidosFilterPage'
 
 
 function App() {
@@ -40,12 +45,6 @@ function App() {
 
 
 
-
-
-
-
-
-
         {/* CLIENTE */}
         <Route path="/client" element={<ClientPage />} />
         <Route path="/client/:criteria/:value" element={<ClientPage />} />
@@ -54,6 +53,8 @@ function App() {
           path="/verify_Email/:token"
           element={<EmailVerification />}
         />
+
+        <Route path='/dashboard' element={<Dashboard/>}></Route>
         
 
 
@@ -64,8 +65,9 @@ function App() {
 
           {/* PEDIDOS */}
           <Route path="/pedidos" element={<PedidosPage />} />
-          <Route path="/pedidosProductos/:id" element={<PedidosProductosPage />} />
-
+          <Route path="/pedidosProductos/:id/:iduser" element={<PedidosProductosPage />} />
+          <Route path='/pasarela' element={<PedidosClientePage/>}></Route>
+          <Route path= '/pedidosFilter/:estado'element={<PedidosFilterPage/>}/>
 
 
           {/* CATEGORIA */}
@@ -85,6 +87,11 @@ function App() {
           <Route path="/users/:criteria/:value" element={<UserPage />} />
           <Route path="/users-create" element={<UserFormPage />} />
           <Route path="/users-create/:id" element={<UserFormPage />} />
+
+          {/* METODOS PAGO */}
+          <Route path='/bancos' element={<Bancos/>}/>
+          <Route path='/Targetas' element={<Targetas/>}/>
+
 
 
 

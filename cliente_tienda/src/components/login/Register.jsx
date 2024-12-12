@@ -93,7 +93,7 @@ export function Register() {
             }
         })
 
-        //navigate('/client')
+        navigate('/client')
     };
 
     return (

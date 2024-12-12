@@ -169,8 +169,9 @@ export function Navigation() {
                 <li
                   className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
                   onClick={() => {
-                    navigate('/pedidos/entregados');
+                    navigate('/pedidosFilter/'+'1');
                     setIsPedidoDropdownOpen(false);
+                    window.location.reload();
                   }}
                 >
                   Entregados
@@ -178,8 +179,9 @@ export function Navigation() {
                 <li
                   className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
                   onClick={() => {
-                    navigate('/pedidos/pendientes');
+                    navigate('/pedidosFilter/'+'0');
                     setIsPedidoDropdownOpen(false);
+                    window.location.reload();
                   }}
                 >
                   Pendientes
