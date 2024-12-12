@@ -2,6 +2,9 @@ import React, { useEffect } from "react";
 import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme } from "victory";
 import { productosMasVendidos } from "../../api/dashboard.api";
 import { useState } from "react";
+import { Table } from "./Table";
+import { TableVentasDiarias } from "./TablaVentasDiarias";
+import PiePago from "./PiePago";
 
 
 export default function Dashboard() {
@@ -31,6 +34,7 @@ export default function Dashboard() {
       <h2 className="text-3xl font-bold mb-8 text-gray-500">Dash Board</h2>
       <div className="grid grid-cosl-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {/* PRODUCTOS MAS VENDIDOS */}
+
         <div className="shadow-md rouded px-4 py-6">
           <h2 className="text-xl font-bold mb-2 text-gray-500">Productos Mas Vendidos</h2>
           <VictoryChart theme={VictoryTheme.material} domainPadding={20}>
@@ -64,6 +68,31 @@ export default function Dashboard() {
 
 
         </div>
+
+        {/* INDICADORES USUARIO */}
+
+        <div className="bg-white shadow-md rounded px-4 py-6">
+
+          <Table />
+
+
+        </div>
+
+        {/* VENTAS DIARIAS */}
+
+        <div className="bg-white shadow-md rounded px-4 py-6">
+          <TableVentasDiarias />
+        </div>
+
+        {/* PIE METODOS PAGO MAS UTILIZADOS */}
+
+        <div className="bg-white shadow-md rounded px-4 py-6">
+
+          <PiePago />
+
+        </div>
+
+
 
 
       </div>

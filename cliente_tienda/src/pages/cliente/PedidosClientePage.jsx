@@ -117,7 +117,7 @@ export default function PedidosClientePage() {
 
         >
           <option value="Transferencia bancaria"> Transeferecia Bancaria</option>
-          <option value="Targeta de credito">Targeta de Credito</option>
+          <option value="Targeta de credito">Tarjeta de Credito</option>
           <option value="efecty">Efecty</option>
 
 

@@ -20,7 +20,8 @@ import Targetas from './components/cliente/metodos_pago/Targetas'
 import Dashboard from './pages/dashboard/Dashboard'
 import { CategoriaFormPage } from './pages/categoria/CategoriaFormPage'
 import { CategoriaBusqueda } from './pages/categoria/CategoriaBusqueda'
-
+import { Table } from './pages/dashboard/Table'
+import { TableVentasDiarias } from './pages/dashboard/TablaVentasDiarias'
 
 function App() {
   //const [isAutenticated, setIsAutenticated] = useState(() => localStorage.getItem('IsAutenticated') === 'true');
@@ -54,7 +55,8 @@ function App() {
         />
 
         <Route path='/dashboard' element={<Dashboard/>}></Route>
-        
+        <Route path='/ventas_diarias' element={<TableVentasDiarias/>}></Route>
+      
 
 
 
