@@ -116,6 +116,7 @@ export function CarritoCard({ product ,set_total,Total}) {
 
         }}
         >+</button>
+        
         <button className='bg-red-500 p-3 rounded-lg w-48 mt-3 p-3 hover:bg-red-700
         hover:cursor-pointer'
         onClick={()=>{ 
@@ -127,15 +128,19 @@ export function CarritoCard({ product ,set_total,Total}) {
         }}
         >-</button>
 
-        <div className="absolute bottom-0 right-0 text-red-600 text-xl font-bold uppercase p-3">
-        Total: ${total.toLocaleString('es-ES', { minimumFractionDigits: 0, maximumFractionDigits: 2 })}
-        </div>
         
+|||||||<div className="fixed bottom-0 right-0 p-5 bg-white">
+                <h2 className="text-red-600 text-2xl font-bold uppercase">
+                    Total : ${total.toLocaleString('es-ES', { minimumFractionDigits: 0, maximumFractionDigits: 2 })}
+                </h2>
+            </div>
+
         </div>
+
+        
 
         
        
         
     );
 }
-
