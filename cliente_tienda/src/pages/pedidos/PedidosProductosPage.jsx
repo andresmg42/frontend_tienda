@@ -89,6 +89,7 @@ export function PedidosProductosPage() {
         const newData = { 
             id: id,
             metodo_pago: pedido.metodo_pago,
+            direccion: pedido.direccion,
             hora: pedido.hora,
             estado_pedido: newEstadoPedido,
             fecha: pedido.fecha,
