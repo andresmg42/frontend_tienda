@@ -21,6 +21,7 @@ import Dashboard from './pages/dashboard/Dashboard'
 import { CategoriaFormPage } from './pages/categoria/CategoriaFormPage'
 import { CategoriaBusqueda } from './pages/categoria/CategoriaBusqueda'
 import {TablaProductosMasVendidos  } from './pages/dashboard/TablaProductosMasVendidos'
+import LineasVentasDiarias from './pages/dashboard/LineasVentasDiarias'
 
 function App() {
   //const [isAutenticated, setIsAutenticated] = useState(() => localStorage.getItem('IsAutenticated') === 'true');
@@ -54,7 +55,7 @@ function App() {
         />
 
         <Route path='/dashboard' element={<Dashboard/>}></Route>
-        {/* <Route path='/tablaPmasVendidos' element={<TablaProductosMasVendidos/>}></Route> */}
+        <Route path='/lineas' element={<LineasVentasDiarias/>}></Route>
       
 
 
