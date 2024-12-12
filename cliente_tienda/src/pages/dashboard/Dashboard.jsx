@@ -8,6 +8,8 @@ import PiePago from "./PiePago";
 import { BarrasProductosMasVendidos } from "./BarrasProductosMasVendidos";
 
 import { TablaProductosMasVendidos } from "./TablaProductosMasVendidos";
+import LineasVentasDiarias from "./LineasVentasDiarias";
+
 
 
 export default function Dashboard() {
@@ -79,6 +81,13 @@ export default function Dashboard() {
         <h2 className="text-xl font-bold mb-2 text-gray-500">Metodos de Pago Mas Usados</h2>
 
           <PiePago />
+
+        </div>
+        
+        <div className="bg-white shadow-md rounded px-4 py-6">
+        <h2 className="text-xl font-bold mb-2 text-gray-500">Ventas Diarias</h2>
+
+          <LineasVentasDiarias/>
 
         </div>
 

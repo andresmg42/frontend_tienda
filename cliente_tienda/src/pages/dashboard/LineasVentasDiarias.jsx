@@ -1,5 +1,5 @@
 import React from 'react'
-import { VictoryGroup, VictoryLine, VictoryScatter, VictoryChart, VictoryAxis, VictoryTheme } from "victory";
+import {  VictoryLine, VictoryScatter, VictoryChart, VictoryAxis, VictoryTheme } from "victory";
 import _ from "lodash";
 import { ventasDiarias } from '../../api/dashboard.api'
 import { useEffect, useState } from 'react';
@@ -16,15 +16,7 @@ export default function LineasVentasDiarias() {
     loadVentasDiarias()
   }, [])
 
-  // const newData=[
-  //   {
-  //     name:'fechas',
-  //     data:dataRaw.map(item=>item.total_ventas).sort()
-
-
-
-  //   }
-  // ]
+ 
 
   const processedData = dataRaw.map(item => ({
     x: item.fecha, // Dejamos la fecha como string
