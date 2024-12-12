@@ -1,7 +1,7 @@
 import React from 'react'
 import DataTable from "react-data-table-component"
 import { useState, useEffect } from 'react'
-import { indicadoresUsuario, ventasDiarias } from '../../api/dashboard.api'
+import {  ventasDiarias } from '../../api/dashboard.api'
 
 
 

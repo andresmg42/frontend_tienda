@@ -33,7 +33,7 @@ export const authService = {
     }
   },
 
-  // ACTUALIZAR LOS PRODUCTOS AQUI NO EN CARRITO CARD
+  
   async HacerCompra(formData,userProducts) {
        let lista;
     
