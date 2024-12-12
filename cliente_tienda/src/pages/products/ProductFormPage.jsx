@@ -59,6 +59,7 @@ export function ProductFormPage() {
     }
   });
 
+
     const handleBackClick = () => {
     navigate('/products');
   };
@@ -97,7 +98,7 @@ export function ProductFormPage() {
         setValue('cantidad_producto', String(res.data.cantidad_producto));
         setValue('categoria', cat.nombre_categoria);
         setValue('estado_producto', String(res.data.estado_producto));
-        //setValue('foto_producto', FileList(res.data.foto_producto,1))
+      
 
       }
     }

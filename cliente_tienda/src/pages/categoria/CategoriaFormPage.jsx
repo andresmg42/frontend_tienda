@@ -77,6 +77,11 @@ export function CategoriaFormPage() {
         
     };
 
+    const handleBackClick = () => {
+        navigate("/categorias/")
+      }
+   
+
     const handleDelete = async () => {
         try {
             await deleteCategoria(id);
@@ -100,6 +105,24 @@ export function CategoriaFormPage() {
 
     return (
         <div className="max-w-xl mx-auto mt-10">
+        {/* Contenedor para la flecha */}
+        <button
+          className="absolute top-0 left-0 p-3 text-gray-600 hover:text-gray-900 transition duration-300 flex items-center"
+          onClick={handleBackClick}
+        >
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={2}
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+          <span className="ml-2">Back</span>
+        </button>
+
             <form onSubmit={handleSubmit(onSubmit)}>
                 <input
                     type="text"
@@ -133,12 +156,6 @@ export function CategoriaFormPage() {
                 </div>
             </form>
             <div>
-            <button 
-                onClick={() => navigate('/categorias/')}
-                className="bg-indigo-500 p-3 w-48 font-bold rounded-lg mt-7"
-            >
-                Cerrar
-            </button>
 
             </div>
         </div>
