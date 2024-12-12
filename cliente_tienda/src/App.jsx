@@ -20,6 +20,7 @@ import Targetas from './components/cliente/metodos_pago/Targetas'
 import Dashboard from './pages/dashboard/Dashboard'
 import { CategoriaFormPage } from './pages/categoria/CategoriaFormPage'
 import { CategoriaBusqueda } from './pages/categoria/CategoriaBusqueda'
+import { PedidosFilterPage } from './pages/pedidos/PedidosFilterPage'
 
 
 function App() {
@@ -66,6 +67,7 @@ function App() {
           <Route path="/pedidos" element={<PedidosPage />} />
           <Route path="/pedidosProductos/:id/:iduser" element={<PedidosProductosPage />} />
           <Route path='/pasarela' element={<PedidosClientePage/>}></Route>
+          <Route path= '/pedidosFilter/:estado'element={<PedidosFilterPage/>}/>
 
 
           {/* CATEGORIA */}
