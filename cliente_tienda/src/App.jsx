@@ -18,7 +18,7 @@ import { CategoriaProductoPage } from './pages/categoria/CategoriaProductoPage'
 import PedidosClientePage from './pages/cliente/PedidosClientePage'
 import Bancos from './components/cliente/metodos_pago/Bancos'
 import Targetas from './components/cliente/metodos_pago/Targetas'
-
+import Dashboard from './pages/dashboard/Dashboard'
 function App() {
   //const [isAutenticated, setIsAutenticated] = useState(() => localStorage.getItem('IsAutenticated') === 'true');
 
@@ -49,6 +49,8 @@ function App() {
           path="/verify_Email/:token"
           element={<EmailVerification />}
         />
+
+        <Route path='/dashboard' element={<Dashboard/>}></Route>
         
 
 
