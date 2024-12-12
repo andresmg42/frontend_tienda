@@ -66,7 +66,7 @@ export function TableIndicadoresUsuario() {
     ]
     return (
         <div className='table_container'>
-            <input type="text" onChange={handleChange} />
+            <input type="text" className='text-black border border-gray-300 rounded px-2 py-1' onChange={handleChange} />
             <DataTable
             title={'Indicadores Usuario'}
                 columns={columns}

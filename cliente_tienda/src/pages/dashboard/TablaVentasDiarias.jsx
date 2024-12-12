@@ -29,12 +29,14 @@ export function TableVentasDiarias() {
 
     const handleChange = (e) => {
        const filteredRecords= data.filter(record => {
-            return record.usuarios__username.toLowerCase().includes(e.target.value.toLowerCase())
+            return record.fecha.toLowerCase().includes(e.target.value.toLowerCase())
 
         })
 
         setRecords(filteredRecords)
     }
+
+    console.log('esta es la data 3: ',data)
 
 
 
@@ -61,7 +63,7 @@ export function TableVentasDiarias() {
     ]
     return (
         <div className='table_container'>
-            <input type="text" onChange={handleChange} />
+            <input type="text" className='text-black border border-gray-300 rounded px-2 py-1' onChange={handleChange} />
             <DataTable
             title={'Ventas Diarias'}
                 columns={columns}

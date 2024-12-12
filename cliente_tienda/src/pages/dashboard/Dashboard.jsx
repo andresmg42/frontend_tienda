@@ -65,7 +65,7 @@ export default function Dashboard() {
 
 
 
-        <div className="shadow-md r0ouded px-4 py-6">
+        <div className="shadow-md rounded px-4 py-6">
           <h2 className="text-xl font-bold mb-2 text-gray-500">Productos Mas Vendidos</h2>
           
          <BarrasProductosMasVendidos selectedRows={selectedRows}/>
@@ -83,6 +83,8 @@ export default function Dashboard() {
           <PiePago />
 
         </div>
+
+        {/* GRAFICA DE LINEAS DE VENTAS DIARIAS */}
         
         <div className="bg-white shadow-md rounded px-4 py-6">
         <h2 className="text-xl font-bold mb-2 text-gray-500">Ventas Diarias</h2>

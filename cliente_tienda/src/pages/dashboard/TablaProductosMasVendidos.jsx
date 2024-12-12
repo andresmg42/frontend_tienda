@@ -25,11 +25,11 @@ export function TablaProductosMasVendidos({ setSelectedRows }) {
 
     const [records, setRecords] = useState(data)
 
-    console.log('estos son los records:', records)
+    console.log('estos son los records2:', records)
 
     const handleChange = (e) => {
         const filteredRecords = data.filter(record => {
-            return record.usuarios__username.toLowerCase().includes(e.target.value.toLowerCase())
+            return record.nombre.toLowerCase().includes(e.target.value.toLowerCase())
 
         })
 
@@ -82,7 +82,7 @@ export function TablaProductosMasVendidos({ setSelectedRows }) {
     ]
     return (
         <div className='table_container'>
-            <input type="text" onChange={handleChange} />
+            <input type="text" className='text-black border border-gray-300 rounded px-2 py-1' onChange={handleChange} />
             <DataTable
                 title={'Productos mas Vendidos'}
                 columns={columns}
