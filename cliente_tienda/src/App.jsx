@@ -65,8 +65,6 @@ function App() {
           {/* PEDIDOS */}
           <Route path="/pedidos" element={<PedidosPage />} />
           <Route path="/pedidosProductos/:id/:iduser" element={<PedidosProductosPage />} />
-
-          <Route path="/pedidosProductos/:id" element={<PedidosProductosPage />} />
           <Route path='/pasarela' element={<PedidosClientePage/>}></Route>
 
 

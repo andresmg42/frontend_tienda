@@ -33,10 +33,11 @@ export function PedidoCard({pedido}) {
                 <div className="flex justify-between items-center">
                 <div>
                     <h1 className="font-bold uppercase text-black"><strong>Pedido #</strong>{pedido.id}</h1>
+                    <p className="text-slate-700"><strong>Cliente: </strong>{usuario ? usuario.username : 'Cargando...'}</p>
                     <p className="text-slate-700"><strong>Método de pago: </strong>{pedido.metodo_pago}</p>
                     <p className="text-slate-700"><strong>Fecha: </strong>{pedido.fecha}</p>
                     <p className="text-slate-700"><strong>Hora: </strong>{pedido.hora}</p>
-                    <p className="text-slate-700"><strong>Cliente: </strong>{usuario ? usuario.username : 'Cargando...'}</p>
+                    <p className="text-slate-700"><strong>Direccion: </strong>{pedido.direccion}</p>
 
                 </div>
                 <div>

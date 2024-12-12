@@ -162,14 +162,6 @@ export function PedidosProductosPage() {
             </label>
             <button 
                 onClick={()=>{
-                    navigate('/pedidos/')
-                }}
-                className="bg-red-600 p-3 w-48 font-bold rounded-lg mt-7 ml-2 hover:bg-red-700 cursor-pointer"
-            >
-                Cerrar
-            </button>
-            <button 
-                onClick={()=>{
                     console.log('Usuario correo boton:',usuario.email);
                     handleCancelButtonClick();
                 }}
