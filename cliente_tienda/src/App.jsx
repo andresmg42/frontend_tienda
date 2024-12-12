@@ -19,6 +19,10 @@ import PedidosClientePage from './pages/cliente/PedidosClientePage'
 import Bancos from './components/cliente/metodos_pago/Bancos'
 import Targetas from './components/cliente/metodos_pago/Targetas'
 import Dashboard from './pages/dashboard/Dashboard'
+import { CategoriaFormPage } from './pages/categoria/CategoriaFormPage'
+import { CategoriaBusqueda } from './pages/categoria/CategoriaBusqueda'
+
+
 function App() {
   //const [isAutenticated, setIsAutenticated] = useState(() => localStorage.getItem('IsAutenticated') === 'true');
 
@@ -67,7 +71,9 @@ function App() {
 
           {/* CATEGORIA */}
           <Route path="/categorias" element={<CategoriaPage />} />
-          <Route path="/categoriasProductos/:id" element={<CategoriaProductoPage />} />
+          <Route path="/categoriasForm/:id" element={<CategoriaFormPage />} />
+          <Route path="/categoriasForm" element={<CategoriaFormPage />} />
+          <Route path="/categoriasBusqueda/:nombre" element={<CategoriaBusqueda />} />
 
           <Route path='/carrito' element={<CarritoPage />} />
           <Route path='/carrito/:id' element={<CarritoPage />} />

@@ -19,6 +19,11 @@ export function UserFormPage() {
 
 
   const password = watch('password')
+  const handleBackClick = () => {
+    navigate("/users")
+  }
+
+
 
   const onSubmit = handleSubmit(async data => {
 
@@ -118,6 +123,23 @@ export function UserFormPage() {
 
   return (
     <div className='max-w-xl mx-auto mt-10'>
+      {/* Contenedor para la flecha */}
+      <button
+          className="absolute top-0 left-0 p-3 text-gray-600 hover:text-gray-900 transition duration-300 flex items-center"
+          onClick={handleBackClick}
+        >
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={2}
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+          <span className="ml-2">Back</span>
+        </button>
       <form onSubmit={onSubmit}>
         <input className='bg-gray-200 text-black p-3 rounded-lg block w-full mb-3' type="text" name="username" placeholder="Username" {...register("username", { required: true })} />
 

@@ -48,8 +48,7 @@ export function Navigation() {
     // Lógica de búsqueda
     console.log('Buscando producto:', searchTerm);
     console.log(searchCriteria)
-    const filterCategoria = categorias.filter(categoria => categoria.nombre === searchTerm)
-    navigate('/products/' + searchCriteria + '/' + searchTerm)
+    navigate('/categoriasBusqueda/' + searchTerm)
 
     // Aquí podrías llamar a una función de búsqueda en tu backend o estado global
   };
@@ -147,6 +146,34 @@ export function Navigation() {
             </div>
           </div>
         )}
+        {/* Botón de Salir */}
+      <div className="fixed bottom-4 left-4">
+        <button
+          className="text-white p-2 rounded-full shadow-lg transition duration-300 transform hover:scale-110"
+          style={{ backgroundColor: "#0FA0CC" }}
+          onClick={() => {
+            localStorage.removeItem('authToken');
+            navigate('/login');
+          }}
+        >
+          <LogOut size={24} />
+        </button>
+      </div>
+
+      {/* Boton de adicionar */}
+      <div className="fixed bottom-4 right-4">
+        <div className="relative">
+          <button
+            className="text-white p-4 rounded-full shadow-lg transition duration-300 transform hover:scale-110"
+            style={{ backgroundColor: "#0FA0CC" }}
+            onClick={() => {
+              navigate('/categoriasForm');
+            }}
+          >
+            <Plus size={24} />
+          </button>
+        </div>
+      </div>
         
     </nav>
   )
