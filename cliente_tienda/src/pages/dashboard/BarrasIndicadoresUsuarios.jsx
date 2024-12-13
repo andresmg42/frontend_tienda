@@ -1,7 +1,7 @@
 import React from 'react'
 import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme } from "victory";
-export function BarrasProductosMasVendidos({selectedRows}) {
-  
+export function BarrasIndicadoresUsuarios({selectedRowsIndicadores}) {
+  console.log('estos son los indicadores que entran a el grafico de barras',selectedRowsIndicadores)
 
   return (
     <div>
@@ -25,9 +25,9 @@ export function BarrasProductosMasVendidos({selectedRows}) {
             />
             {/* Gráfico de barras */}
             <VictoryBar
-              data={selectedRows}
+              data={selectedRowsIndicadores}
               x="nombre"
-              y="total_vendidos"
+              y="total_pedidos"
               style={{
                 data: { fill: "#0FA0CC", width: 20 },
               }}

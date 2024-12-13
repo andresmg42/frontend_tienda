@@ -5,7 +5,7 @@ import { indicadoresUsuario } from '../../api/dashboard.api'
 
 
 
-export function TableIndicadoresUsuario() {
+export function TableIndicadoresUsuario({setSelectedRowsIndicadores}) {
 
 
     const [data, setData] = useState([])
@@ -15,7 +15,7 @@ export function TableIndicadoresUsuario() {
             const res = await indicadoresUsuario();
             setData(res.data)
             setRecords(res.data)
-            console.log(res.data)
+            
         }
         loadIndicadoreUsuario()
 
@@ -74,8 +74,22 @@ export function TableIndicadoresUsuario() {
                 selectableRows
                 pagination
                 paginationPerPage={5}
-                onSelectedRowsChange={rows => console.log(rows)}
+                
                 fixedHeader
+                onSelectedRowsChange={rows => {
+                    const selectedrows=rows.selectedRows.map(row => {
+
+                        const json = {
+
+                            'nombre': row.usuarios__username,
+                            'total_pedidos': row.total_pedidos
+                        }
+                        return json
+                    })
+                    setSelectedRowsIndicadores(selectedrows)
+
+
+                }}
             />
 
         </div>

@@ -15,17 +15,17 @@ export function TablaProductosMasVendidos({ setSelectedRows }) {
             const res = await tablaProductosMasVendidos();
             setData(res.data)
             setRecords(res.data)
-            console.log(res.data)
+            
         }
         loadTablaProductosMasVendidos()
 
     }, [])
 
-    console.log('esta es la data 2:', data)
+    
 
     const [records, setRecords] = useState(data)
 
-    console.log('estos son los records2:', records)
+    
 
     const handleChange = (e) => {
         const filteredRecords = data.filter(record => {
