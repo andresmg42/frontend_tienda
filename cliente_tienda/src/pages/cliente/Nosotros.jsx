@@ -6,6 +6,9 @@ import { Navigation } from '../../components/cliente/Navigation';
 
 export function Nosotros() {
 
+  const navigate = useNavigate();
+  
+
   const handleBackClick = () => {
     navigate("/client");
   };
