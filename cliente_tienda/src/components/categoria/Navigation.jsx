@@ -96,6 +96,13 @@ export function Navigation() {
         >
           Pedidos
         </Link>
+
+        <Link
+          to="/dashboard"
+          className="text-xl font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
+        >
+          Dashboard
+        </Link>
         
 
           {/* Menú de Navegación */}

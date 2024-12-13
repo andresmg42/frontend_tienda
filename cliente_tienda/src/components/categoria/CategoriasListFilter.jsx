@@ -34,7 +34,7 @@ export function CategoriasListFilter({nombre}) {
                 onClick={()=>{
                     navigate('/categorias/')
                 }}
-                className="bg-indigo-500 p-3 w-48 font-bold rounded-lg mt-7 ml-2"
+                className="bg-customBlue p-3 w-48 font-bold rounded-lg mt-7 ml-2"
             >
                 Volver
             </button>

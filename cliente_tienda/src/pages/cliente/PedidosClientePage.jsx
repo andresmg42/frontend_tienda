@@ -38,7 +38,6 @@ export default function PedidosClientePage() {
         const res = await searchUserProducts(localStorage.getItem('user_id'))
         setUserProducts(res.data)
       } catch (error) {
-        console.log('error al cargar los productos del usuario en PedidosClientePage', error)
       }
 
     };
@@ -116,7 +115,7 @@ export default function PedidosClientePage() {
           onChange={handleChange}
 
         >
-          <option value="Transferencia bancaria"> Transferencia Bancaria</option>
+          <option value="Transferencia bancaria"> Transeferecia Bancaria</option>
           <option value="Targeta de credito">Tarjeta de Credito</option>
           <option value="efecty">Efecty</option>
 

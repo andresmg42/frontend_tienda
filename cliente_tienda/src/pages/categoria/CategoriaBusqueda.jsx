@@ -6,7 +6,6 @@ import { CategoriasListFilter } from '../../components/categoria/CategoriasListF
 
 export function CategoriaBusqueda() {
     const {nombre} = useParams();
-    console.log('paramsEs:' + nombre)
     return (
 
         <div>

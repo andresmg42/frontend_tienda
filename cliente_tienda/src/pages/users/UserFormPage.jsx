@@ -185,7 +185,7 @@ export function UserFormPage() {
                         color: "#fff"
                       }
                     })
-                    navigate("/products")
+                    navigate("/users")
                   } catch (error) {
                     console.log(error)
                     toast.error('No tienes permiso para realizar esta acción', {

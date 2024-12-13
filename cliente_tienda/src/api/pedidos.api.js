@@ -58,6 +58,11 @@ export const llenarPedidosProductos=(listaPP)=>pedidosApi.post('llenarTablaProdu
     'Authorization': `Token ${localStorage.getItem('authToken')}`
   }})
 
-  export const generarFacturaPedido = (id) => pedidosApi.get('generar_factura/?pedido_id='+id)
+  export const generarFacturaPedido = (id) => pedidosApi.get('generar_factura/?pedido_id='+id,{headers: {
+    'Content-Type': 'application/json', 
+    'Authorization': `Token ${localStorage.getItem('authToken')}`
+  }})
+
+
 
 
