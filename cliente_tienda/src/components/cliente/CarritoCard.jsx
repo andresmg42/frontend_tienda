@@ -26,10 +26,7 @@ export function CarritoCard({ product ,set_total,Total}) {
                     nuevaCantidadUser
                 );
 
-                // const res2= await partialUpdateProduct(
-                //     product.id,
-                //     nuevaCantidadProducto
-                // )
+             
 
                 
 

@@ -44,12 +44,10 @@ export function Navigation() {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    // Lógica de búsqueda
-    console.log('Buscando producto:', searchTerm);
-    console.log(searchCriteria)
+   
     navigate('/products/' + searchCriteria + '/' + searchTerm)
 
-    // Aquí podrías llamar a una función de búsqueda en tu backend o estado global
+    
   };
 
   return (

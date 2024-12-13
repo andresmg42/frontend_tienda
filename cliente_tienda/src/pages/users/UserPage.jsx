@@ -8,8 +8,6 @@ export function UserPage() {
   
   return (
 
-    //<><Navigation /><div className='container mx-auto mt-4'><UserList searchCriteria={criteria} searchValue={value}></UserList></div><div className='container mx-auto mt-4'><UserList searchCriteria={criteria} searchValue={value}></UserList></div></>
-
     <div>
       <Navigation />
       <div className='container mx-auto mt-4'><UserList searchCriteria={criteria} searchValue={value}></UserList></div>

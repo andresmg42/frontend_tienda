@@ -25,7 +25,7 @@ export function TableIndicadoresUsuario({setSelectedRowsIndicadores}) {
 
     const [records, setRecords] = useState(data)
 
-    console.log('estos son los records:',records)
+    
 
     const handleChange = (e) => {
        const filteredRecords= data.filter(record => {
@@ -66,7 +66,7 @@ export function TableIndicadoresUsuario({setSelectedRowsIndicadores}) {
     ]
     return (
         <div className='table_container'>
-            <input type="text" className='text-black border border-gray-300 rounded px-2 py-1' onChange={handleChange} />
+            <input type="text" className='text-black border border-gray-300 rounded px-2 py-1 mb-4' onChange={handleChange} />
             <DataTable
             title={'Indicadores Usuario'}
                 columns={columns}

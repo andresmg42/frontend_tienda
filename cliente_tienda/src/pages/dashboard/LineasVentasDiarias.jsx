@@ -10,7 +10,7 @@ export default function LineasVentasDiarias() {
   useEffect(() => {
     async function loadVentasDiarias() {
       const res = await ventasDiarias();
-      console.log(res.data)
+      
       setDataRaw(res.data)
     }
     loadVentasDiarias()
@@ -19,7 +19,7 @@ export default function LineasVentasDiarias() {
  
 
   const processedData = dataRaw.map(item => ({
-    x: item.fecha, // Dejamos la fecha como string
+    x: item.fecha, 
     y: item.total_ventas
   })).sort((a, b) => new Date(a.x) - new Date(b.x));
 
@@ -40,7 +40,7 @@ export default function LineasVentasDiarias() {
         <VictoryAxis
           // tickValues={dataRaw.length>=0 ? dataRaw.map(item=>item.fecha):[]}
           tickFormat={(date) => {
-            // Parsea la fecha y formatea
+            
             const parsedDate = new Date(date);
             return parsedDate.toLocaleDateString('es-ES', { 
               day: '2-digit', 

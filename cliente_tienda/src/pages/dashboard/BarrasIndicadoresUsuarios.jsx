@@ -1,7 +1,6 @@
 import React from 'react'
 import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme } from "victory";
 export function BarrasIndicadoresUsuarios({selectedRowsIndicadores}) {
-  console.log('estos son los indicadores que entran a el grafico de barras',selectedRowsIndicadores)
 
   return (
     <div>

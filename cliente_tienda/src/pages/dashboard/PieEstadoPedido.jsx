@@ -16,11 +16,7 @@ export default function PieEstadoPedido() {
         loadEstadosPedidos()
 
     }, [])
-    console.log('esta es la data en pie 3',data)
-    // const dataPie=data.length=2? [
-    //     { x: 'Activo', y:data[1]['total_pedidos'] },
-    //     { x: "Inactivo", y:data[0]['total_pedidos'] },
-    //   ]:[]
+    
 
     const dataPie = data.length === 2 
   ? [

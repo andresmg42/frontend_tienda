@@ -82,8 +82,9 @@ export function TablaProductosMasVendidos({ setSelectedRows }) {
     ]
     return (
         <div className='table_container'>
-            <input type="text" className='text-black border border-gray-300 rounded px-2 py-1' onChange={handleChange} />
+            <input type="text" className='text-black border border-gray-300 rounded px-2 py-1 mb-4' onChange={handleChange} />
             <DataTable
+            
                 title={'Productos mas Vendidos'}
                 columns={columns}
                 data={records}

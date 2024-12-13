@@ -15,7 +15,6 @@ export function TableVentasDiarias() {
             const res = await ventasDiarias();
             setData(res.data)
             setRecords(res.data)
-            console.log(res.data)
         }
         loadVentasDiarias()
 
@@ -36,7 +35,6 @@ export function TableVentasDiarias() {
         setRecords(filteredRecords)
     }
 
-    console.log('esta es la data 3: ',data)
 
 
 
@@ -63,15 +61,13 @@ export function TableVentasDiarias() {
     ]
     return (
         <div className='table_container'>
-            <input type="text" className='text-black border border-gray-300 rounded px-2 py-1' onChange={handleChange} />
+            <input type="text" className='text-black border border-gray-300 rounded px-2 py-1 mb-4' onChange={handleChange} />
             <DataTable
             title={'Ventas Diarias'}
                 columns={columns}
                 data={records}
-                selectableRows
                 pagination
                 paginationPerPage={5}
-                onSelectedRowsChange={rows => console.log(rows)}
                 fixedHeader
             />
 

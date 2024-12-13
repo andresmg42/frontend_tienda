@@ -11,7 +11,7 @@ export default function PiePago() {
         async function loadMetodosPago() {
             const res = await metodosPMasUtilizados();
             setData(res.data)
-            console.log('esta es la data en pie',res.data[0])
+            
         }
         loadMetodosPago()
 

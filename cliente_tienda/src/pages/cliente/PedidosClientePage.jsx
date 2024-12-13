@@ -38,7 +38,6 @@ export default function PedidosClientePage() {
         const res = await searchUserProducts(localStorage.getItem('user_id'))
         setUserProducts(res.data)
       } catch (error) {
-        console.log('error al cargar los productos del usuario en PedidosClientePage', error)
       }
 
     };
