@@ -12,10 +12,6 @@ export function CarritoCard({ product ,set_total,Total}) {
     const total=product.precio*cantidad
    
 
-
-    const handleBackClick = () => {
-      navigate("/client")
-    }
     
     const handlePlus= async ()=>{
        

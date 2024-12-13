@@ -20,12 +20,15 @@ import Targetas from './components/cliente/metodos_pago/Targetas'
 import Dashboard from './pages/dashboard/Dashboard'
 import { CategoriaFormPage } from './pages/categoria/CategoriaFormPage'
 import { CategoriaBusqueda } from './pages/categoria/CategoriaBusqueda'
+// import {TablaProductosMasVendidos  } from './pages/dashboard/TablaProductosMasVendidos'
+// import LineasVentasDiarias from './pages/dashboard/LineasVentasDiarias'
 import { PedidosFilterPage } from './pages/pedidos/PedidosFilterPage'
 import { ClientFavorites } from './pages/cliente/ClientFavorites'
+import { Nosotros } from './pages/cliente/Nosotros'
+
 
 
 function App() {
-  //const [isAutenticated, setIsAutenticated] = useState(() => localStorage.getItem('IsAutenticated') === 'true');
 
   return (
     <BrowserRouter>
@@ -55,9 +58,11 @@ function App() {
           element={<EmailVerification />}
         />
         <Route path="/clientFavorites" element={<ClientFavorites />} />
+        <Route path='/client/nosotros' element={<Nosotros/>} />
 
-        <Route path='/dashboard' element={<Dashboard/>}></Route>
-        
+       
+        {/* <Route path='/lineas' element={<LineasVentasDiarias/>}></Route> */}
+      
 
 
 
@@ -93,6 +98,10 @@ function App() {
           {/* METODOS PAGO */}
           <Route path='/bancos' element={<Bancos/>}/>
           <Route path='/Targetas' element={<Targetas/>}/>
+
+          {/* DASHBOARD */}
+
+          <Route path='/dashboard' element={<Dashboard/>}></Route>
 
 
 
