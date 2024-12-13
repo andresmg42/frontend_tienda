@@ -68,7 +68,7 @@ export default function PedidosClientePage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     switch (formData.metodo_pago) {
-      case 'Targeta de credito': setTargeta(true); setTransferencia(false); setInicio(false)
+      case 'Tarjeta de credito': setTargeta(true); setTransferencia(false); setInicio(false)
         break;
       case 'efecty':
         authService.HacerCompra(formData, userProducts);
@@ -115,8 +115,8 @@ export default function PedidosClientePage() {
           onChange={handleChange}
 
         >
-          <option value="Transferencia bancaria"> Transeferecia Bancaria</option>
-          <option value="Targeta de credito">Tarjeta de Credito</option>
+          <option value="Transferencia bancaria"> Transferecia Bancaria</option>
+          <option value="Tarjeta de credito">Tarjeta de Credito</option>
           <option value="efecty">Efecty</option>
 
 

@@ -142,7 +142,7 @@ export function CategoriaFormPage() {
                 <div>
                 <button 
                     onClick={async () => {
-                        const accepted = window.confirm("¿Estás seguro de querer borrar este producto?");
+                        const accepted = window.confirm("¿Estás seguro de querer borrar esta categoria?");
                         if (accepted) {
                             handleDelete();
                         }

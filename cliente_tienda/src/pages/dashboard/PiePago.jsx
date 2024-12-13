@@ -19,7 +19,7 @@ export default function PiePago() {
 
     const dataPie=data.length>=3? [
         { x: 'Transferencia', y:data[0]['frecuencia'] },
-        { x: "Targeta", y:data[1]['frecuencia'] },
+        { x: "Tarjeta", y:data[1]['frecuencia'] },
         { x: "Efecty", y:data[2]['frecuencia'] }
       ]:[]
 
