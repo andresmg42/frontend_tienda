@@ -64,23 +64,6 @@ export function ProductFormPage() {
     navigate('/products');
   };
 
-/*
-  const handleDelete = async () => {
-    try {
-      await deleteProduct(params.id);
-      toast.success('Producto eliminado exitosamente', {
-        position: 'bottom-right',
-        style: { background: '#101010', color: '#fff' },
-      });
-      navigate('/products');
-    } catch (error) {
-      toast.error('No tienes permiso para realizar esta acción', {
-        position: 'bottom-right',
-        style: { background: '#101010', color: '#fff' },
-      });
-    }
-    setShowModal(false);
-  }; */
 
   
 
@@ -183,7 +166,12 @@ export function ProductFormPage() {
           >
             Save
           </button>
-          {params.id && (
+         
+        </div>
+      </form>
+      <div className="flex gap-4 mt-3">
+
+      {params.id && (
             <button
               className="bg-red-500 p-3 rounded-lg flex-1 hover:bg-red-700 transition duration-300"
               onClick={async () => {
@@ -208,8 +196,9 @@ export function ProductFormPage() {
               Delete
             </button>
           )}
-        </div>
-      </form>
+
+      </div>
+      
     </div>
   );
 }
