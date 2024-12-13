@@ -84,6 +84,13 @@ export function Navigation() {
         >
           Pedidos
         </NavLink>
+
+        <Link
+          to="/dashboard"
+          className="text-xl font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
+        >
+          Dashboard
+        </Link>
         
 
 
@@ -157,6 +164,15 @@ export function Navigation() {
               onClick={(e) => e.stopPropagation()}
             >
               <ul className="py-2">
+              <li
+                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                  onClick={() => {
+                    navigate('/client');
+                    setIsPedidoDropdownOpen(false);
+                  }}
+                >
+                  Ir a Seccion del Cliente
+                </li>
                 <li
                   className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
                   onClick={() => {
