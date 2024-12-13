@@ -126,6 +126,13 @@ export function Navigation() {
           Carrito
         </button>
         {/* CARRITO */}
+        <Link
+          to="/clientFavorites"
+          className="text-xl font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
+        >
+          Favoritos
+        </Link>
+        
 
 
         <div

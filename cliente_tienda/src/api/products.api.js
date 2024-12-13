@@ -47,3 +47,9 @@ export const updateCantidadProductoCarrito=(id,cantidad_producto)=>productoApi.p
 export const insertarCarrito=(data)=>productoApi.post('/users_products/',data)
 
 export const vaciarCarrito=(id)=>productoApi.delete('/delete_all_userProducts/?user_id='+id)
+
+export const createFavorito=(data)=>productoApi.post('/favoritos/',data)
+
+export const deleteFavorito=(id)=>productoApi.delete('/favoritos/'+id+'/')
+
+export const getAllFavoritos=()=>productoApi.get('/favoritos/')

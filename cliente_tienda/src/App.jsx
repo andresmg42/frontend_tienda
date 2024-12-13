@@ -21,6 +21,7 @@ import Dashboard from './pages/dashboard/Dashboard'
 import { CategoriaFormPage } from './pages/categoria/CategoriaFormPage'
 import { CategoriaBusqueda } from './pages/categoria/CategoriaBusqueda'
 import { PedidosFilterPage } from './pages/pedidos/PedidosFilterPage'
+import { ClientFavorites } from './pages/cliente/ClientFavorites'
 
 
 function App() {
@@ -53,6 +54,7 @@ function App() {
           path="/verify_Email/:token"
           element={<EmailVerification />}
         />
+        <Route path="/clientFavorites" element={<ClientFavorites />} />
 
         <Route path='/dashboard' element={<Dashboard/>}></Route>
         
