@@ -2,10 +2,14 @@ import { useEffect, useState } from "react"
 import { searchUserProducts } from '../../api/products.api'
 import { CarritoCard } from "./CarritoCard"
 import carrito from '../../images/carrito.png'
-export function CarritoList({ searchValue, set_total, Total }) {
+
+import { useNavigate } from 'react-router-dom'
+export function CarritoList({searchValue, set_total,Total}) {
 
   const [products, setProducts] = useState([])
 
+
+  
   useEffect(() => {
     async function loadProducts() {
       try {
@@ -44,7 +48,7 @@ export function CarritoList({ searchValue, set_total, Total }) {
 
       )}
 
-      )
+      
 
     </div>
   )

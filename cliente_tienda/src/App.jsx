@@ -22,6 +22,9 @@ import { CategoriaFormPage } from './pages/categoria/CategoriaFormPage'
 import { CategoriaBusqueda } from './pages/categoria/CategoriaBusqueda'
 import {TablaProductosMasVendidos  } from './pages/dashboard/TablaProductosMasVendidos'
 import LineasVentasDiarias from './pages/dashboard/LineasVentasDiarias'
+import { PedidosFilterPage } from './pages/pedidos/PedidosFilterPage'
+import { ClientFavorites } from './pages/cliente/ClientFavorites'
+
 
 function App() {
   //const [isAutenticated, setIsAutenticated] = useState(() => localStorage.getItem('IsAutenticated') === 'true');
@@ -53,6 +56,7 @@ function App() {
           path="/verify_Email/:token"
           element={<EmailVerification />}
         />
+        <Route path="/clientFavorites" element={<ClientFavorites />} />
 
         <Route path='/dashboard' element={<Dashboard/>}></Route>
         <Route path='/lineas' element={<LineasVentasDiarias/>}></Route>
@@ -66,8 +70,9 @@ function App() {
 
           {/* PEDIDOS */}
           <Route path="/pedidos" element={<PedidosPage />} />
-          <Route path="/pedidosProductos/:id" element={<PedidosProductosPage />} />
+          <Route path="/pedidosProductos/:id/:iduser" element={<PedidosProductosPage />} />
           <Route path='/pasarela' element={<PedidosClientePage/>}></Route>
+          <Route path= '/pedidosFilter/:estado'element={<PedidosFilterPage/>}/>
 
 
           {/* CATEGORIA */}

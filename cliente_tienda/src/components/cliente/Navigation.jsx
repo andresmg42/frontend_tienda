@@ -3,7 +3,8 @@ import React, { useState, useEffect } from 'react';
 
 import { useNavigate } from "react-router-dom";
 import { getAllCategories } from "../../api/categories.api";
-import { ChevronDown, Search, Plus, LogOut } from 'lucide-react';
+import { ChevronDown, Search, Plus, LogOut, Filter } from 'lucide-react';
+import logo from '../../assets/logo/clasSmart.png'
 
 
 
@@ -67,16 +68,21 @@ export function Navigation() {
 
   return (
 
-    <nav className="bg-indigo-500 text-white p-4">
+    <nav className="text-white p-4 " 
+    style={{ backgroundColor: "#0FA0CC" }}
+    >
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo o Título */}
+        <div className="flex items-center">
+            <img src={logo} alt="Logo" className="h-8" />
+        </div>
 
         <Link
-          className="text-xl font-bold "
+          className="text-2xl text-black font-bold ml-[-110px]"
           to='/client'
 
         >
-          Tienda Universitaria
+          ClasSmart
         </Link>
 
       
@@ -89,21 +95,23 @@ export function Navigation() {
 
         <Link
 
-          className="text font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
+          className="text-xl font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
+
         >
+         
           Nosotros
         </Link>
 
         <Link
           to="/register-user"
-          className="text font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
+          className="text-xl font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
         >
-          Registrate
+          Regístrate
         </Link>
 
 
         <button
-          className="text font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
+          className="text-xl font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
           onClick={() => {
             const authToken = localStorage.getItem('authToken')
             if (authToken) {
@@ -113,10 +121,18 @@ export function Navigation() {
             }
 
           }}
+          
         >
           Carrito
         </button>
         {/* CARRITO */}
+        <Link
+          to="/clientFavorites"
+          className="text-xl font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
+        >
+          Favoritos
+        </Link>
+        
 
 
         <div
@@ -142,7 +158,7 @@ export function Navigation() {
                   />
                   <button
                     type="submit"
-                    className="bg-indigo-500 text-white px-4 py-2 rounded-r-lg hover:bg-blue-700"
+                    className="bg-[#0FA0CC] text-white px-4 py-2 rounded-r-lg hover:bg-[#0c88ad]"
                   >
                     <Search size={20} />
                   </button>
@@ -159,7 +175,8 @@ export function Navigation() {
                 </select>
                 <button
                   onClick={() => setIsSearchOpen(false)}
-                  className="mt-4 w-full bg-indigo-500 py-2 rounded-lg hover:bg-gray-300"
+                  className="mt-4 w-full bg-[#0FA0CC] py-2 rounded-lg hover:bg-red-500"
+
                 >
                   Cancelar
                 </button>
@@ -185,7 +202,8 @@ export function Navigation() {
           </div>
         ) : (<Link
           to='/login'
-          className="text font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
+          className="text-xl font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
+
         >
           LogIn
         </Link>)}
@@ -198,7 +216,7 @@ export function Navigation() {
               style={{ backgroundColor: "#0FA0CC" }}
               onClick={toggleUserDropdown}
             >
-              <Plus size={24} />
+              <Filter size={24} />
             </button>
             {isUserDropdownOpen && (
               <div

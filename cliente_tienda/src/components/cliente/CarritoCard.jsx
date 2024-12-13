@@ -11,6 +11,11 @@ export function CarritoCard({ product ,set_total,Total}) {
     const [cantidadP,setCantidadP]=useState(product.cantidad_producto)
     const total=product.precio*cantidad
    
+
+
+    const handleBackClick = () => {
+      navigate("/client")
+    }
     
     const handlePlus= async ()=>{
        
@@ -80,10 +85,12 @@ export function CarritoCard({ product ,set_total,Total}) {
   
 
     return (
-        <div className="bg-withe p-3 hover:bg-gray-300
+        <div className="bg-withe p-3 rounded-md shadow-md hover:shadow-lg
         hover:cursor-pointer"
 
         >
+
+         
 
             {product.foto_producto && (
                 <img
@@ -92,14 +99,14 @@ export function CarritoCard({ product ,set_total,Total}) {
                     className="w-32 h-[120px] object-cover mb-3 rounded-md"
                 />
             )}
-            <h1 className="font-bold uppercase">{product.nombre}</h1>
-            <p className="text-gray-600">Cantidad a comprar:{cantidad}</p>
-            <p className="text-gray-600">Cantidad disponible:{cantidadP}</p>
-            <p className="text-gray-600">Precio:{product.precio}</p>
-            <p className="text-gray-600">Descripcion:{product.descripcion}</p>
-            <p className="text-gray-600">Total:{total}</p>
+            <h1 className="text-black font-bold uppercase">{product.nombre}</h1>
+            <p className="text-gray-600">Cantidad a comprar: {cantidad}</p>
+            <p className="text-gray-600">Cantidad disponible: {cantidadP}</p>
+            <p className="text-gray-600">Precio: ${product.precio.toLocaleString('es-ES', { minimumFractionDigits: 0, maximumFractionDigits: 2 })}</p>
+            <p className="text-gray-600">Descripción: {product.descripcion}</p>
+            <p className="text-gray-600">Total: ${total.toLocaleString('es-ES', { minimumFractionDigits: 0, maximumFractionDigits: 2 })}</p>
 
-            <button className='bg-indigo-500 p-3 rounded-lg  w-48 mt-3 p-3 hover:bg-indigo-700
+            <button className='bg-[#0FA0CC] p-3 rounded-lg w-48 mt-3 p-3 hover:bg-[#0c88ad]
         hover:cursor-pointer'
         onClick={()=>{ 
             
@@ -109,7 +116,8 @@ export function CarritoCard({ product ,set_total,Total}) {
 
         }}
         >+</button>
-        <button className='bg-red-500 p-3 rounded-lg  w-48 mt-3 p-3 hover:bg-red-700
+        
+        <button className='bg-red-500 p-3 rounded-lg w-48 mt-3 p-3 hover:bg-red-700
         hover:cursor-pointer'
         onClick={()=>{ 
             
@@ -120,7 +128,19 @@ export function CarritoCard({ product ,set_total,Total}) {
         }}
         >-</button>
 
+        
+|||||||<div className="fixed bottom-0 right-0 p-5 bg-white">
+                <h2 className="text-red-600 text-2xl font-bold uppercase">
+                    Total : ${total.toLocaleString('es-ES', { minimumFractionDigits: 0, maximumFractionDigits: 2 })}
+                </h2>
+            </div>
+
         </div>
+
+        
+
+        
+       
+        
     );
 }
-

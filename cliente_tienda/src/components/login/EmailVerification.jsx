@@ -20,6 +20,6 @@ export function EmailVerification() {
     verifyToken();
   }, [token]);
 
-  return <div>{status}</div>;
+  return <div className='text-black'><h1>{status}</h1></div>;
 }
 
