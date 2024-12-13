@@ -5,6 +5,7 @@ import { Navigation } from '../../components/cliente/Navigation';
 import { ClientCard } from '../../components/cliente/ClientCard';
 
 
+
 export function ClientFavorites () {
     const [favorites, setFavorites] = useState([]);
     const [products, setProducts] = useState([]);
