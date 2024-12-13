@@ -123,7 +123,7 @@ export default function Dashboard() {
 
           </div>
 
-          <div className="text-center text-2xl text-gray-700 font-bold bg-gray-200 shadow-md rounded px-4 py-6">
+          <div className="text-center text-2xl text-gray-500 font-bold bg-gray-200 shadow-md rounded px-4 py-6">
             <span>Total Ingresos:</span>
             <div className="flex justify-center items-center mt-4">
               <div className="text-white rounded-full w-32 h-32 flex justify-center items-center text-xl" style={{ backgroundColor: "#0FA0CC" }}>
