@@ -33,7 +33,11 @@ export function CarritoPage() {
       
       <NavigationCar total_global={total}/>
       <div className='container mx-auto mt-4'><CarritoList set_total={setTotal} Total={total} searchValue={id}></CarritoList></div>
-
+      |<div className="fixed bottom-0 right-0 p-5 bg-white">
+        <h2 className="text-red-600 text-2xl font-bold uppercase">
+          Total : ${total.toLocaleString('es-ES', { minimumFractionDigits: 0, maximumFractionDigits: 2 })}
+        </h2>
+        </div>
     </div>
 
   )

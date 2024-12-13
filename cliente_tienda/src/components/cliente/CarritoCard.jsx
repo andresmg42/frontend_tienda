@@ -12,10 +12,6 @@ export function CarritoCard({ product ,set_total,Total}) {
     const total=product.precio*cantidad
    
 
-
-    const handleBackClick = () => {
-      navigate("/client")
-    }
     
     const handlePlus= async ()=>{
        
@@ -129,11 +125,7 @@ export function CarritoCard({ product ,set_total,Total}) {
         >-</button>
 
         
-|||||||<div className="fixed bottom-0 right-0 p-5 bg-white">
-                <h2 className="text-red-600 text-2xl font-bold uppercase">
-                    Total : ${total.toLocaleString('es-ES', { minimumFractionDigits: 0, maximumFractionDigits: 2 })}
-                </h2>
-            </div>
+
 
         </div>
 

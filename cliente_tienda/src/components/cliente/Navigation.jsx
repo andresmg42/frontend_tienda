@@ -78,7 +78,7 @@ export function Navigation() {
         </div>
 
         <Link
-          className="text-2xl text-black font-bold ml-[-110px]"
+          className="text-2xl text-black font-bold ml-[-90px]"
           to='/client'
 
         >
@@ -94,6 +94,7 @@ export function Navigation() {
         <div></div>
 
         <Link
+          to="/client/nosotros"
 
           className="text-xl font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
 
@@ -102,12 +103,7 @@ export function Navigation() {
           Nosotros
         </Link>
 
-        <Link
-          to="/register-user"
-          className="text-xl font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
-        >
-          Regístrate
-        </Link>
+
 
 
         <button
@@ -125,6 +121,9 @@ export function Navigation() {
         >
           Carrito
         </button>
+
+
+
         {/* CARRITO */}
         <Link
           to="/clientFavorites"
@@ -135,12 +134,7 @@ export function Navigation() {
         
 
 
-        <div
-          className="cursor-pointer"
-          onClick={() => setIsSearchOpen(!isSearchOpen)}
-        >
-          <Search size={24} />
-        </div>
+     
 
 
         {/* Barra de Búsqueda */}
@@ -185,6 +179,17 @@ export function Navigation() {
           )
         }
 
+        {!localStorage.getItem('authToken') && (
+          <button
+          className="text-xl font-bold hover:scale-110 transition-transform shadow-lg duration-300 ease-in-out"
+          onClick={() => {
+            navigate('/login')
+          }}
+        >
+        Regístrate
+          </button>
+        )}
+
 
         {localStorage.getItem('authToken') ? (
           <div className="fixed bottom-4 left-4">
@@ -202,11 +207,24 @@ export function Navigation() {
           </div>
         ) : (<Link
           to='/login'
-          className="text-xl font-bold hover:scale-110 transition-transform duration-300 ease-in-out"
+          className="text-xl font-bold hover:scale-110 shadow-lg transition-transform duration-300 ease-in-out"
 
         >
           LogIn
         </Link>)}
+
+
+
+
+        <div
+          className="cursor-pointer"
+          onClick={() => setIsSearchOpen(!isSearchOpen)}
+        >
+          <Search size={24} />
+        </div>
+
+
+
 
         {/* BOTON DE OPCIONES ADICIONALES */}
         <div className="fixed bottom-4 right-4">
@@ -226,6 +244,16 @@ export function Navigation() {
                 onClick={(e) => e.stopPropagation()}
               >
                 <ul className="py-2">
+                  <li
+                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    navigate('/client');
+                    setIsCategoryDropdownOpen(false);
+                  }}
+                >
+                  Ver todo
+                </li>
                 {categorias.map(categoria => (
                   
 

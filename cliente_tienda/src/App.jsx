@@ -24,6 +24,8 @@ import {TablaProductosMasVendidos  } from './pages/dashboard/TablaProductosMasVe
 import LineasVentasDiarias from './pages/dashboard/LineasVentasDiarias'
 import { PedidosFilterPage } from './pages/pedidos/PedidosFilterPage'
 import { ClientFavorites } from './pages/cliente/ClientFavorites'
+import { Nosotros } from './pages/cliente/Nosotros'
+
 
 
 function App() {
@@ -56,6 +58,7 @@ function App() {
           element={<EmailVerification />}
         />
         <Route path="/clientFavorites" element={<ClientFavorites />} />
+        <Route path='/client/nosotros' element={<Nosotros/>} />
 
        
         {/* <Route path='/lineas' element={<LineasVentasDiarias/>}></Route> */}
