@@ -14,3 +14,5 @@ export const metodosPMasUtilizados=()=>pedidosApi.get('metodos_pago_mas_utilizad
 export const tablaProductosMasVendidos=()=>pedidosApi.get('productosMasVendidos')
 
 export const  valorTotalVentas=()=>pedidosApi.get('valor_total_ventas')
+
+export const  estadosPedidos=()=>pedidosApi.get('pedidos_por_estado')

@@ -10,6 +10,7 @@ import {BarrasIndicadoresUsuarios} from "./BarrasIndicadoresUsuarios"
 
 import { TablaProductosMasVendidos } from "./TablaProductosMasVendidos";
 import LineasVentasDiarias from "./LineasVentasDiarias";
+import PieEstadoPedido from "./PieEstadoPedido";
 
 
 
@@ -100,7 +101,6 @@ export default function Dashboard() {
 
         </div>
 
-
         {/* PIE METODOS PAGO MAS UTILIZADOS */}
 
         <div className="bg-white shadow-md rounded px-4 py-6">
@@ -109,6 +109,16 @@ export default function Dashboard() {
           <PiePago />
 
         </div>
+        
+        {/* PIE METODOS PAGO MAS UTILIZADOS */}
+
+        <div className="bg-white shadow-md rounded px-4 py-6">
+        <h2 className="text-xl font-bold mb-2 text-gray-500">Estado Pedidos</h2>
+
+          <PieEstadoPedido />
+
+        </div>
+
 
 
 
