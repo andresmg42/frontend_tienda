@@ -27,7 +27,6 @@ import { ClientFavorites } from './pages/cliente/ClientFavorites'
 
 
 function App() {
-  //const [isAutenticated, setIsAutenticated] = useState(() => localStorage.getItem('IsAutenticated') === 'true');
 
   return (
     <BrowserRouter>
@@ -58,8 +57,8 @@ function App() {
         />
         <Route path="/clientFavorites" element={<ClientFavorites />} />
 
-        <Route path='/dashboard' element={<Dashboard/>}></Route>
-        <Route path='/lineas' element={<LineasVentasDiarias/>}></Route>
+       
+        {/* <Route path='/lineas' element={<LineasVentasDiarias/>}></Route> */}
       
 
 
@@ -96,6 +95,10 @@ function App() {
           {/* METODOS PAGO */}
           <Route path='/bancos' element={<Bancos/>}/>
           <Route path='/Targetas' element={<Targetas/>}/>
+
+          {/* DASHBOARD */}
+
+          <Route path='/dashboard' element={<Dashboard/>}></Route>
 
 
 
